@@ -166,7 +166,7 @@ WHERE candidate_id = 'Shivaling_Battarki'
   SELECT customer_state, avg_days, DENSE_RANK() OVER(ORDER BY avg_days DESC) as rank
   FROM delivery_metrics;
   ```
-* **Links:** [Detailed SQL Report](https://iamshivalingbattarki09.vercel.app/) • [Case Study Documentation](./Shivaling-TARGET%20SQL%20Business%20Case.pdf)
+* **Links:** [GitHub Repository](https://github.com/Hazardous9hub/Target-SQL-Business-Case-Study) • [Case Study PDF](https://github.com/Hazardous9hub/Target-SQL-Business-Case-Study/blob/main/reports/Shivaling-TARGET%20SQL%20Business%20Case.pdf) • [Live Portfolio](https://iamshivalingbattarki09.vercel.app/)
 </details>
 
 <details open>

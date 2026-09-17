@@ -234,11 +234,11 @@ WHERE candidate_id = 'Shivaling_Battarki'
 * 🎓 **Bachelor of Engineering (B.E.) in Mechanical Engineering** — *VTU Belagavi (CGPA: 8.67)*
 
 ---
-
+<!--
 ### 📊 GitHub Activity & Problem Solving
 
 <div align="center">
-  <!-- GitHub Readme Stats in Custom Dark Neon/Cyan theme -->
+  <!-- GitHub Readme Stats in Custom Dark Neon/Cyan theme 
   <img height="150" src="https://github-readme-stats.vercel.app/api?username=Hazardous9hub&show_icons=true&theme=tokyonight&hide_border=true&bg_color=0b0f19&title_color=00f2fe&icon_color=38bdf8&text_color=94a3b8" alt="GitHub Stats"/>
   <img height="150" src="https://github-readme-streak-stats.herokuapp.com/?user=Hazardous9hub&theme=tokyonight&hide_border=true&background=0b0f19&ring=00f2fe&fire=00f2fe&currStreakLabel=00f2fe" alt="GitHub Streak"/>
 </div>
@@ -246,14 +246,15 @@ WHERE candidate_id = 'Shivaling_Battarki'
 <br>
 
 <div align="center">
-  <!-- Top Languages and LeetCode Card -->
+  <!-- Top Languages and LeetCode Card 
   <img height="150" src="https://github-readme-stats.vercel.app/api/top-langs/?username=Hazardous9hub&layout=compact&theme=tokyonight&hide_border=true&bg_color=0b0f19&title_color=00f2fe&text_color=94a3b8" alt="Top Languages"/>
   <a href="https://leetcode.com/u/shivaling09000330/">
     <img height="150" src="https://leetcard.jacoblin.cool/shivaling09000330?theme=dark&font=Plus%20Jakarta%20Sans&border=0" alt="LeetCode Stats"/>
   </a>
 </div>
 
----
+--- 
+-->
 
 ### 🐍 GitHub Contribution Snake
 

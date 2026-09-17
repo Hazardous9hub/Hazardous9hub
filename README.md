@@ -217,7 +217,7 @@ WHERE candidate_id = 'Shivaling_Battarki'
   margin_error = stats.norm.ppf(0.975) * std_err
   ci_95 = (df['Purchase'].mean() - margin_error, df['Purchase'].mean() + margin_error)
   ```
-* **Links:** [GitHub Repository](https://github.com/Hazardous9hub/Walmart-Purchase-Behavior-Case-Study) • [Case Study PDF](https://github.com/Hazardous9hub/Walmart-Purchase-Behavior-Case-Study/blob/main/reports/Shivaling_Scaler_Walmart_Business_case_study.pdf) • [LinkedIn Carousel](https://github.com/Hazardous9hub/Walmart-Purchase-Behavior-Case-Study/tree/main/carousel) • [Jupyter Notebook](https://github.com/Hazardous9hub/Walmart-Purchase-Behavior-Case-Study/blob/main/notebooks/Walmart_Purchase_Behaviour_Case_Study_Shivaling.ipynb)
+* **Links:** [GitHub Repository](https://github.com/Hazardous9hub/Walmart-Purchase-Behaviour-Business-Case-Study) • [Case Study PDF](https://github.com/Hazardous9hub/Walmart-Purchase-Behaviour-Business-Case-Study/blob/main/reports/Shivaling_Scaler_Walmart_Business_case_study.pdf) • [LinkedIn Carousel](https://github.com/Hazardous9hub/Walmart-Purchase-Behaviour-Business-Case-Study/tree/main/carousel) • [Jupyter Notebook](https://github.com/Hazardous9hub/Walmart-Purchase-Behaviour-Business-Case-Study/blob/main/notebooks/Walmart_Purchase_Behaviour_Case_Study_Shivaling.ipynb)
 </details>
 
 <details>

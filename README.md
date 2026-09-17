@@ -69,7 +69,7 @@
 
 I am a **Data Analyst** with a foundational background in **Mechanical Engineering** and 1 year of on-ground enterprise operations experience at **Bharat Petroleum Corporation Limited (BPCL)**.
 
-- ⚙️ **From Machines to Data Systems:** My engineering education built my appreciation for structured problem solving and applied mathematics. At BPCL, I experienced firsthand how physical enterprise operations run on data—monitoring daily fuel sales, stock movements, and dealer credit risk across **350+ retail stations**.
+- ⚙️ **From Machines to Data Systems:** My engineering education built my appreciation for structured problem solving and applied mathematics. At BPCL, I experienced firsthand how physical enterprise operations run on data-monitoring daily fuel sales, stock movements, and dealer credit risk across **350+ retail stations**.
 - 🛠️ **Process Improvement in Action:** Using **SAP ECC, Advanced Excel, and VBA**, I restructured manual daily reporting pipelines, **reducing MIS compilation time by 70%** (2.5 hours down to 25 minutes) and evaluated bank credit eligibility under the **e-DFS facility for 50+ retail partners**.
 - 📈 **Continuous Upskilling with Scaler DSML:** To deepen my statistical and technical capability, I joined the **Scaler Academy Data Science & Machine Learning (DSML)** program. I work with **SQL (BigQuery, MySQL), Python (Pandas, NumPy, Scipy, Seaborn, Matplotlib), Probability, Hypothesis Testing, and Tableau Public**.
 - 🎯 **Current Goal:** Seeking full-time **Data Analyst / Business Analyst** opportunities where I can apply rigorous analytical thinking to solve operational, retail, and product challenges.
@@ -226,12 +226,12 @@ WHERE candidate_id = 'Shivaling_Battarki'
 ### 📜 Verified Certifications & Credentials
 
 * 🏆 **HackerRank SQL - 5-Star Gold Badge** ([View Verified Profile](https://www.hackerrank.com/profile/shivalingb09))
-* 🇦🇺 **Data Analytics Job Simulation** — *Deloitte Australia (via Forage)*
-* 🎓 **SQL Skill Mastery Certification** — *Scaler Academy & InterviewBit*
-* 📊 **Data Analytics & Visualisation: Probability & Statistics** — *Scaler DSML*
-* 🐍 **Data Analytics & Visualisation: Python Libraries (Pandas, NumPy, Seaborn)** — *Scaler DSML*
-* 📈 **Tableau & Excel Specialization** — *Scaler DSML*
-* 🎓 **Bachelor of Engineering (B.E.) in Mechanical Engineering** — *VTU Belagavi (CGPA: 8.67)*
+* 🇦🇺 **Data Analytics Job Simulation** - *Deloitte Australia (via Forage)*
+* 🎓 **SQL Skill Mastery Certification** - *Scaler Academy & InterviewBit*
+* 📊 **Data Analytics & Visualisation: Probability & Statistics** - *Scaler DSML*
+* 🐍 **Data Analytics & Visualisation: Python Libraries (Pandas, NumPy, Seaborn)** - *Scaler DSML*
+* 📈 **Tableau & Excel Specialization** - *Scaler DSML*
+* 🎓 **Bachelor of Engineering (B.E.) in Mechanical Engineering** - *VTU Belagavi (CGPA: 8.67)*
 
 ---
 <!--
@@ -271,7 +271,7 @@ WHERE candidate_id = 'Shivaling_Battarki'
 ### 💬 Analytical Mindset & Philosophy
 
 > *"Numbers have an important story to tell. They rely on you to give them a clear and convincing voice."*  
-> — **Stephen Few**
+> - **Stephen Few**
 
 Whether it's untangling daily sales across 350 petroleum stations, diagnosing regional fulfillment delays in BigQuery, or finding non-obvious purchase drivers with conditional probability, I enjoy the craft of making data clean, clear, and actionable.
 

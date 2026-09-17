@@ -203,13 +203,21 @@ WHERE candidate_id = 'Shivaling_Battarki'
 * **Quantitative Impact:** Reduced daily reporting time from **2.5 hours to 25 minutes** (70% reduction in reporting friction) and coordinated on-ground engineering support for **37 new retail outlet commissionings**.
 </details>
 
-<details>
-<summary><b>5. 🛒 Walmart Consumer Behavior & Distribution Analysis (Python, Stats & CLT)</b></summary>
+<details open>
+<summary><b>5. 🛒 Walmart: Consumer Purchase Behavior & Central Limit Theorem Analysis (Python, Stats & CLT)</b></summary>
 <br>
 
-* **The Analytical Challenge:** Examine purchase patterns across diverse demographics during peak shopping events and test population spending assumptions.
-* **Methodology:** Applied **Central Limit Theorem (CLT)** sampling distributions, confidence interval estimations, and statistical hypothesis testing across demographic cohorts (gender, marital status, age brackets, city tiers).
-* **Links:** [Jupyter Notebook](./Walmart_Purchase_Behaviour_Case_Study_Shivaling.ipynb) • [Case Study PDF](./Shivaling_Scaler_Walmart_Business_case_study.pdf)
+* **The Analytical Challenge:** Examine Black Friday purchase behavior across 550,000+ transactions to evaluate demographic spending assumptions (gender, age cohorts, marital status) and prove population-wide significance.
+* **Methodology:** Applied **Central Limit Theorem (CLT)** sampling distributions ($n \in \{30, 100, 500, 1000\}$), evaluated standard error contraction, and constructed **90%, 95%, and 99% Confidence Intervals** across customer demographics.
+* **Quantitative Finding:** Discovered that while men spend **+$702.96 (+8.05%)** more per transaction ($9,437 vs. $8,734) with **zero CI overlap at 99% confidence (gap >$649)**, both genders spend **identically within categories** ($11 difference in Category 1). Disproved marital status spending variance ($4.74 difference, complete CI overlap).
+* **Key Python Snippet:**
+  ```python
+  # Computing sample mean standard error and 95% confidence interval
+  std_err = df['Purchase'].std() / np.sqrt(len(df))
+  margin_error = stats.norm.ppf(0.975) * std_err
+  ci_95 = (df['Purchase'].mean() - margin_error, df['Purchase'].mean() + margin_error)
+  ```
+* **Links:** [GitHub Repository](https://github.com/Hazardous9hub/Walmart-Purchase-Behavior-Case-Study) • [Case Study PDF](https://github.com/Hazardous9hub/Walmart-Purchase-Behavior-Case-Study/blob/main/reports/Shivaling_Scaler_Walmart_Business_case_study.pdf) • [LinkedIn Carousel](https://github.com/Hazardous9hub/Walmart-Purchase-Behavior-Case-Study/tree/main/carousel) • [Jupyter Notebook](https://github.com/Hazardous9hub/Walmart-Purchase-Behavior-Case-Study/blob/main/notebooks/Walmart_Purchase_Behaviour_Case_Study_Shivaling.ipynb)
 </details>
 
 <details>

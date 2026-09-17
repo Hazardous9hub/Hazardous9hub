@@ -209,7 +209,7 @@ WHERE candidate_id = 'Shivaling_Battarki'
 
 * **The Analytical Challenge:** Examine Black Friday purchase behavior across 550,000+ transactions to evaluate demographic spending assumptions (gender, age cohorts, marital status) and prove population-wide significance.
 * **Methodology:** Applied **Central Limit Theorem (CLT)** sampling distributions ($n \in \{30, 100, 500, 1000\}$), evaluated standard error contraction, and constructed **90%, 95%, and 99% Confidence Intervals** across customer demographics.
-* **Quantitative Finding:** Discovered that while men spend **+$702.96 (+8.05%)** more per transaction ($9,437 vs. $8,734) with **zero CI overlap at 99% confidence (gap >$649)**, both genders spend **identically within categories** ($11 difference in Category 1). Disproved marital status spending variance ($4.74 difference, complete CI overlap).
+* **Quantitative Finding:** Discovered that while men spend **+$702.96 (+8.05%)** more per transaction ($9,437 vs. $8,734) with **zero CI overlap at 99% confidence (gap >$649)**, both genders spend **identically within categories** ($11 difference in Product_Category 1). Disproved marital status spending variance ($4.74 difference, complete CI overlap).
 * **Key Python Snippet:**
   ```python
   # Computing sample mean standard error and 95% confidence interval

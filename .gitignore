@@ -1,0 +1,11 @@
+# Large raw datasets (preserved in .zip format)
+*.json
+!*.json.zip
+
+# Temporary & OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+*.tmp
+~*
+__pycache__/

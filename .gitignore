@@ -1,6 +1,7 @@
 # Large raw datasets (preserved in .zip format)
 *.json
 !*.json.zip
+*.csv
 
 # Temporary & OS files
 .DS_Store

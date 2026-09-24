@@ -185,7 +185,7 @@ WHERE candidate_id = 'Shivaling_Battarki'
   ci_95 = (df['Purchase'].mean() - margin_error, df['Purchase'].mean() + margin_error)
   ```
 * **Direct Project Links:**  
-  [🔗 GitHub Repository](https://github.com/Hazardous9hub/Walmart-Purchase-Behaviour-Business-Case-Study) • [📓 Jupyter Notebook](https://github.com/Hazardous9hub/Walmart-Purchase-Behaviour-Business-Case-Study/blob/main/notebooks/Walmart_Purchase_Behaviour_Case_Study_Shivaling.ipynb) • [📊 Case Study PDF Report](https://github.com/Hazardous9hub/Walmart-Purchase-Behaviour-Business-Case-Study/blob/main/reports/Shivaling_Scaler_Walmart_Business_case_study.pdf) • [📱 LinkedIn Carousel Slides](https://github.com/Hazardous9hub/Walmart-Purchase-Behaviour-Business-Case-Study/tree/main/carousel)
+  [🔗 GitHub Repository](https://github.com/Hazardous9hub/Walmart-Purchase-Behaviour-Business-Case-Study) • [📓 Jupyter Notebook](https://github.com/Hazardous9hub/Walmart-Purchase-Behaviour-Business-Case-Study/blob/main/notebooks/Walmart_Purchase_Behaviour_Case_Study_Shivaling.ipynb) • [📊 Case Study PDF Report](https://github.com/Hazardous9hub/Walmart-Purchase-Behaviour-Business-Case-Study/blob/main/reports/Shivaling_Walmart_Case_Study_Project.pdf) • [📱 LinkedIn Carousel Slides](https://github.com/Hazardous9hub/Walmart-Purchase-Behaviour-Business-Case-Study/tree/main/carousel)
 </details>
 
 <details open>

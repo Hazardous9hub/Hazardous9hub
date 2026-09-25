@@ -15,7 +15,7 @@
 
   <style>
     /* ========================================================
-       DRACULA THEME + BRIGHT ELECTRIC YELLOW (#FAED26) VISUAL PATH
+       DRACULA THEME + VIBRANT BRIGHT GREEN (#50fa7b) VISUAL PATH
     ======================================================== */
     :root {
       /* Dracula Base & Deep Atmosphere */
@@ -28,12 +28,17 @@
       --eggplant: #46344E;
       --slate-mid: #5A5560;
 
-      /* Primary Eye-Path Anchor: Vibrant Electric Yellow (#FAED26) */
-      --accent: #FAED26;
-      --accent-glow: rgba(250, 237, 38, 0.35);
-      --accent-subtle: rgba(250, 237, 38, 0.12);
-      --accent-hover: #fff34d;
-      --accent-contrast: #1e1f29;
+      /* Primary Eye-Path Anchor: Vibrant Bright Green (#50fa7b) */
+      --accent: #50fa7b;
+      --accent-glow: rgba(80, 250, 123, 0.35);
+      --accent-subtle: rgba(80, 250, 123, 0.12);
+      --accent-hover: #69ff91;
+      --accent-contrast: #16171f;
+
+      /* Visual Path Structural Borders: Electric Yellow (#FAED26) */
+      --border-yellow: #FAED26;
+      --border-yellow-glow: rgba(250, 237, 38, 0.35);
+      --border-yellow-subtle: rgba(250, 237, 38, 0.18);
 
       /* Dracula Semantic Accents */
       --text: #f8f8f2;
@@ -121,10 +126,10 @@
       max-width: 520px;
       width: 90%;
       background: var(--card-bg);
-      border: 1px solid var(--card-border);
+      border: 1px solid var(--border-yellow);
       border-radius: 18px;
       padding: 2.25rem 2rem;
-      box-shadow: 0 0 50px rgba(0, 0, 0, 0.7), 0 0 30px var(--accent-subtle);
+      box-shadow: 0 0 50px rgba(0, 0, 0, 0.7), 0 0 25px var(--border-yellow-subtle);
       text-align: center;
       display: flex;
       flex-direction: column;
@@ -156,8 +161,8 @@
       font-size: 0.75rem;
       font-weight: 700;
       color: var(--accent);
-      background: rgba(250, 237, 38, 0.1);
-      border: 1px solid var(--accent);
+      background: rgba(250, 237, 38, 0.08);
+      border: 1px solid var(--border-yellow);
       padding: 0.25rem 0.85rem;
       border-radius: 999px;
       margin-bottom: 1rem;
@@ -206,11 +211,11 @@
       display: grid;
       grid-template-columns: repeat(3, 26px);
       grid-gap: 2px;
-      background: var(--accent);
+      background: var(--border-yellow);
       padding: 2px;
       border-radius: 4px;
       margin-top: 0.75rem;
-      box-shadow: 0 0 15px var(--accent-subtle);
+      box-shadow: 0 0 15px var(--border-yellow-subtle);
     }
 
     .mini-sudoku div {
@@ -305,9 +310,7 @@
       letter-spacing: -0.01em;
     }
 
-    .brand-title span {
-      color: var(--accent);
-    }
+    
 
     .brand-sub {
       color: var(--text-muted);
@@ -363,8 +366,8 @@
     .tab-btn.active {
       background: var(--card-bg);
       color: var(--accent);
-      border: 1px solid var(--accent);
-      box-shadow: 0 0 12px var(--accent-subtle);
+      border: 1px solid var(--border-yellow);
+      box-shadow: 0 0 12px var(--border-yellow-subtle);
     }
 
     .header-actions {
@@ -374,8 +377,8 @@
     }
 
     .btn-drawer-toggle {
-      background: rgba(250, 237, 38, 0.1);
-      border: 1px solid var(--accent);
+      background: rgba(250, 237, 38, 0.08);
+      border: 1px solid var(--border-yellow);
       color: var(--accent);
       padding: 0.5rem 0.95rem;
       border-radius: 8px;
@@ -427,7 +430,7 @@
     .challenge-banner {
       background: var(--card-bg);
       border: 1px solid var(--card-border);
-      border-left: 4px solid var(--accent);
+      border-left: 4px solid var(--border-yellow);
       border-radius: 12px;
       padding: 1.25rem 1.5rem;
       margin-bottom: 1.25rem;
@@ -507,7 +510,7 @@
       background: #191a21;
       padding: 0.2rem 0.5rem;
       border-radius: 4px;
-      border: 1px solid rgba(250, 237, 38, 0.3);
+      border: 1px solid var(--border-yellow);
     }
 
     .challenge-actions {
@@ -517,8 +520,8 @@
     }
 
     .btn-hint {
-      background: rgba(250, 237, 38, 0.1);
-      border: 1px solid var(--accent);
+      background: rgba(250, 237, 38, 0.08);
+      border: 1px solid var(--border-yellow);
       color: var(--accent);
       font-size: 0.8rem;
       font-weight: 600;
@@ -560,12 +563,12 @@
     .hint-box {
       display: none;
       margin-top: 0.75rem;
-      background: rgba(250, 237, 38, 0.08);
-      border-left: 3px solid var(--accent);
+      background: rgba(80, 250, 123, 0.08);
+      border-left: 3px solid var(--border-yellow);
       padding: 0.65rem 0.9rem;
       border-radius: 0 6px 6px 0;
       font-size: 0.85rem;
-      color: #fff9a6;
+      color: #e2fbe8;
     }
 
     /* Main Terminal Panel */
@@ -636,17 +639,18 @@
       border: 1px solid transparent;
     }
 
-    /* The Call-To-Action Peak of the Mountain: Bright Yellow (#FAED26) */
+    /* The Call-To-Action Peak of the Mountain: Bright Green Text/Fill with Yellow Border */
     .btn-primary {
       background: var(--accent);
       color: var(--accent-contrast);
       font-weight: 700;
+      border: 1px solid var(--border-yellow);
       box-shadow: 0 0 16px var(--accent-glow);
     }
 
     .btn-primary:hover {
       background: var(--accent-hover);
-      box-shadow: 0 0 24px rgba(250, 237, 38, 0.6);
+      box-shadow: 0 0 24px rgba(80, 250, 123, 0.6);
       transform: translateY(-1px);
     }
 
@@ -702,7 +706,7 @@
       color: var(--accent);
       padding: 0.65rem 0.9rem;
       font-weight: 700;
-      border-bottom: 1px solid var(--card-border);
+      border-bottom: 2px solid var(--border-yellow);
       position: sticky;
       top: 0;
     }
@@ -713,7 +717,7 @@
       color: #f8f8f2;
     }
 
-    table.data-table tr:hover { background: rgba(250, 237, 38, 0.05); }
+    table.data-table tr:hover { background: rgba(80, 250, 123, 0.05); }
 
     .error-box {
       background: rgba(255, 85, 85, 0.1);
@@ -832,14 +836,14 @@
     .ds-pill-btn:hover {
       background: #343746;
       color: var(--text);
-      border-color: var(--accent);
+      border-color: var(--border-yellow);
     }
 
     .ds-pill-btn.active {
-      background: rgba(250, 237, 38, 0.12);
-      border-color: var(--accent);
+      background: rgba(80, 250, 123, 0.12);
+      border-color: var(--border-yellow);
       color: var(--accent);
-      box-shadow: 0 0 12px var(--accent-subtle);
+      box-shadow: 0 0 12px var(--border-yellow-subtle);
     }
 
     .ds-pill-badge {
@@ -865,14 +869,14 @@
     }
 
     .challenge-card:hover {
-      border-color: var(--accent);
+      border-color: var(--border-yellow);
       transform: translateX(3px);
       background: #343746;
     }
 
     .challenge-card.active {
-      border-color: var(--accent);
-      background: rgba(250, 237, 38, 0.1);
+      border-color: var(--border-yellow);
+      background: rgba(80, 250, 123, 0.1);
     }
 
     .schema-pill {
@@ -903,7 +907,7 @@
 
     .robot-bubble {
       background: #282a36;
-      border: 1px solid var(--accent);
+      border: 1px solid var(--border-yellow);
       color: #f8f8f2;
       padding: 0.85rem 1.1rem;
       border-radius: 14px 14px 2px 14px;
@@ -929,11 +933,11 @@
       height: 56px;
       border-radius: 50%;
       background: #1e1f29;
-      border: 2px solid var(--accent);
+      border: 2px solid var(--border-yellow);
       display: flex;
       align-items: center;
       justify-content: center;
-      box-shadow: 0 0 20px var(--accent-glow);
+      box-shadow: 0 0 20px var(--border-yellow-glow);
       transition: transform 0.2s;
     }
 
@@ -979,10 +983,10 @@
       background: #191a21;
       padding: 0.35rem 0.75rem;
       border-radius: 8px;
-      border: 1px solid var(--card-border);
+      border: 1px solid var(--border-yellow);
       min-width: 75px;
       text-align: center;
-      box-shadow: 0 0 10px var(--accent-subtle);
+      box-shadow: 0 0 10px var(--border-yellow-subtle);
     }
 
     .btn-timer {
@@ -1002,13 +1006,13 @@
 
     .btn-timer:hover {
       background: #44475a;
-      border-color: var(--accent);
+      border-color: var(--border-yellow);
       color: var(--accent);
     }
 
     .btn-timer.active-timer {
-      background: rgba(250, 237, 38, 0.15);
-      border-color: var(--accent);
+      background: rgba(80, 250, 123, 0.15);
+      border-color: var(--border-yellow);
       color: var(--accent);
     }
 
@@ -1034,11 +1038,11 @@
       grid-template-columns: repeat(9, 1fr);
       gap: 1px;
       background: var(--card-border);
-      border: 3px solid var(--accent);
+      border: 3px solid var(--border-yellow);
       border-radius: 8px;
       overflow: hidden;
       aspect-ratio: 1 / 1;
-      box-shadow: 0 0 25px var(--accent-subtle);
+      box-shadow: 0 0 25px var(--border-yellow-subtle);
     }
 
     .sudoku-cell {
@@ -1057,14 +1061,14 @@
     .sudoku-cell:hover { background: #282a36; }
     .sudoku-cell.fixed { color: #f8f8f2; font-weight: 700; }
     .sudoku-cell.user-input { color: var(--dracula-cyan); font-weight: 600; }
-    .sudoku-cell.selected { background: rgba(250, 237, 38, 0.3) !important; color: var(--accent) !important; outline: 2px solid var(--accent); z-index: 2; }
+    .sudoku-cell.selected { background: rgba(80, 250, 123, 0.25) !important; color: var(--accent) !important; outline: 2px solid var(--border-yellow); z-index: 2; }
     .sudoku-cell.highlight { background: rgba(139, 233, 253, 0.12); }
     .sudoku-cell.conflict { background: rgba(255, 85, 85, 0.35) !important; color: var(--dracula-red) !important; }
 
-    .sudoku-cell:nth-child(3n) { border-right: 2px solid var(--accent); }
+    .sudoku-cell:nth-child(3n) { border-right: 2px solid var(--border-yellow); }
     .sudoku-cell:nth-child(9n) { border-right: none; }
     .sudoku-cell:nth-child(n+19):nth-child(-n+27),
-    .sudoku-cell:nth-child(n+46):nth-child(-n+54) { border-bottom: 2px solid var(--accent); }
+    .sudoku-cell:nth-child(n+46):nth-child(-n+54) { border-bottom: 2px solid var(--border-yellow); }
 
     /* Pause Overlay on Grid */
     .sudoku-pause-overlay {
@@ -1078,7 +1082,7 @@
       justify-content: center;
       border-radius: 8px;
       z-index: 50;
-      border: 2px dashed var(--accent);
+      border: 2px dashed var(--border-yellow);
     }
 
     .pause-card {
@@ -1088,7 +1092,7 @@
 
     .pause-icon {
       font-size: 2.2rem;
-      color: var(--accent);
+      color: var(--border-yellow);
       margin-bottom: 0.5rem;
     }
 
@@ -1164,19 +1168,19 @@
       <div class="robot-mascot">
         <svg viewBox="0 0 100 110" width="100%" height="100%">
           <line x1="50" y1="18" x2="50" y2="4" stroke="#FAED26" stroke-width="3" stroke-linecap="round"/>
-          <circle cx="50" cy="4" r="5" fill="#FAED26">
+          <circle cx="50" cy="4" r="5" fill="#50fa7b">
             <animate attributeName="opacity" values="0.4;1;0.4" dur="1.2s" repeatCount="indefinite"/>
           </circle>
           <rect x="22" y="18" width="56" height="42" rx="12" fill="#282a36" stroke="#FAED26" stroke-width="2.5"/>
-          <circle cx="38" cy="36" r="6" fill="#FAED26">
+          <circle cx="38" cy="36" r="6" fill="#50fa7b">
             <animate attributeName="r" values="6;1;6" keyTimes="0;0.5;1" dur="3s" repeatCount="indefinite"/>
           </circle>
-          <circle cx="62" cy="36" r="6" fill="#FAED26">
+          <circle cx="62" cy="36" r="6" fill="#50fa7b">
             <animate attributeName="r" values="6;1;6" keyTimes="0;0.5;1" dur="3s" repeatCount="indefinite"/>
           </circle>
           <path d="M 40 48 Q 50 54 60 48" stroke="#8be9fd" stroke-width="2" fill="none" stroke-linecap="round"/>
-          <rect x="26" y="64" width="48" height="38" rx="10" fill="#191a21" stroke="#44475a" stroke-width="2"/>
-          <circle cx="50" cy="83" r="8" fill="rgba(250, 237, 38, 0.2)" stroke="#FAED26" stroke-width="1.5"/>
+          <rect x="26" y="64" width="48" height="38" rx="10" fill="#191a21" stroke="#FAED26" stroke-width="2"/>
+          <circle cx="50" cy="83" r="8" fill="rgba(80, 250, 123, 0.2)" stroke="#FAED26" stroke-width="1.5"/>
           <rect x="12" y="68" width="10" height="24" rx="5" fill="#343746"/>
           <rect x="78" y="68" width="10" height="24" rx="5" fill="#343746"/>
         </svg>
@@ -1203,7 +1207,7 @@
     <a href="#" class="brand">
       <div class="brand-logo">S</div>
       <div>
-        <div class="brand-title"><span>SHIVALING</span> BATTARKI</div>
+        <div class="brand-title">Shivaling Battarki</div>
         <div class="brand-sub">
           <span class="status-dot-pulse"></span>
           Cloud Analytics Lab & Practice
@@ -1428,10 +1432,10 @@
     <div class="robot-avatar">
       <svg viewBox="0 0 100 110" width="34" height="38">
         <line x1="50" y1="18" x2="50" y2="4" stroke="#FAED26" stroke-width="4" stroke-linecap="round"/>
-        <circle cx="50" cy="4" r="5" fill="#FAED26"/>
+        <circle cx="50" cy="4" r="5" fill="#50fa7b"/>
         <rect x="22" y="18" width="56" height="42" rx="12" fill="#282a36" stroke="#FAED26" stroke-width="3"/>
-        <circle cx="38" cy="36" r="6" fill="#FAED26"/>
-        <circle cx="62" cy="36" r="6" fill="#FAED26"/>
+        <circle cx="38" cy="36" r="6" fill="#50fa7b"/>
+        <circle cx="62" cy="36" r="6" fill="#50fa7b"/>
         <path d="M 40 48 Q 50 54 60 48" stroke="#8be9fd" stroke-width="2.5" fill="none" stroke-linecap="round"/>
       </svg>
     </div>

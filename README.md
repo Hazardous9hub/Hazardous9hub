@@ -1,24 +1,24 @@
 <div align="center">
 
-  <!-- Dynamic Header Banner (Dracula Theme + #FAED26 Accent) -->
-  <img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=282a36,46344e,5A5560,282a36&height=190&section=header&text=Shivaling%20Battarki&fontSize=42&fontAlignY=36&desc=Data%20Analyst%20%7C%20Ex-BPCL%20%7C%20Scaler%20DSML%20Fellow&descFontSize=17&descAlignY=60&fontColor=FAED26" width="100%" alt="Header Banner"/>
+  <!-- Dynamic Header Banner (Dracula Theme with Original White Typography) -->
+  <img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=282a36,46344e,5A5560,282a36&height=190&section=header&text=Shivaling%20Battarki&fontSize=42&fontAlignY=36&desc=Data%20Analyst%20%7C%20Ex-BPCL%20%7C%20Scaler%20DSML%20Fellow&descFontSize=17&descAlignY=60&fontColor=ffffff" width="100%" alt="Header Banner"/>
 
-  <!-- Animated Typing Subtitle (#FAED26 Bright Accent) -->
+  <!-- Animated Typing Subtitle (Original Cyan Color) -->
   <a href="https://iamshivalingbattarki09.vercel.app/">
-    <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=600&size=20&duration=2600&pause=1000&color=FAED26&center=true&vCenter=true&width=650&lines=Data+Analyst+%40+Ex-BPCL;SQL+%26+BigQuery+Specialist;Tableau+Storyteller+%26+Executive+Dashboards;Python+EDA+%7C+Probability+%26+Statistics;Mechanical+Engineer+(8.67+CGPA)" alt="Typing SVG" />
+    <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=600&size=20&duration=2600&pause=1000&color=00F2FE&center=true&vCenter=true&width=650&lines=Data+Analyst+%40+Ex-BPCL;SQL+%26+BigQuery+Specialist;Tableau+Storyteller+%26+Executive+Dashboards;Python+EDA+%7C+Probability+%26+Statistics;Mechanical+Engineer+(8.67+CGPA)" alt="Typing SVG" />
   </a>
 
   <br><br>
 
-  <!-- 1-Click Verification & Interactive Tool Badges (Dracula Palette + #FAED26 Visual Path) -->
+  <!-- 1-Click Verification & Interactive Tool Badges (Dracula Palette + Bright Green) -->
   <a href="https://iamshivalingbattarki09.vercel.app/">
-    <img src="https://img.shields.io/badge/Live_Portfolio-282a36?style=for-the-badge&logo=vercel&logoColor=FAED26&labelColor=282a36" alt="Portfolio"/>
+    <img src="https://img.shields.io/badge/Live_Portfolio-282a36?style=for-the-badge&logo=vercel&logoColor=50fa7b&labelColor=282a36" alt="Portfolio"/>
   </a>
   <a href="https://iamshivalingbattarki09.vercel.app/Shivaling_Battarki_Resume.pdf">
-    <img src="https://img.shields.io/badge/View_Resume_PDF-FAED26?style=for-the-badge&logo=googledocs&logoColor=1e1f29&labelColor=FAED26" alt="Resume"/>
+    <img src="https://img.shields.io/badge/View_Resume_PDF-50fa7b?style=for-the-badge&logo=googledocs&logoColor=1e1f29&labelColor=50fa7b" alt="Resume"/>
   </a>
   <a href="https://hazardous9hub.github.io/Hazardous9hub/#sql-terminal">
-    <img src="https://img.shields.io/badge/AlaSQL_Terminal-FAED26?style=for-the-badge&logo=sqlite&logoColor=1e1f29&labelColor=282a36" alt="AlaSQL Terminal"/>
+    <img src="https://img.shields.io/badge/AlaSQL_Terminal-50fa7b?style=for-the-badge&logo=sqlite&logoColor=1e1f29&labelColor=282a36" alt="AlaSQL Terminal"/>
   </a>
   <a href="https://hazardous9hub.github.io/Hazardous9hub/#sudoku">
     <img src="https://img.shields.io/badge/Play_Sudoku-50fa7b?style=for-the-badge&logo=gamepad&logoColor=1e1f29&labelColor=282a36" alt="Play Sudoku"/>
@@ -86,7 +86,7 @@ I am a **Data Analyst** with a degree in **Mechanical Engineering (8.67 CGPA)** 
 
 <p align="center">
   <a href="https://hazardous9hub.github.io/Hazardous9hub/#sql-terminal">
-    <img src="https://img.shields.io/badge/▶_Launch_Live_SQL_Terminal_(In--Browser)-FAED26?style=for-the-badge&logo=sqlite&logoColor=1e1f29&labelColor=282a36" alt="Launch Live SQL Terminal"/>
+    <img src="https://img.shields.io/badge/▶_Launch_Live_SQL_Terminal_(In--Browser)-50fa7b?style=for-the-badge&logo=sqlite&logoColor=1e1f29&labelColor=282a36" alt="Launch Live SQL Terminal"/>
   </a>
 </p>
 
@@ -312,7 +312,7 @@ ORDER BY total_volume_kl DESC;
 
 <p align="center">
   <a href="https://hazardous9hub.github.io/Hazardous9hub/#sudoku">
-    <img src="https://img.shields.io/badge/🎮_Play_Interactive_Sudoku_Game-FAED26?style=for-the-badge&logo=gamepad&logoColor=1e1f29&labelColor=282a36" alt="Play Sudoku Online"/>
+    <img src="https://img.shields.io/badge/🎮_Play_Interactive_Sudoku_Game-50fa7b?style=for-the-badge&logo=gamepad&logoColor=1e1f29&labelColor=282a36" alt="Play Sudoku Online"/>
   </a>
 </p>
 

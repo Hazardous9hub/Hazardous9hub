@@ -10,12 +10,18 @@
 
   <br><br>
 
-  <!-- 1-Click Verification & Contact Badges -->
+  <!-- 1-Click Verification & Interactive Tool Badges -->
   <a href="https://iamshivalingbattarki09.vercel.app/">
     <img src="https://img.shields.io/badge/Live_Portfolio-0b0f19?style=for-the-badge&logo=vercel&logoColor=00f2fe&labelColor=0b0f19" alt="Portfolio"/>
   </a>
   <a href="https://iamshivalingbattarki09.vercel.app/Shivaling_Battarki_Resume.pdf">
     <img src="https://img.shields.io/badge/View_Resume_PDF-00f2fe?style=for-the-badge&logo=googledocs&logoColor=0b0f19&labelColor=00f2fe" alt="Resume"/>
+  </a>
+  <a href="https://hazardous9hub.github.io/Hazardous9hub/#sql-terminal">
+    <img src="https://img.shields.io/badge/AlaSQL_Terminal-00f2fe?style=for-the-badge&logo=sqlite&logoColor=0b0f19&labelColor=00f2fe" alt="AlaSQL Terminal"/>
+  </a>
+  <a href="https://hazardous9hub.github.io/Hazardous9hub/#sudoku">
+    <img src="https://img.shields.io/badge/Play_Sudoku-2EC866?style=for-the-badge&logo=gamepad&logoColor=white&labelColor=2EC866" alt="Play Sudoku"/>
   </a>
   <a href="https://www.linkedin.com/in/shivaling-93000/">
     <img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white&labelColor=0077B5" alt="LinkedIn"/>
@@ -76,29 +82,53 @@ I am a **Data Analyst** with a degree in **Mechanical Engineering (8.67 CGPA)** 
 
 ---
 
-### 💻 Interactive SQL Terminal
+### ⚡ Interactive SQL Terminal & Practice Lab (Powered by AlaSQL)
+
+<p align="center">
+  <a href="https://hazardous9hub.github.io/Hazardous9hub/#sql-terminal">
+    <img src="https://img.shields.io/badge/▶_Launch_Live_SQL_Terminal_(In--Browser)-00f2fe?style=for-the-badge&logo=sqlite&logoColor=0b0f19&labelColor=00f2fe" alt="Launch Live SQL Terminal"/>
+  </a>
+</p>
+
+Visitors can test queries directly in the browser using an in-memory SQL database powered by [AlaSQL](https://github.com/AlaSQL/alasql). Runs 100% on client-side cloud compute with zero local setup. Pre-loaded with retail operations and fuel transaction datasets inspired by my BPCL experience:
 
 ```sql
--- Querying candidate profile for analytical rigor and business experience
+-- Sample Query: Territory Volume Aggregation with Filter
 SELECT 
-    candidate_name,
-    primary_focus,
-    operational_experience,
-    verified_certifications,
-    availability
-FROM candidate_profiles
-WHERE candidate_id = 'Shivaling_Battarki'
-  AND 'Pragmatic Problem Solver' IN (core_attributes);
+    territory,
+    COUNT(outlet_id) as total_outlets,
+    SUM(monthly_volume_kl) as total_volume_kl,
+    ROUND(AVG(credit_limit_lakhs), 1) as avg_credit_lakhs
+FROM retail_outlets
+GROUP BY territory
+HAVING total_volume_kl > 300
+ORDER BY total_volume_kl DESC;
 
-/* Result:
-+--------------------+------------------------------------+----------------------------+-------------------------------------+--------------------+
-| candidate_name     | primary_focus                      | operational_experience     | verified_certifications             | availability       |
-+--------------------+------------------------------------+----------------------------+-------------------------------------+--------------------+
-| Shivaling Battarki | Data Analytics, BI & Applied Stats | 1 Year @ BPCL (Operations) | HackerRank 5★ Gold, Deloitte (Sim)  | AVAILABLE FOR HIRE |
-+--------------------+------------------------------------+----------------------------+-------------------------------------+--------------------+
-1 row in set (0.01 sec)
+/* Live Output:
++-----------------+---------------+-----------------+------------------+
+| territory       | total_outlets | total_volume_kl | avg_credit_lakhs |
++-----------------+---------------+-----------------+------------------+
+| City Central    | 2             | 585             | 65.0             |
+| East Territory  | 2             | 505             | 60.0             |
+| North Territory | 2             | 450             | 47.5             |
+| South Territory | 2             | 380             | 40.0             |
++-----------------+---------------+-----------------+------------------+
 */
 ```
+
+<details>
+<summary><b>🎯 SQL Practice Curriculum in the Cloud Terminal (Click to expand)</b></summary>
+<br>
+
+| Level | Focus Area | Practice Scenario |
+| :--- | :--- | :--- |
+| **Level 1 (Intermediate)** | Aggregation & `HAVING` | Group retail outlets by territory and filter cohorts exceeding volume thresholds. |
+| **Level 2 (Intermediate)** | Multi-Table `JOIN` | Join `retail_outlets` with `fuel_transactions` to calculate gross product revenue. |
+| **Level 3 (Advanced)** | Window Functions | Rank outlets by volume within each region using `DENSE_RANK() OVER (PARTITION BY territory ORDER BY monthly_volume_kl DESC)`. |
+| **Level 4 (Advanced)** | CTEs (`WITH` clauses) | Benchmark individual outlet throughput against territorial averages and compute deviations. |
+
+👉 **[Open the Live SQL Terminal](https://hazardous9hub.github.io/Hazardous9hub/#sql-terminal)** to execute custom queries and export results to CSV.
+</details>
 
 ---
 
@@ -275,6 +305,30 @@ WHERE candidate_id = 'Shivaling_Battarki'
 * 🐍 **Data Analytics & Visualisation: Python Libraries (Pandas, NumPy, Seaborn)** — *Scaler DSML*
 * 📈 **Tableau & Excel Specialization** — *Scaler DSML*
 * 🎓 **Bachelor of Engineering (B.E.) in Mechanical Engineering** — *VTU Belagavi (CGPA: 8.67)*
+
+---
+
+### 🧩 Logic & Focus: Interactive Sudoku Game
+
+<p align="center">
+  <a href="https://hazardous9hub.github.io/Hazardous9hub/#sudoku">
+    <img src="https://img.shields.io/badge/🎮_Play_Interactive_Sudoku_Game-2EC866?style=for-the-badge&logo=gamepad&logoColor=white&labelColor=2EC866" alt="Play Sudoku Online"/>
+  </a>
+</p>
+
+Data analytics relies heavily on deductive logic, constraint elimination, and spotting non-obvious patterns—the exact same mental muscles tested by Sudoku. I built a cloud-hosted Sudoku game with difficulty modes (Easy, Medium, Hard), real-time conflict checking, timer, and keyboard navigation running 100% in-browser:
+
+```text
+       1   2   3     4   5   6     7   8   9
+    +---+---+---+ +---+---+---+ +---+---+---+
+ 1  | 5 | 3 | . | | . | 7 | . | | . | . | . |
+ 2  | 6 | . | . | | 1 | 9 | 5 | | . | . | . |
+ 3  | . | 9 | 8 | | . | . | . | | . | 6 | . |
+    +---+---+---+ +---+---+---+ +---+---+---+
+    Can you complete the grid without row, col, or block conflicts?
+```
+
+👉 **[Play Sudoku in the Cloud Playground](https://hazardous9hub.github.io/Hazardous9hub/#sudoku)**
 
 ---
 

@@ -1,27 +1,27 @@
 <div align="center">
 
-  <!-- Dynamic Header Banner -->
-  <img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=0,2,12,30&height=190&section=header&text=Shivaling%20Battarki&fontSize=42&fontAlignY=36&desc=Data%20Analyst%20%7C%20Ex-BPCL%20%7C%20Scaler%20DSML%20Fellow&descFontSize=17&descAlignY=60&fontColor=ffffff" width="100%" alt="Header Banner"/>
+  <!-- Dynamic Header Banner (Dracula Theme + #FAED26 Accent) -->
+  <img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=282a36,46344e,5A5560,282a36&height=190&section=header&text=Shivaling%20Battarki&fontSize=42&fontAlignY=36&desc=Data%20Analyst%20%7C%20Ex-BPCL%20%7C%20Scaler%20DSML%20Fellow&descFontSize=17&descAlignY=60&fontColor=FAED26" width="100%" alt="Header Banner"/>
 
-  <!-- Animated Typing Subtitle -->
+  <!-- Animated Typing Subtitle (#FAED26 Bright Accent) -->
   <a href="https://iamshivalingbattarki09.vercel.app/">
-    <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=600&size=20&duration=2600&pause=1000&color=00F2FE&center=true&vCenter=true&width=650&lines=Data+Analyst+%40+Ex-BPCL;SQL+%26+BigQuery+Specialist;Tableau+Storyteller+%26+Executive+Dashboards;Python+EDA+%7C+Probability+%26+Statistics;Mechanical+Engineer+(8.67+CGPA)" alt="Typing SVG" />
+    <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=600&size=20&duration=2600&pause=1000&color=FAED26&center=true&vCenter=true&width=650&lines=Data+Analyst+%40+Ex-BPCL;SQL+%26+BigQuery+Specialist;Tableau+Storyteller+%26+Executive+Dashboards;Python+EDA+%7C+Probability+%26+Statistics;Mechanical+Engineer+(8.67+CGPA)" alt="Typing SVG" />
   </a>
 
   <br><br>
 
-  <!-- 1-Click Verification & Interactive Tool Badges -->
+  <!-- 1-Click Verification & Interactive Tool Badges (Dracula Palette + #FAED26 Visual Path) -->
   <a href="https://iamshivalingbattarki09.vercel.app/">
-    <img src="https://img.shields.io/badge/Live_Portfolio-0b0f19?style=for-the-badge&logo=vercel&logoColor=00f2fe&labelColor=0b0f19" alt="Portfolio"/>
+    <img src="https://img.shields.io/badge/Live_Portfolio-282a36?style=for-the-badge&logo=vercel&logoColor=FAED26&labelColor=282a36" alt="Portfolio"/>
   </a>
   <a href="https://iamshivalingbattarki09.vercel.app/Shivaling_Battarki_Resume.pdf">
-    <img src="https://img.shields.io/badge/View_Resume_PDF-00f2fe?style=for-the-badge&logo=googledocs&logoColor=0b0f19&labelColor=00f2fe" alt="Resume"/>
+    <img src="https://img.shields.io/badge/View_Resume_PDF-FAED26?style=for-the-badge&logo=googledocs&logoColor=1e1f29&labelColor=FAED26" alt="Resume"/>
   </a>
   <a href="https://hazardous9hub.github.io/Hazardous9hub/#sql-terminal">
-    <img src="https://img.shields.io/badge/AlaSQL_Terminal-00f2fe?style=for-the-badge&logo=sqlite&logoColor=0b0f19&labelColor=00f2fe" alt="AlaSQL Terminal"/>
+    <img src="https://img.shields.io/badge/AlaSQL_Terminal-FAED26?style=for-the-badge&logo=sqlite&logoColor=1e1f29&labelColor=282a36" alt="AlaSQL Terminal"/>
   </a>
   <a href="https://hazardous9hub.github.io/Hazardous9hub/#sudoku">
-    <img src="https://img.shields.io/badge/Play_Sudoku-2EC866?style=for-the-badge&logo=gamepad&logoColor=white&labelColor=2EC866" alt="Play Sudoku"/>
+    <img src="https://img.shields.io/badge/Play_Sudoku-50fa7b?style=for-the-badge&logo=gamepad&logoColor=1e1f29&labelColor=282a36" alt="Play Sudoku"/>
   </a>
   <a href="https://www.linkedin.com/in/shivaling-93000/">
     <img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white&labelColor=0077B5" alt="LinkedIn"/>
@@ -86,7 +86,7 @@ I am a **Data Analyst** with a degree in **Mechanical Engineering (8.67 CGPA)** 
 
 <p align="center">
   <a href="https://hazardous9hub.github.io/Hazardous9hub/#sql-terminal">
-    <img src="https://img.shields.io/badge/▶_Launch_Live_SQL_Terminal_(In--Browser)-00f2fe?style=for-the-badge&logo=sqlite&logoColor=0b0f19&labelColor=00f2fe" alt="Launch Live SQL Terminal"/>
+    <img src="https://img.shields.io/badge/▶_Launch_Live_SQL_Terminal_(In--Browser)-FAED26?style=for-the-badge&logo=sqlite&logoColor=1e1f29&labelColor=282a36" alt="Launch Live SQL Terminal"/>
   </a>
 </p>
 
@@ -101,7 +101,7 @@ SELECT
     ROUND(AVG(credit_limit_lakhs), 1) as avg_credit_lakhs
 FROM retail_outlets
 GROUP BY territory
-HAVING total_volume_kl > 300
+HAVING SUM(monthly_volume_kl) > 300
 ORDER BY total_volume_kl DESC;
 
 /* Live Output:
@@ -117,15 +117,15 @@ ORDER BY total_volume_kl DESC;
 ```
 
 <details>
-<summary><b>🎯 SQL Practice Curriculum in the Cloud Terminal (Click to expand)</b></summary>
+<summary><b>🎯 SQL Practice Curriculum Across 5 Datasets (Basic → Expert) (Click to expand)</b></summary>
 <br>
 
-| Level | Focus Area | Practice Scenario |
+| Level | Focus Area | Practice Scenario & SQL Mechanics |
 | :--- | :--- | :--- |
-| **Level 1 (Intermediate)** | Aggregation & `HAVING` | Group retail outlets by territory and filter cohorts exceeding volume thresholds. |
-| **Level 2 (Intermediate)** | Multi-Table `JOIN` | Join `retail_outlets` with `fuel_transactions` to calculate gross product revenue. |
-| **Level 3 (Advanced)** | Window Functions | Rank outlets by volume within each region using `DENSE_RANK() OVER (PARTITION BY territory ORDER BY monthly_volume_kl DESC)`. |
-| **Level 4 (Advanced)** | CTEs (`WITH` clauses) | Benchmark individual outlet throughput against territorial averages and compute deviations. |
+| **Tier 1 (Basic)** | Filtering & Sorting | `SELECT`, `WHERE`, `ORDER BY`, threshold filtering (`dealer_rating = 'A+'`, `order_value > 300`). |
+| **Tier 2 (Intermediate)** | Aggregation & Joins | `GROUP BY`, `SUM`, `AVG`, `HAVING SUM(...)`, multi-table relational `JOIN` across entities. |
+| **Tier 3 (Advanced)** | Conditional Logic & Metrics | `CASE WHEN`, conditional aggregations (`SUM(CASE WHEN ...)`), efficiency ratios. |
+| **Tier 4 (Expert)** | CTEs & Subqueries | Common Table Expressions (`WITH`), correlated subqueries, and regional deviation analysis. |
 
 👉 **[Open the Live SQL Terminal](https://hazardous9hub.github.io/Hazardous9hub/#sql-terminal)** to execute custom queries and export results to CSV.
 </details>
@@ -312,11 +312,11 @@ ORDER BY total_volume_kl DESC;
 
 <p align="center">
   <a href="https://hazardous9hub.github.io/Hazardous9hub/#sudoku">
-    <img src="https://img.shields.io/badge/🎮_Play_Interactive_Sudoku_Game-2EC866?style=for-the-badge&logo=gamepad&logoColor=white&labelColor=2EC866" alt="Play Sudoku Online"/>
+    <img src="https://img.shields.io/badge/🎮_Play_Interactive_Sudoku_Game-FAED26?style=for-the-badge&logo=gamepad&logoColor=1e1f29&labelColor=282a36" alt="Play Sudoku Online"/>
   </a>
 </p>
 
-Data analytics relies heavily on deductive logic, constraint elimination, and spotting non-obvious patterns—the exact same mental muscles tested by Sudoku. I built a cloud-hosted Sudoku game with difficulty modes (Easy, Medium, Hard), real-time conflict checking, timer, and keyboard navigation running 100% in-browser:
+Data analytics relies heavily on deductive logic, constraint elimination, and spotting non-obvious patterns—the exact same mental muscles tested by Sudoku. I built a cloud-hosted Sudoku game with difficulty modes (Easy, Medium, Hard), interactive timer controls (Start, Pause, Reset), real-time conflict checking, and keyboard navigation running 100% in-browser:
 
 ```text
        1   2   3     4   5   6     7   8   9

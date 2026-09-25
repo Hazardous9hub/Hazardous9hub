@@ -3,28 +3,56 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Shivaling's Cloud Analytics Lab & Logic Playground</title>
-  <meta name="description" content="Interactive AlaSQL Terminal, Multi-Dataset Practice Lab, and Sudoku Game by Shivaling Battarki - Data Analyst. Practice SQL queries and logic games directly in your browser.">
+  <title>Shivaling Battarki | Cloud Analytics Lab & Interactive SQL Practice</title>
+  
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-  <!-- AlaSQL CDN (Pure client-side SQL engine) -->
-  <script src="https://cdn.jsdelivr.net/npm/alasql@4/dist/alasql.min.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- AlaSQL In-Memory Cloud Database Engine -->
+  <script src="https://cdn.jsdelivr.net/npm/alasql@4.4.0/dist/alasql.min.js"></script>
+
   <style>
+    /* ========================================================
+       DRACULA THEME + BRIGHT ELECTRIC YELLOW (#FAED26) VISUAL PATH
+    ======================================================== */
     :root {
-      --bg: #0b0f19;
-      --card-bg: #111827;
-      --card-border: #1f2937;
-      --accent: #00f2fe;
-      --accent-subtle: rgba(0, 242, 254, 0.12);
-      --accent-hover: #38bdf8;
-      --text: #f1f5f9;
-      --text-muted: #94a3b8;
-      --success: #22c55e;
-      --warning: #f59e0b;
-      --danger: #ef4444;
-      --purple: #c084fc;
+      /* Dracula Base & Deep Atmosphere */
+      --bg: #1e1f29;
+      --bg-deep: #16171f;
+      --card-bg: #282a36;
+      --card-bg-elevated: #343746;
+      --card-border: #44475a;
+      --card-border-subtle: #383a4c;
+      --eggplant: #46344E;
+      --slate-mid: #5A5560;
+
+      /* Primary Eye-Path Anchor: Vibrant Electric Yellow (#FAED26) */
+      --accent: #FAED26;
+      --accent-glow: rgba(250, 237, 38, 0.35);
+      --accent-subtle: rgba(250, 237, 38, 0.12);
+      --accent-hover: #fff34d;
+      --accent-contrast: #1e1f29;
+
+      /* Dracula Semantic Accents */
+      --text: #f8f8f2;
+      --text-muted: #9D8D8F;
+      --text-dim: #6272a4;
+      
+      --dracula-cyan: #8be9fd;
+      --dracula-green: #50fa7b;
+      --dracula-orange: #ffb86c;
+      --dracula-pink: #ff79c6;
+      --dracula-purple: #bd93f9;
+      --dracula-red: #ff5555;
+
+      /* 4 Difficulty Tier Palette */
+      --diff-bas: #50fa7b;
+      --diff-int: #8be9fd;
+      --diff-adv: #ffb86c;
+      --diff-exp: #ff79c6;
+
       --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
       --font-mono: 'JetBrains Mono', monospace;
     }
@@ -47,18 +75,18 @@
     }
 
     /* ========================================================
-       INTRO ANIMATION & LOADING OVERLAY
+       INTRO ANIMATION & LOADING OVERLAY (4 STAGES)
     ======================================================== */
     #intro-overlay {
       position: fixed;
       inset: 0;
-      background: #080c14;
+      background: var(--bg-deep);
       z-index: 9999;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      transition: opacity 0.6s ease, visibility 0.6s ease;
+      transition: opacity 0.5s ease, visibility 0.5s ease;
     }
 
     #intro-overlay.fade-out {
@@ -71,12 +99,12 @@
       position: absolute;
       top: 1.5rem;
       right: 1.5rem;
-      background: rgba(31, 41, 55, 0.7);
+      background: rgba(68, 71, 90, 0.6);
       border: 1px solid var(--card-border);
       color: var(--text-muted);
-      padding: 0.4rem 0.9rem;
+      padding: 0.45rem 1rem;
       border-radius: 999px;
-      font-size: 0.8rem;
+      font-size: 0.82rem;
       font-weight: 600;
       cursor: pointer;
       backdrop-filter: blur(8px);
@@ -86,6 +114,7 @@
     .intro-skip-btn:hover {
       color: var(--accent);
       border-color: var(--accent);
+      box-shadow: 0 0 12px var(--accent-subtle);
     }
 
     .intro-card {
@@ -95,7 +124,7 @@
       border: 1px solid var(--card-border);
       border-radius: 18px;
       padding: 2.25rem 2rem;
-      box-shadow: 0 0 50px rgba(0, 242, 254, 0.12);
+      box-shadow: 0 0 50px rgba(0, 0, 0, 0.7), 0 0 30px var(--accent-subtle);
       text-align: center;
       display: flex;
       flex-direction: column;
@@ -107,16 +136,17 @@
     .progress-bar-container {
       width: 100%;
       height: 6px;
-      background: #1f2937;
+      background: #191a21;
       border-radius: 999px;
       overflow: hidden;
       margin-bottom: 1.5rem;
+      border: 1px solid var(--card-border);
     }
 
     .progress-bar-fill {
       height: 100%;
       width: 0%;
-      background: linear-gradient(90deg, #00f2fe, #38bdf8, #818cf8);
+      background: linear-gradient(90deg, #bd93f9, #8be9fd, var(--accent));
       border-radius: 999px;
       transition: width 0.3s ease;
     }
@@ -124,13 +154,14 @@
     .stage-badge {
       font-family: var(--font-mono);
       font-size: 0.75rem;
-      font-weight: 600;
+      font-weight: 700;
       color: var(--accent);
-      background: var(--accent-subtle);
-      border: 1px solid rgba(0, 242, 254, 0.3);
-      padding: 0.25rem 0.75rem;
+      background: rgba(250, 237, 38, 0.1);
+      border: 1px solid var(--accent);
+      padding: 0.25rem 0.85rem;
       border-radius: 999px;
       margin-bottom: 1rem;
+      letter-spacing: 0.05em;
     }
 
     /* Animated Robot Character */
@@ -175,16 +206,17 @@
       display: grid;
       grid-template-columns: repeat(3, 26px);
       grid-gap: 2px;
-      background: #00f2fe;
+      background: var(--accent);
       padding: 2px;
       border-radius: 4px;
       margin-top: 0.75rem;
+      box-shadow: 0 0 15px var(--accent-subtle);
     }
 
     .mini-sudoku div {
       width: 26px;
       height: 26px;
-      background: #0b0f19;
+      background: #191a21;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -195,13 +227,13 @@
     }
 
     .mini-terminal {
-      background: #060911;
-      border: 1px solid #1f2937;
+      background: #16171f;
+      border: 1px solid var(--card-border);
       border-radius: 8px;
       padding: 0.6rem 1rem;
       font-family: var(--font-mono);
       font-size: 0.82rem;
-      color: #38bdf8;
+      color: var(--dracula-cyan);
       text-align: left;
       margin-top: 0.75rem;
       width: 100%;
@@ -219,7 +251,7 @@
 
     .mini-bar {
       width: 16px;
-      background: linear-gradient(180deg, #00f2fe, #3b82f6);
+      background: linear-gradient(180deg, var(--accent), var(--dracula-purple));
       border-radius: 4px 4px 0 0;
       animation: growBar 0.8s ease forwards;
     }
@@ -229,10 +261,10 @@
     }
 
     /* ========================================================
-       TOP HEADER & NAVIGATION
+       TOP HEADER & VISUAL PATH ORIGIN
     ======================================================== */
     header {
-      background: rgba(17, 24, 39, 0.9);
+      background: rgba(40, 42, 54, 0.95);
       backdrop-filter: blur(12px);
       border-bottom: 1px solid var(--card-border);
       position: sticky;
@@ -248,41 +280,64 @@
     .brand {
       display: flex;
       align-items: center;
-      gap: 0.75rem;
+      gap: 0.85rem;
       text-decoration: none;
       color: var(--text);
     }
 
     .brand-logo {
-      width: 34px;
-      height: 34px;
+      width: 36px;
+      height: 36px;
       border-radius: 8px;
-      background: linear-gradient(135deg, #00f2fe, #3b82f6);
+      background: var(--accent);
       display: flex;
       align-items: center;
       justify-content: center;
       font-weight: 800;
-      color: #0b0f19;
-      font-size: 1.15rem;
+      color: var(--accent-contrast);
+      font-size: 1.2rem;
+      box-shadow: 0 0 16px var(--accent-glow);
     }
 
     .brand-title {
       font-weight: 700;
       font-size: 1.05rem;
-      letter-spacing: -0.02em;
+      letter-spacing: -0.01em;
+    }
+
+    .brand-title span {
+      color: var(--accent);
     }
 
     .brand-sub {
-      color: var(--accent);
+      color: var(--text-muted);
       font-size: 0.78rem;
       font-family: var(--font-mono);
       font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .status-dot-pulse {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 8px var(--accent);
+      display: inline-block;
+      animation: pulse 1.8s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.3); opacity: 0.6; }
     }
 
     .nav-tabs {
       display: flex;
       gap: 0.5rem;
-      background: #060911;
+      background: #191a21;
       padding: 0.25rem;
       border-radius: 10px;
       border: 1px solid var(--card-border);
@@ -308,8 +363,8 @@
     .tab-btn.active {
       background: var(--card-bg);
       color: var(--accent);
-      border: 1px solid rgba(0, 242, 254, 0.3);
-      box-shadow: 0 0 12px rgba(0, 242, 254, 0.15);
+      border: 1px solid var(--accent);
+      box-shadow: 0 0 12px var(--accent-subtle);
     }
 
     .header-actions {
@@ -319,13 +374,13 @@
     }
 
     .btn-drawer-toggle {
-      background: linear-gradient(135deg, rgba(0, 242, 254, 0.15), rgba(59, 130, 246, 0.15));
+      background: rgba(250, 237, 38, 0.1);
       border: 1px solid var(--accent);
       color: var(--accent);
       padding: 0.5rem 0.95rem;
       border-radius: 8px;
       font-size: 0.85rem;
-      font-weight: 600;
+      font-weight: 700;
       cursor: pointer;
       display: flex;
       align-items: center;
@@ -335,8 +390,8 @@
 
     .btn-drawer-toggle:hover {
       background: var(--accent);
-      color: #0b0f19;
-      box-shadow: 0 0 15px rgba(0, 242, 254, 0.4);
+      color: var(--accent-contrast);
+      box-shadow: 0 0 16px var(--accent-glow);
     }
 
     .btn-link {
@@ -368,14 +423,16 @@
     .view-section { display: none; }
     .view-section.active { display: block; }
 
-    /* Problem Prompt Banner above SQL Editor */
+    /* Problem Prompt Banner (Visual Path Mid-Level Trail) */
     .challenge-banner {
-      background: linear-gradient(135deg, #111827 0%, #0d131f 100%);
+      background: var(--card-bg);
       border: 1px solid var(--card-border);
+      border-left: 4px solid var(--accent);
       border-radius: 12px;
       padding: 1.25rem 1.5rem;
       margin-bottom: 1.25rem;
       position: relative;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
     }
 
     .challenge-top {
@@ -391,16 +448,17 @@
       display: flex;
       align-items: center;
       gap: 0.6rem;
+      flex-wrap: wrap;
     }
 
     .dataset-tag {
-      background: #1e293b;
-      color: #38bdf8;
+      background: #191a21;
+      color: var(--dracula-cyan);
       font-size: 0.75rem;
       font-weight: 700;
       padding: 0.25rem 0.65rem;
       border-radius: 6px;
-      border: 1px solid rgba(56, 189, 248, 0.25);
+      border: 1px solid rgba(139, 233, 253, 0.3);
     }
 
     .difficulty-tag {
@@ -412,21 +470,26 @@
       letter-spacing: 0.05em;
     }
 
-    .diff-int { background: rgba(56, 189, 248, 0.15); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.3); }
-    .diff-adv { background: rgba(192, 132, 252, 0.15); color: var(--purple); border: 1px solid rgba(192, 132, 252, 0.3); }
-    .diff-exp { background: rgba(245, 158, 11, 0.15); color: var(--warning); border: 1px solid rgba(245, 158, 11, 0.3); }
+    .diff-bas { background: rgba(80, 250, 123, 0.15); color: var(--diff-bas); border: 1px solid rgba(80, 250, 123, 0.35); }
+    .diff-int { background: rgba(139, 233, 253, 0.15); color: var(--diff-int); border: 1px solid rgba(139, 233, 253, 0.35); }
+    .diff-adv { background: rgba(255, 184, 108, 0.15); color: var(--diff-adv); border: 1px solid rgba(255, 184, 108, 0.35); }
+    .diff-exp { background: rgba(255, 121, 198, 0.15); color: var(--diff-exp); border: 1px solid rgba(255, 121, 198, 0.35); }
 
     .challenge-title {
-      font-size: 1.1rem;
+      font-size: 1.15rem;
       font-weight: 700;
       color: var(--text);
     }
 
+    .challenge-title span {
+      color: var(--accent);
+    }
+
     .challenge-desc {
-      font-size: 0.9rem;
-      color: #cbd5e1;
+      font-size: 0.92rem;
+      color: #e2e8f0;
       margin-bottom: 0.75rem;
-      line-height: 1.45;
+      line-height: 1.5;
     }
 
     .challenge-meta {
@@ -439,6 +502,14 @@
       flex-wrap: wrap;
     }
 
+    .expected-cols-pill {
+      color: var(--accent);
+      background: #191a21;
+      padding: 0.2rem 0.5rem;
+      border-radius: 4px;
+      border: 1px solid rgba(250, 237, 38, 0.3);
+    }
+
     .challenge-actions {
       display: flex;
       gap: 0.6rem;
@@ -446,9 +517,9 @@
     }
 
     .btn-hint {
-      background: rgba(245, 158, 11, 0.1);
-      border: 1px solid rgba(245, 158, 11, 0.3);
-      color: #fbbf24;
+      background: rgba(250, 237, 38, 0.1);
+      border: 1px solid var(--accent);
+      color: var(--accent);
       font-size: 0.8rem;
       font-weight: 600;
       padding: 0.35rem 0.75rem;
@@ -460,12 +531,15 @@
       transition: all 0.15s;
     }
 
-    .btn-hint:hover { background: rgba(245, 158, 11, 0.2); }
+    .btn-hint:hover {
+      background: var(--accent);
+      color: var(--accent-contrast);
+    }
 
     .btn-solution {
-      background: rgba(148, 163, 184, 0.1);
-      border: 1px solid #334155;
-      color: #cbd5e1;
+      background: #343746;
+      border: 1px solid var(--card-border);
+      color: var(--text);
       font-size: 0.8rem;
       font-weight: 600;
       padding: 0.35rem 0.75rem;
@@ -477,17 +551,21 @@
       transition: all 0.15s;
     }
 
-    .btn-solution:hover { background: #1e293b; color: var(--accent); }
+    .btn-solution:hover {
+      background: #44475a;
+      color: var(--dracula-cyan);
+      border-color: var(--dracula-cyan);
+    }
 
     .hint-box {
       display: none;
       margin-top: 0.75rem;
-      background: rgba(245, 158, 11, 0.08);
-      border-left: 3px solid #f59e0b;
+      background: rgba(250, 237, 38, 0.08);
+      border-left: 3px solid var(--accent);
       padding: 0.65rem 0.9rem;
       border-radius: 0 6px 6px 0;
       font-size: 0.85rem;
-      color: #fde68a;
+      color: #fff9a6;
     }
 
     /* Main Terminal Panel */
@@ -501,7 +579,7 @@
     }
 
     .panel-header {
-      background: #0d131f;
+      background: #1e1f29;
       padding: 0.85rem 1.25rem;
       border-bottom: 1px solid var(--card-border);
       display: flex;
@@ -513,7 +591,7 @@
 
     .editor-container {
       position: relative;
-      background: #060911;
+      background: var(--bg-deep);
       border-bottom: 1px solid var(--card-border);
     }
 
@@ -522,7 +600,7 @@
       height: 190px;
       background: transparent;
       border: none;
-      color: #38bdf8;
+      color: var(--dracula-cyan);
       font-family: var(--font-mono);
       font-size: 0.95rem;
       line-height: 1.55;
@@ -534,7 +612,7 @@
 
     .editor-toolbar {
       padding: 0.75rem 1.25rem;
-      background: #0d131f;
+      background: #1e1f29;
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -558,35 +636,38 @@
       border: 1px solid transparent;
     }
 
+    /* The Call-To-Action Peak of the Mountain: Bright Yellow (#FAED26) */
     .btn-primary {
       background: var(--accent);
-      color: #0b0f19;
-      box-shadow: 0 0 12px rgba(0, 242, 254, 0.3);
+      color: var(--accent-contrast);
+      font-weight: 700;
+      box-shadow: 0 0 16px var(--accent-glow);
     }
 
     .btn-primary:hover {
       background: var(--accent-hover);
-      box-shadow: 0 0 18px rgba(0, 242, 254, 0.5);
+      box-shadow: 0 0 24px rgba(250, 237, 38, 0.6);
+      transform: translateY(-1px);
     }
 
     .btn-secondary {
-      background: #1e293b;
+      background: #343746;
       color: var(--text);
-      border-color: #334155;
+      border-color: var(--card-border);
     }
 
     .btn-secondary:hover {
-      background: #334155;
-      border-color: #475569;
+      background: #44475a;
+      border-color: #6272a4;
     }
 
     .btn-danger {
       background: transparent;
-      color: #f87171;
-      border-color: rgba(239, 68, 68, 0.25);
+      color: var(--dracula-red);
+      border-color: rgba(255, 85, 85, 0.3);
     }
 
-    .btn-danger:hover { background: rgba(239, 68, 68, 0.15); }
+    .btn-danger:hover { background: rgba(255, 85, 85, 0.15); }
 
     .status-bar {
       font-size: 0.8rem;
@@ -617,10 +698,10 @@
     }
 
     table.data-table th {
-      background: #0d131f;
+      background: #191a21;
       color: var(--accent);
       padding: 0.65rem 0.9rem;
-      font-weight: 600;
+      font-weight: 700;
       border-bottom: 1px solid var(--card-border);
       position: sticky;
       top: 0;
@@ -628,16 +709,16 @@
 
     table.data-table td {
       padding: 0.6rem 0.9rem;
-      border-bottom: 1px solid #1a2234;
-      color: #cbd5e1;
+      border-bottom: 1px solid #343746;
+      color: #f8f8f2;
     }
 
-    table.data-table tr:hover { background: rgba(0, 242, 254, 0.04); }
+    table.data-table tr:hover { background: rgba(250, 237, 38, 0.05); }
 
     .error-box {
-      background: rgba(239, 68, 68, 0.1);
-      border: 1px solid var(--danger);
-      color: #fca5a5;
+      background: rgba(255, 85, 85, 0.1);
+      border: 1px solid var(--dracula-red);
+      color: #ff9999;
       padding: 0.9rem;
       border-radius: 8px;
       font-family: var(--font-mono);
@@ -650,7 +731,7 @@
     #drawer-backdrop {
       position: fixed;
       inset: 0;
-      background: rgba(6, 9, 17, 0.7);
+      background: rgba(22, 23, 31, 0.75);
       backdrop-filter: blur(6px);
       z-index: 1000;
       opacity: 0;
@@ -667,17 +748,17 @@
       position: fixed;
       top: 0;
       right: 0;
-      width: 440px;
-      max-width: 90vw;
+      width: 460px;
+      max-width: 92vw;
       height: 100vh;
-      background: #0d131f;
+      background: #21222c;
       border-left: 1px solid var(--card-border);
       z-index: 1001;
       transform: translateX(100%);
       transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
       display: flex;
       flex-direction: column;
-      box-shadow: -10px 0 30px rgba(0, 0, 0, 0.5);
+      box-shadow: -10px 0 35px rgba(0, 0, 0, 0.7);
     }
 
     #datasets-drawer.open {
@@ -690,7 +771,7 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      background: #090e18;
+      background: #191a21;
     }
 
     .drawer-title {
@@ -701,6 +782,8 @@
       align-items: center;
       gap: 0.5rem;
     }
+
+    .drawer-title span { color: var(--accent); }
 
     .drawer-close-btn {
       background: transparent;
@@ -731,39 +814,39 @@
     }
 
     .ds-pill-btn {
-      background: #111827;
+      background: #282a36;
       border: 1px solid var(--card-border);
       color: var(--text-muted);
-      padding: 0.6rem 0.75rem;
+      padding: 0.65rem 0.8rem;
       border-radius: 8px;
-      font-size: 0.8rem;
+      font-size: 0.82rem;
       font-weight: 600;
       cursor: pointer;
       text-align: left;
       transition: all 0.15s;
       display: flex;
       flex-direction: column;
-      gap: 0.15rem;
+      gap: 0.2rem;
     }
 
     .ds-pill-btn:hover {
-      background: #1e293b;
+      background: #343746;
       color: var(--text);
-      border-color: rgba(0, 242, 254, 0.4);
+      border-color: var(--accent);
     }
 
     .ds-pill-btn.active {
-      background: var(--accent-subtle);
+      background: rgba(250, 237, 38, 0.12);
       border-color: var(--accent);
       color: var(--accent);
-      box-shadow: 0 0 10px rgba(0, 242, 254, 0.15);
+      box-shadow: 0 0 12px var(--accent-subtle);
     }
 
     .ds-pill-badge {
       font-size: 0.65rem;
       text-transform: uppercase;
       font-family: var(--font-mono);
-      opacity: 0.75;
+      opacity: 0.8;
     }
 
     .challenge-list {
@@ -773,10 +856,10 @@
     }
 
     .challenge-card {
-      background: #111827;
+      background: #282a36;
       border: 1px solid var(--card-border);
       border-radius: 8px;
-      padding: 0.75rem 0.9rem;
+      padding: 0.8rem 0.95rem;
       cursor: pointer;
       transition: all 0.2s;
     }
@@ -784,24 +867,24 @@
     .challenge-card:hover {
       border-color: var(--accent);
       transform: translateX(3px);
-      background: #162032;
+      background: #343746;
     }
 
     .challenge-card.active {
       border-color: var(--accent);
-      background: rgba(0, 242, 254, 0.08);
+      background: rgba(250, 237, 38, 0.1);
     }
 
     .schema-pill {
       display: inline-block;
       font-family: var(--font-mono);
       font-size: 0.72rem;
-      background: #060911;
+      background: #191a21;
       padding: 0.2rem 0.5rem;
       border-radius: 4px;
-      border: 1px solid #1f2937;
+      border: 1px solid var(--card-border);
       margin: 0.15rem;
-      color: #94a3b8;
+      color: var(--dracula-cyan);
     }
 
     /* ========================================================
@@ -819,20 +902,20 @@
     }
 
     .robot-bubble {
-      background: #1e293b;
+      background: #282a36;
       border: 1px solid var(--accent);
-      color: #f1f5f9;
-      padding: 0.75rem 1rem;
-      border-radius: 12px 12px 2px 12px;
-      max-width: 260px;
-      font-size: 0.82rem;
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+      color: #f8f8f2;
+      padding: 0.85rem 1.1rem;
+      border-radius: 14px 14px 2px 14px;
+      max-width: 280px;
+      font-size: 0.84rem;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
       margin-bottom: 0.5rem;
       transition: all 0.25s ease;
       opacity: 0;
       transform: translateY(10px);
       pointer-events: none;
-      line-height: 1.35;
+      line-height: 1.4;
     }
 
     .robot-bubble.visible {
@@ -842,15 +925,15 @@
     }
 
     .robot-avatar {
-      width: 54px;
-      height: 54px;
+      width: 56px;
+      height: 56px;
       border-radius: 50%;
-      background: #0d131f;
+      background: #1e1f29;
       border: 2px solid var(--accent);
       display: flex;
       align-items: center;
       justify-content: center;
-      box-shadow: 0 0 20px rgba(0, 242, 254, 0.35);
+      box-shadow: 0 0 20px var(--accent-glow);
       transition: transform 0.2s;
     }
 
@@ -859,15 +942,16 @@
     }
 
     /* ========================================================
-       SUDOKU GAME STYLING
+       SUDOKU GAME STYLING & TIMER CONTROLS
     ======================================================== */
     .sudoku-container {
-      max-width: 620px;
+      max-width: 640px;
       margin: 0 auto;
       background: var(--card-bg);
       border: 1px solid var(--card-border);
       border-radius: 14px;
       padding: 1.75rem;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
     }
 
     .sudoku-header {
@@ -879,21 +963,86 @@
       gap: 0.75rem;
     }
 
+    /* Dedicated Timer Control Strip */
+    .timer-control-bar {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    .timer-badge {
+      font-family: var(--font-mono);
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--accent);
+      background: #191a21;
+      padding: 0.35rem 0.75rem;
+      border-radius: 8px;
+      border: 1px solid var(--card-border);
+      min-width: 75px;
+      text-align: center;
+      box-shadow: 0 0 10px var(--accent-subtle);
+    }
+
+    .btn-timer {
+      background: #343746;
+      border: 1px solid var(--card-border);
+      color: var(--text);
+      padding: 0.38rem 0.7rem;
+      border-radius: 6px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      transition: all 0.15s;
+    }
+
+    .btn-timer:hover {
+      background: #44475a;
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    .btn-timer.active-timer {
+      background: rgba(250, 237, 38, 0.15);
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    .select-diff {
+      background: #191a21;
+      color: var(--text);
+      border: 1px solid var(--card-border);
+      padding: 0.4rem 0.75rem;
+      border-radius: 6px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .sudoku-board-wrapper {
+      position: relative;
+      max-width: 440px;
+      margin: 0 auto 1.5rem;
+    }
+
     .sudoku-board {
       display: grid;
       grid-template-columns: repeat(9, 1fr);
       gap: 1px;
-      background: #334155;
-      border: 3px solid #00f2fe;
+      background: var(--card-border);
+      border: 3px solid var(--accent);
       border-radius: 8px;
       overflow: hidden;
-      margin: 0 auto 1.5rem;
-      max-width: 440px;
       aspect-ratio: 1 / 1;
+      box-shadow: 0 0 25px var(--accent-subtle);
     }
 
     .sudoku-cell {
-      background: #0d131f;
+      background: #191a21;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -905,17 +1054,56 @@
       transition: background 0.15s;
     }
 
-    .sudoku-cell:hover { background: #1e293b; }
-    .sudoku-cell.fixed { color: #f1f5f9; font-weight: 700; }
-    .sudoku-cell.user-input { color: #00f2fe; }
-    .sudoku-cell.selected { background: rgba(0, 242, 254, 0.25) !important; }
-    .sudoku-cell.highlight { background: rgba(56, 189, 248, 0.1); }
-    .sudoku-cell.conflict { background: rgba(239, 68, 68, 0.3) !important; color: #f87171 !important; }
+    .sudoku-cell:hover { background: #282a36; }
+    .sudoku-cell.fixed { color: #f8f8f2; font-weight: 700; }
+    .sudoku-cell.user-input { color: var(--dracula-cyan); font-weight: 600; }
+    .sudoku-cell.selected { background: rgba(250, 237, 38, 0.3) !important; color: var(--accent) !important; outline: 2px solid var(--accent); z-index: 2; }
+    .sudoku-cell.highlight { background: rgba(139, 233, 253, 0.12); }
+    .sudoku-cell.conflict { background: rgba(255, 85, 85, 0.35) !important; color: var(--dracula-red) !important; }
 
-    .sudoku-cell:nth-child(3n) { border-right: 2px solid #00f2fe; }
+    .sudoku-cell:nth-child(3n) { border-right: 2px solid var(--accent); }
     .sudoku-cell:nth-child(9n) { border-right: none; }
     .sudoku-cell:nth-child(n+19):nth-child(-n+27),
-    .sudoku-cell:nth-child(n+46):nth-child(-n+54) { border-bottom: 2px solid #00f2fe; }
+    .sudoku-cell:nth-child(n+46):nth-child(-n+54) { border-bottom: 2px solid var(--accent); }
+
+    /* Pause Overlay on Grid */
+    .sudoku-pause-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(25, 26, 33, 0.94);
+      backdrop-filter: blur(8px);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      border-radius: 8px;
+      z-index: 50;
+      border: 2px dashed var(--accent);
+    }
+
+    .pause-card {
+      text-align: center;
+      padding: 1.5rem;
+    }
+
+    .pause-icon {
+      font-size: 2.2rem;
+      color: var(--accent);
+      margin-bottom: 0.5rem;
+    }
+
+    .pause-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    .pause-sub {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      margin-top: 0.3rem;
+      margin-bottom: 1.2rem;
+    }
 
     .sudoku-pad {
       display: flex;
@@ -928,7 +1116,7 @@
     .pad-btn {
       width: 40px;
       height: 44px;
-      background: #1e293b;
+      background: #343746;
       border: 1px solid var(--card-border);
       color: var(--text);
       font-family: var(--font-mono);
@@ -940,24 +1128,13 @@
     }
 
     .pad-btn:hover {
-      background: var(--accent-subtle);
+      background: var(--accent);
       border-color: var(--accent);
-      color: var(--accent);
+      color: var(--accent-contrast);
       transform: translateY(-2px);
     }
 
     .pad-action-btn { width: auto; padding: 0 1rem; font-size: 0.85rem; }
-
-    .timer-badge {
-      font-family: var(--font-mono);
-      font-size: 1.1rem;
-      font-weight: 700;
-      color: var(--accent);
-      background: #060911;
-      padding: 0.3rem 0.8rem;
-      border-radius: 8px;
-      border: 1px solid var(--card-border);
-    }
 
     footer {
       text-align: center;
@@ -965,7 +1142,10 @@
       border-top: 1px solid var(--card-border);
       color: var(--text-muted);
       font-size: 0.85rem;
+      background: #191a21;
     }
+
+    footer b { color: var(--accent); }
   </style>
 </head>
 <body>
@@ -983,35 +1163,28 @@
       <!-- Animated Mascot SVG -->
       <div class="robot-mascot">
         <svg viewBox="0 0 100 110" width="100%" height="100%">
-          <!-- Antenna -->
-          <line x1="50" y1="18" x2="50" y2="4" stroke="#00f2fe" stroke-width="3" stroke-linecap="round"/>
-          <circle cx="50" cy="4" r="5" fill="#00f2fe">
+          <line x1="50" y1="18" x2="50" y2="4" stroke="#FAED26" stroke-width="3" stroke-linecap="round"/>
+          <circle cx="50" cy="4" r="5" fill="#FAED26">
             <animate attributeName="opacity" values="0.4;1;0.4" dur="1.2s" repeatCount="indefinite"/>
           </circle>
-          <!-- Head -->
-          <rect x="22" y="18" width="56" height="42" rx="12" fill="#111827" stroke="#00f2fe" stroke-width="2.5"/>
-          <!-- Eyes -->
-          <circle cx="38" cy="36" r="6" fill="#00f2fe">
+          <rect x="22" y="18" width="56" height="42" rx="12" fill="#282a36" stroke="#FAED26" stroke-width="2.5"/>
+          <circle cx="38" cy="36" r="6" fill="#FAED26">
             <animate attributeName="r" values="6;1;6" keyTimes="0;0.5;1" dur="3s" repeatCount="indefinite"/>
           </circle>
-          <circle cx="62" cy="36" r="6" fill="#00f2fe">
+          <circle cx="62" cy="36" r="6" fill="#FAED26">
             <animate attributeName="r" values="6;1;6" keyTimes="0;0.5;1" dur="3s" repeatCount="indefinite"/>
           </circle>
-          <!-- Mouth -->
-          <path d="M 40 48 Q 50 54 60 48" stroke="#38bdf8" stroke-width="2" fill="none" stroke-linecap="round"/>
-          <!-- Body -->
-          <rect x="26" y="64" width="48" height="38" rx="10" fill="#0d131f" stroke="#1f2937" stroke-width="2"/>
-          <circle cx="50" cy="83" r="8" fill="rgba(0, 242, 254, 0.2)" stroke="#00f2fe" stroke-width="1.5"/>
-          <!-- Arms -->
-          <rect x="12" y="68" width="10" height="24" rx="5" fill="#1e293b"/>
-          <rect x="78" y="68" width="10" height="24" rx="5" fill="#1e293b"/>
+          <path d="M 40 48 Q 50 54 60 48" stroke="#8be9fd" stroke-width="2" fill="none" stroke-linecap="round"/>
+          <rect x="26" y="64" width="48" height="38" rx="10" fill="#191a21" stroke="#44475a" stroke-width="2"/>
+          <circle cx="50" cy="83" r="8" fill="rgba(250, 237, 38, 0.2)" stroke="#FAED26" stroke-width="1.5"/>
+          <rect x="12" y="68" width="10" height="24" rx="5" fill="#343746"/>
+          <rect x="78" y="68" width="10" height="24" rx="5" fill="#343746"/>
         </svg>
       </div>
 
-      <div class="stage-badge" id="stage-badge">PHASE 1 / 3: DEDUCTIVE LOGIC</div>
+      <div class="stage-badge" id="stage-badge">PHASE 1 / 4: DEDUCTIVE LOGIC</div>
 
       <div class="stage-content" id="stage-content">
-        <!-- Stage 1 by default -->
         <div class="stage-title">Pattern Elimination & Logic</div>
         <div class="stage-subtitle">Calibrating Sudoku constraint-solving algorithms...</div>
         <div class="mini-sudoku">
@@ -1030,14 +1203,17 @@
     <a href="#" class="brand">
       <div class="brand-logo">S</div>
       <div>
-        <div class="brand-title">Shivaling Battarki</div>
-        <div class="brand-sub">Cloud Analytics Lab & Practice</div>
+        <div class="brand-title"><span>SHIVALING</span> BATTARKI</div>
+        <div class="brand-sub">
+          <span class="status-dot-pulse"></span>
+          Cloud Analytics Lab & Practice
+        </div>
       </div>
     </a>
 
     <div class="nav-tabs">
       <button class="tab-btn active" id="tab-sql-btn" onclick="switchTab('sql')">
-        <span>⚡</span> AlaSQL Lab
+        <span>⚡</span> AlaSQL Terminal
       </button>
       <button class="tab-btn" id="tab-sudoku-btn" onclick="switchTab('sudoku')">
         <span>🧩</span> Sudoku Game
@@ -1060,15 +1236,15 @@
   <aside id="datasets-drawer">
     <div class="drawer-header">
       <div class="drawer-title">
-        <span>📂</span> Available Datasets & Practice
+        <span>📂</span> Practice Datasets & Levels
       </div>
-      <button class="drawer-close-btn" onclick="toggleDrawer()">✕</button>
+      <button class="drawer-close-btn" onclick="toggleDrawer()" title="Close Drawer">&times;</button>
     </div>
 
     <div class="drawer-body">
       <div>
-        <div style="font-size: 0.8rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase; margin-bottom: 0.6rem;">
-          1. Select Domain Dataset
+        <div style="font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted); font-weight: 700; margin-bottom: 0.6rem;">
+          Select Domain / Cloud Dataset
         </div>
         <div class="dataset-pills" id="dataset-pill-list">
           <!-- Populated dynamically via JS -->
@@ -1076,8 +1252,8 @@
       </div>
 
       <div>
-        <div style="font-size: 0.8rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase; margin-bottom: 0.6rem;">
-          2. Practice Challenges for Selected Dataset
+        <div style="font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted); font-weight: 700; margin-bottom: 0.6rem;">
+          Curated Challenges (Basic → Expert)
         </div>
         <div class="challenge-list" id="drawer-challenge-list">
           <!-- Populated dynamically via JS -->
@@ -1085,10 +1261,10 @@
       </div>
 
       <div>
-        <div style="font-size: 0.8rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase; margin-bottom: 0.6rem;">
-          3. In-Memory Tables & Schema
+        <div style="font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted); font-weight: 700; margin-bottom: 0.6rem;">
+          Active Schema & Columns
         </div>
-        <div id="drawer-schema-info" style="font-size: 0.8rem; color: #cbd5e1; line-height: 1.6;">
+        <div id="drawer-schema-info" style="font-size: 0.8rem; line-height: 1.6; color: var(--text-muted);">
           <!-- Populated dynamically via JS -->
         </div>
       </div>
@@ -1099,63 +1275,64 @@
        MAIN APP WORKSPACE
   ======================================================== -->
   <main>
-    <!-- TAB 1: ALASQL INTERACTIVE LAB -->
+    <!-- TAB 1: INTERACTIVE ALASQL TERMINAL -->
     <div id="view-sql" class="view-section active">
-      <!-- Challenge Prompt Banner -->
+      <!-- Challenge Context Banner -->
       <div class="challenge-banner">
         <div class="challenge-top">
           <div class="challenge-badge-row">
-            <span class="dataset-tag" id="current-ds-tag">⛽ BPCL Fuel & Credit Operations</span>
+            <span class="dataset-tag" id="current-ds-tag">⛽ BPCL Operations</span>
             <span class="difficulty-tag diff-int" id="current-diff-tag">Intermediate</span>
           </div>
-          <button class="btn btn-secondary" style="font-size: 0.78rem; padding: 0.35rem 0.75rem;" onclick="toggleDrawer()">
+          <button class="btn btn-secondary" onclick="toggleDrawer()" style="font-size: 0.78rem; padding: 0.3rem 0.65rem;">
             Change Dataset / Challenge ▾
           </button>
         </div>
 
-        <div class="challenge-title" id="current-challenge-title">Territory Volume Aggregation & Threshold Filter</div>
-        <div class="challenge-desc" id="current-challenge-desc">
-          Group retail outlets by territory, calculate total monthly throughput, and only return territories delivering over 300 KL total volume.
-        </div>
+        <h2 class="challenge-title" id="current-challenge-title">Loading Challenge...</h2>
+        <p class="challenge-desc" id="current-challenge-desc">Loading challenge description...</p>
 
         <div class="challenge-meta">
-          <span>Expected Columns: <code id="current-expected-cols" style="color: var(--accent);">[territory, total_outlets, total_volume_kl, avg_credit_lakhs]</code></span>
+          <div>Expected Output: <span class="expected-cols-pill" id="current-expected-cols">[columns]</span></div>
         </div>
 
         <div class="challenge-actions">
-          <button class="btn-hint" onclick="toggleHint()">💡 View Hint</button>
-          <button class="btn-solution" onclick="loadSolution()">👁️ Load Solution Query</button>
+          <button class="btn-hint" onclick="toggleHint()">
+            <span>💡</span> Hint
+          </button>
+          <button class="btn-solution" onclick="loadSolution()">
+            <span>🔓</span> Load Solution Query
+          </button>
         </div>
 
-        <div class="hint-box" id="hint-box-content"></div>
+        <div class="hint-box" id="hint-box-content">
+          <!-- Hint text injected via JS -->
+        </div>
       </div>
 
-      <!-- SQL Terminal Panel -->
+      <!-- SQL Console & Execution Area -->
       <div class="panel">
         <div class="panel-header">
-          <div style="font-size: 0.95rem; font-weight: 600; display: flex; align-items: center; gap: 0.5rem;">
-            <span>SQL Query Editor</span>
-            <span style="font-size: 0.72rem; padding: 0.2rem 0.55rem; border-radius: 999px; font-family: var(--font-mono); background: var(--accent-subtle); color: var(--accent); border: 1px solid rgba(0, 242, 254, 0.25);">
-              AlaSQL In-Memory Engine
-            </span>
+          <div style="display: flex; align-items: center; gap: 0.5rem; font-family: var(--font-mono); font-size: 0.85rem; color: var(--text-muted);">
+            <span style="color: var(--accent); font-weight: 700;">SQL EDITOR</span> • Ctrl+Enter to execute
           </div>
-          <div class="status-bar" id="exec-status">Ready • Database Loaded</div>
+          <div class="status-bar" id="exec-status">AlaSQL Cloud Engine Ready</div>
         </div>
 
         <div class="editor-container">
-          <textarea id="sql-query" class="sql-input" spellcheck="false" placeholder="Write your SQL statement here..."></textarea>
+          <textarea id="sql-query" class="sql-input" spellcheck="false" placeholder="Write your SQL query here..."></textarea>
         </div>
 
         <div class="editor-toolbar">
           <div class="action-group">
             <button class="btn btn-primary" onclick="runQuery()">
-              <span>▶</span> Execute (Ctrl+Enter)
+              <span>▶</span> Run Query (Ctrl+Enter)
             </button>
             <button class="btn btn-secondary" onclick="formatSQL()">
-              <span>✨</span> Clean
+              <span>⚡</span> Format SQL
             </button>
             <button class="btn btn-danger" onclick="resetDatabase()">
-              <span>🔄</span> Reset DB
+              <span>↺</span> Reset Tables
             </button>
           </div>
           <div class="action-group">
@@ -1167,7 +1344,7 @@
 
         <div class="results-container" id="results-area">
           <div style="color: var(--text-muted); font-size: 0.9rem; text-align: center; margin-top: 3.5rem;">
-            Write an SQL statement above and click <b>Execute (Ctrl+Enter)</b> to run.
+            Write an SQL statement above and click <b>Run Query (Ctrl+Enter)</b> to execute.
           </div>
         </div>
       </div>
@@ -1179,20 +1356,42 @@
         <div class="sudoku-header">
           <div>
             <h2 style="font-size: 1.25rem; font-weight: 700;">🧩 Logic & Focus: Sudoku</h2>
-            <p style="font-size: 0.82rem; color: var(--text-muted);">Sharpen your pattern recognition and analytical logic.</p>
+            <p style="font-size: 0.82rem; color: var(--text-muted);">Pattern elimination, constraint propagation & deduction.</p>
           </div>
-          <div style="display: flex; align-items: center; gap: 0.75rem;">
+          
+          <!-- Sudoku Timer Controls (Start, Pause, Reset) -->
+          <div class="timer-control-bar">
             <span class="timer-badge" id="sudoku-timer">00:00</span>
-            <select id="sudoku-diff" onchange="newSudokuGame()" style="background: #1e293b; color: var(--text); border: 1px solid var(--card-border); padding: 0.4rem 0.75rem; border-radius: 6px; font-size: 0.85rem; font-weight: 600;">
-              <option value="easy">Easy</option>
-              <option value="medium" selected>Medium</option>
-              <option value="hard">Hard</option>
+            <button class="btn-timer" id="btn-timer-toggle" onclick="toggleTimer()" title="Pause or Resume game">
+              <span id="timer-toggle-icon">⏸</span> <span id="timer-toggle-text">Pause</span>
+            </button>
+            <button class="btn-timer" onclick="resetSudokuGame()" title="Reset current board and timer">
+              <span>↺</span> Reset
+            </button>
+            <select id="sudoku-diff" onchange="newSudokuGame()" class="select-diff">
+              <option value="easy">Level: Easy</option>
+              <option value="medium" selected>Level: Medium</option>
+              <option value="hard">Level: Hard</option>
             </select>
           </div>
         </div>
 
-        <div class="sudoku-board" id="sudoku-grid">
-          <!-- 81 cells generated dynamically via JS -->
+        <div class="sudoku-board-wrapper">
+          <div class="sudoku-board" id="sudoku-grid">
+            <!-- 81 cells generated dynamically via JS -->
+          </div>
+
+          <!-- Pause Overlay -->
+          <div id="sudoku-pause-overlay" class="sudoku-pause-overlay" style="display: none;">
+            <div class="pause-card">
+              <div class="pause-icon">⏸</div>
+              <div class="pause-title">Game Paused</div>
+              <div class="pause-sub">The puzzle is hidden while paused.</div>
+              <button class="btn btn-primary" onclick="toggleTimer()">
+                <span>▶</span> Resume Game
+              </button>
+            </div>
+          </div>
         </div>
 
         <div class="sudoku-pad">
@@ -1208,9 +1407,9 @@
           <button class="pad-btn pad-action-btn" onclick="clearSelectedCell()">Erase</button>
         </div>
 
-        <div style="display: flex; justify-content: space-between; align-items: center;">
+        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.75rem;">
           <div class="action-group">
-            <button class="btn btn-secondary" onclick="newSudokuGame()">New Game</button>
+            <button class="btn btn-secondary" onclick="newSudokuGame()">New Puzzle</button>
             <button class="btn btn-secondary" onclick="giveHint()">Hint</button>
           </div>
           <button class="btn btn-primary" onclick="validateSolution()">Check Puzzle</button>
@@ -1221,30 +1420,30 @@
 
   <!-- ========================================================
        FLOATING INTERACTIVE ROBOT ASSISTANT ("BYTE")
-  ======================================================== */ -->
+  ======================================================== -->
   <div id="robot-assistant" onclick="askRobot()">
     <div class="robot-bubble" id="robot-bubble">
-      👋 Hi! I'm <b>Byte</b>, your query assistant. Click me anytime for SQL tips, dataset context, or logic hints!
+      👋 Hi! I'm <b>Byte</b>. Click me anytime for SQL tips, dataset context, or logic hints!
     </div>
     <div class="robot-avatar">
       <svg viewBox="0 0 100 110" width="34" height="38">
-        <line x1="50" y1="18" x2="50" y2="4" stroke="#00f2fe" stroke-width="4" stroke-linecap="round"/>
-        <circle cx="50" cy="4" r="5" fill="#00f2fe"/>
-        <rect x="22" y="18" width="56" height="42" rx="12" fill="#111827" stroke="#00f2fe" stroke-width="3"/>
-        <circle cx="38" cy="36" r="6" fill="#00f2fe"/>
-        <circle cx="62" cy="36" r="6" fill="#00f2fe"/>
-        <path d="M 40 48 Q 50 54 60 48" stroke="#38bdf8" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+        <line x1="50" y1="18" x2="50" y2="4" stroke="#FAED26" stroke-width="4" stroke-linecap="round"/>
+        <circle cx="50" cy="4" r="5" fill="#FAED26"/>
+        <rect x="22" y="18" width="56" height="42" rx="12" fill="#282a36" stroke="#FAED26" stroke-width="3"/>
+        <circle cx="38" cy="36" r="6" fill="#FAED26"/>
+        <circle cx="62" cy="36" r="6" fill="#FAED26"/>
+        <path d="M 40 48 Q 50 54 60 48" stroke="#8be9fd" stroke-width="2.5" fill="none" stroke-linecap="round"/>
       </svg>
     </div>
   </div>
 
   <footer>
-    Designed & Built with curiosity by <b>Shivaling Battarki</b> • 100% Client-Side Cloud Execution • AlaSQL & Vanilla JS
+    Designed & Built with curiosity by <b>Shivaling Battarki</b> • 100% Client-Side Cloud Compute • AlaSQL & Vanilla JS
   </footer>
 
   <script>
     /* ========================================================
-       1. DATASETS DEFINITIONS & PRACTICE CHALLENGES
+       1. DATASETS & ALL 4 DIFFICULTY TIERS (BASIC, INT, ADV, EXP)
     ======================================================== */
     const DATASETS = {
       bpcl: {
@@ -1287,31 +1486,40 @@
         schemaHtml: `<b>retail_outlets:</b><br><span class="schema-pill">outlet_id</span> <span class="schema-pill">outlet_name</span> <span class="schema-pill">territory</span> <span class="schema-pill">monthly_volume_kl</span> <span class="schema-pill">credit_limit_lakhs</span> <span class="schema-pill">dealer_rating</span><br><br><b>fuel_transactions:</b><br><span class="schema-pill">txn_id</span> <span class="schema-pill">outlet_id</span> <span class="schema-pill">fuel_type</span> <span class="schema-pill">litres</span> <span class="schema-pill">rate_per_litre</span> <span class="schema-pill">txn_date</span>`,
         challenges: [
           {
+            title: "Filter Outlets by Dealer Rating & Volume",
+            diff: "Basic",
+            diffClass: "diff-bas",
+            desc: "Select outlet name, territory, and monthly volume for all outlets with an 'A+' dealer rating, sorted by volume descending.",
+            expected: "[outlet_name, territory, monthly_volume_kl, dealer_rating]",
+            hint: "Use WHERE dealer_rating = 'A+' and ORDER BY monthly_volume_kl DESC.",
+            solution: "SELECT outlet_name, territory, monthly_volume_kl, dealer_rating\nFROM retail_outlets\nWHERE dealer_rating = 'A+'\nORDER BY monthly_volume_kl DESC;"
+          },
+          {
             title: "Territory Volume Aggregation & Threshold Filter",
             diff: "Intermediate",
             diffClass: "diff-int",
             desc: "Group retail outlets by territory, calculate total monthly throughput, and only return territories delivering over 300 KL total volume.",
             expected: "[territory, total_outlets, total_volume_kl, avg_credit_lakhs]",
-            hint: "Use GROUP BY territory and filter the aggregated total with HAVING total_volume_kl > 300.",
-            solution: "SELECT \n    territory,\n    COUNT(outlet_id) as total_outlets,\n    SUM(monthly_volume_kl) as total_volume_kl,\n    ROUND(AVG(credit_limit_lakhs), 1) as avg_credit_lakhs\nFROM retail_outlets\nGROUP BY territory\nHAVING total_volume_kl > 300\nORDER BY total_volume_kl DESC;"
+            hint: "Use GROUP BY territory and filter aggregated total with HAVING SUM(monthly_volume_kl) > 300.",
+            solution: "SELECT \n    territory,\n    COUNT(outlet_id) as total_outlets,\n    SUM(monthly_volume_kl) as total_volume_kl,\n    ROUND(AVG(credit_limit_lakhs), 1) as avg_credit_lakhs\nFROM retail_outlets\nGROUP BY territory\nHAVING SUM(monthly_volume_kl) > 300\nORDER BY total_volume_kl DESC;"
           },
           {
             title: "Multi-Table JOIN & Total Revenue in INR",
-            diff: "Intermediate",
-            diffClass: "diff-int",
+            diff: "Advanced",
+            diffClass: "diff-adv",
             desc: "Join outlets with fuel transactions to calculate gross sales revenue for each outlet and fuel type combination.",
             expected: "[outlet_name, territory, fuel_type, total_litres, total_revenue_inr]",
             hint: "Join on retail_outlets.outlet_id = fuel_transactions.outlet_id, then multiply litres * rate_per_litre.",
             solution: "SELECT \n    o.outlet_name,\n    o.territory,\n    t.fuel_type,\n    SUM(t.litres) as total_litres,\n    ROUND(SUM(t.litres * t.rate_per_litre), 2) as total_revenue_inr\nFROM retail_outlets o\nJOIN fuel_transactions t ON o.outlet_id = t.outlet_id\nGROUP BY o.outlet_name, o.territory, t.fuel_type\nORDER BY total_revenue_inr DESC;"
           },
           {
-            title: "Regional Rank via Window Functions (DENSE_RANK)",
-            diff: "Advanced",
-            diffClass: "diff-adv",
-            desc: "Assign a regional volume rank (1, 2, ...) to each station partitioned by territory without collapsing individual rows.",
-            expected: "[outlet_name, territory, monthly_volume_kl, rank_in_territory]",
-            hint: "Use DENSE_RANK() OVER (PARTITION BY territory ORDER BY monthly_volume_kl DESC).",
-            solution: "SELECT \n    outlet_name,\n    territory,\n    monthly_volume_kl,\n    credit_limit_lakhs,\n    DENSE_RANK() OVER (PARTITION BY territory ORDER BY monthly_volume_kl DESC) as rank_in_territory\nFROM retail_outlets;"
+            title: "Correlated Subquery: Outlets Exceeding Territory Average",
+            diff: "Expert",
+            diffClass: "diff-exp",
+            desc: "Use a correlated subquery to benchmark each outlet against its territory average volume and show outlets outperforming regional peers.",
+            expected: "[outlet_name, territory, monthly_volume_kl, territory_avg_kl, variance_from_avg]",
+            hint: "Correlate with (SELECT AVG(monthly_volume_kl) FROM retail_outlets sub WHERE sub.territory = o.territory).",
+            solution: "SELECT \n    o.outlet_name,\n    o.territory,\n    o.monthly_volume_kl,\n    ROUND((SELECT AVG(monthly_volume_kl) FROM retail_outlets sub WHERE sub.territory = o.territory), 1) as territory_avg_kl,\n    o.monthly_volume_kl - ROUND((SELECT AVG(monthly_volume_kl) FROM retail_outlets sub WHERE sub.territory = o.territory), 1) as variance_from_avg\nFROM retail_outlets o\nWHERE o.monthly_volume_kl > (SELECT AVG(monthly_volume_kl) FROM retail_outlets sub WHERE sub.territory = o.territory)\nORDER BY variance_from_avg DESC;"
           }
         ]
       },
@@ -1349,14 +1557,23 @@
             ('ORD-106', 'C006', 'delivered', '2026-01-18', '2026-01-22', 4, 450.00)
           `);
         },
-        schemaHtml: `<b>customers:</b><br><span class="schema-pill">customer_id</span> <span class="schema-pill">customer_city</span> <span class="schema-pill">customer_state</span><br><br><b>orders:</b><br><span class="schema-pill">order_id</span> <span class="schema-pill">customer_id</span> <span class="schema-pill">delivery_days</span> <span class="schema-pill">order_value</span>`,
+        schemaHtml: `<b>customers:</b><br><span class="schema-pill">customer_id</span> <span class="schema-pill">customer_city</span> <span class="schema-pill">customer_state</span><br><br><b>orders:</b><br><span class="schema-pill">order_id</span> <span class="schema-pill">customer_id</span> <span class="schema-pill">order_status</span> <span class="schema-pill">delivery_days</span> <span class="schema-pill">order_value</span>`,
         challenges: [
           {
-            title: "Detect Regional Logistics Disparities",
+            title: "Filter High-Value Delivered Orders",
+            diff: "Basic",
+            diffClass: "diff-bas",
+            desc: "Retrieve order_id, purchase_date, and order_value for all orders with 'delivered' status exceeding $300, sorted by value descending.",
+            expected: "[order_id, purchase_date, order_value]",
+            hint: "Filter with WHERE order_status = 'delivered' AND order_value > 300.",
+            solution: "SELECT order_id, purchase_date, order_value\nFROM orders\nWHERE order_status = 'delivered' AND order_value > 300\nORDER BY order_value DESC;"
+          },
+          {
+            title: "Regional Delivery Lead-Time by State",
             diff: "Intermediate",
             diffClass: "diff-int",
             desc: "Calculate average delivery lead-time (in days) and total spend grouped by customer state.",
-            expected: "[customer_state, avg_delivery_days, total_revenue, order_count]",
+            expected: "[customer_state, order_count, avg_delivery_days, total_revenue]",
             hint: "Join orders and customers on customer_id, then GROUP BY customer_state.",
             solution: "SELECT \n    c.customer_state,\n    COUNT(o.order_id) as order_count,\n    ROUND(AVG(o.delivery_days), 1) as avg_delivery_days,\n    ROUND(SUM(o.order_value), 2) as total_revenue\nFROM orders o\nJOIN customers c ON o.customer_id = c.customer_id\nGROUP BY c.customer_state\nORDER BY avg_delivery_days DESC;"
           },
@@ -1368,6 +1585,15 @@
             expected: "[order_id, customer_city, customer_state, delivery_days, order_value]",
             hint: "Filter with WHERE delivery_days > 7 and sort by delivery_days descending.",
             solution: "SELECT \n    o.order_id,\n    c.customer_city,\n    c.customer_state,\n    o.delivery_days,\n    o.order_value\nFROM orders o\nJOIN customers c ON o.customer_id = c.customer_id\nWHERE o.delivery_days > 7\nORDER BY o.delivery_days DESC;"
+          },
+          {
+            title: "CTE & Logistics Efficiency Segmentation",
+            diff: "Expert",
+            diffClass: "diff-exp",
+            desc: "Use a Common Table Expression (CTE) to aggregate state transit times, then classify states into logistics corridors using CASE WHEN.",
+            expected: "[customer_state, order_count, avg_days, total_spend, logistics_status]",
+            hint: "Wrap state aggregates in WITH state_perf AS (...) then query with CASE WHEN avg_days <= 5...",
+            solution: "WITH state_perf AS (\n    SELECT \n        c.customer_state,\n        COUNT(o.order_id) as order_count,\n        ROUND(AVG(o.delivery_days), 1) as avg_days,\n        ROUND(SUM(o.order_value), 2) as total_spend\n    FROM orders o\n    JOIN customers c ON o.customer_id = c.customer_id\n    GROUP BY c.customer_state\n)\nSELECT \n    customer_state,\n    order_count,\n    avg_days,\n    total_spend,\n    CASE \n        WHEN avg_days <= 5 THEN 'High Speed Corridor'\n        WHEN avg_days <= 8 THEN 'Moderate Transit'\n        ELSE 'Critical Fulfillment Bottleneck'\n    END as logistics_status\nFROM state_perf\nORDER BY avg_days DESC;"
           }
         ]
       },
@@ -1376,7 +1602,7 @@
         id: 'rapido',
         name: 'Rapido Ride-Sharing',
         tag: '🚖 Rapido Rides',
-        badge: '15 Queries',
+        badge: 'Urban Mobility',
         initSql: () => {
           alasql('DROP TABLE IF EXISTS rides');
           alasql(`CREATE TABLE rides (
@@ -1395,13 +1621,40 @@
         schemaHtml: `<b>rides:</b><br><span class="schema-pill">ride_id</span> <span class="schema-pill">user_id</span> <span class="schema-pill">pickup_zone</span> <span class="schema-pill">distance_km</span> <span class="schema-pill">ride_status</span> <span class="schema-pill">hour_of_day</span> <span class="schema-pill">fare</span>`,
         challenges: [
           {
+            title: "Completed Long-Distance Rides (>10 km)",
+            diff: "Basic",
+            diffClass: "diff-bas",
+            desc: "Find all completed rides with distance greater than 10 km, showing ride_id, pickup_zone, distance_km, and fare.",
+            expected: "[ride_id, pickup_zone, distance_km, fare]",
+            hint: "Filter with WHERE ride_status = 'Completed' AND distance_km > 10.",
+            solution: "SELECT ride_id, pickup_zone, distance_km, fare\nFROM rides\nWHERE ride_status = 'Completed' AND distance_km > 10\nORDER BY distance_km DESC;"
+          },
+          {
+            title: "Zone-Wise Ride Demand & Average Fare",
+            diff: "Intermediate",
+            diffClass: "diff-int",
+            desc: "Aggregate total rides, completed rides, and total revenue earned across each pickup zone.",
+            expected: "[pickup_zone, total_rides, total_fare_revenue, avg_distance_km]",
+            hint: "GROUP BY pickup_zone and calculate SUM(fare) and AVG(distance_km).",
+            solution: "SELECT \n    pickup_zone,\n    COUNT(*) as total_rides,\n    ROUND(SUM(fare), 2) as total_fare_revenue,\n    ROUND(AVG(distance_km), 1) as avg_distance_km\nFROM rides\nGROUP BY pickup_zone\nORDER BY total_fare_revenue DESC;"
+          },
+          {
             title: "Peak-Hour Cancellation Spike Analysis",
             diff: "Advanced",
             diffClass: "diff-adv",
-            desc: "Calculate total ride requests and cancellation percentage by pickup hour of day.",
+            desc: "Calculate total ride requests and cancellation percentage by pickup hour of day using conditional aggregation.",
             expected: "[hour_of_day, total_requests, cancelled_rides, cancellation_rate_pct]",
-            hint: "Use SUM(CASE WHEN ride_status = 'Cancelled' THEN 1 ELSE 0 END) * 100.0 / COUNT(*).",
+            hint: "Use SUM(CASE WHEN ride_status = 'Cancelled' THEN 1.0 ELSE 0.0 END) * 100 / COUNT(*).",
             solution: "SELECT \n    hour_of_day,\n    COUNT(*) as total_requests,\n    SUM(CASE WHEN ride_status = 'Cancelled' THEN 1 ELSE 0 END) as cancelled_rides,\n    ROUND(SUM(CASE WHEN ride_status = 'Cancelled' THEN 1.0 ELSE 0.0 END) * 100 / COUNT(*), 1) as cancellation_rate_pct\nFROM rides\nGROUP BY hour_of_day\nORDER BY cancellation_rate_pct DESC;"
+          },
+          {
+            title: "Driver Loss & Opportunity Cost Analysis (CTE)",
+            diff: "Expert",
+            diffClass: "diff-exp",
+            desc: "Evaluate unrealized revenue from cancelled rides by assuming a baseline of 16.5 INR/km and compute the revenue loss ratio per time slot.",
+            expected: "[hour_of_day, total_requests, completed_rides, cancelled_rides, realized_revenue, est_lost_revenue, revenue_loss_pct]",
+            hint: "Use a CTE to calculate realized and lost revenue, then compute percentage loss.",
+            solution: "WITH hourly_metrics AS (\n    SELECT \n        hour_of_day,\n        COUNT(*) as total_requests,\n        SUM(CASE WHEN ride_status = 'Completed' THEN 1 ELSE 0 END) as completed_rides,\n        SUM(CASE WHEN ride_status = 'Cancelled' THEN 1 ELSE 0 END) as cancelled_rides,\n        ROUND(SUM(CASE WHEN ride_status = 'Completed' THEN fare ELSE 0 END), 2) as realized_revenue,\n        ROUND(SUM(CASE WHEN ride_status = 'Cancelled' THEN distance_km * 16.5 ELSE 0 END), 2) as est_lost_revenue\n    FROM rides\n    GROUP BY hour_of_day\n)\nSELECT \n    hour_of_day,\n    total_requests,\n    completed_rides,\n    cancelled_rides,\n    realized_revenue,\n    est_lost_revenue,\n    ROUND(est_lost_revenue * 100.0 / (realized_revenue + est_lost_revenue), 1) as revenue_loss_pct\nFROM hourly_metrics\nORDER BY revenue_loss_pct DESC;"
           }
         ]
       },
@@ -1409,8 +1662,8 @@
       layoffs: {
         id: 'layoffs',
         name: 'Tech Layoffs (Cloud)',
-        tag: '🌐 Cloud Dataset',
-        badge: 'Internet',
+        tag: '🌐 Global Cloud Data',
+        badge: 'Industry',
         initSql: () => {
           alasql('DROP TABLE IF EXISTS tech_layoffs');
           alasql(`CREATE TABLE tech_layoffs (
@@ -1429,22 +1682,40 @@
         schemaHtml: `<b>tech_layoffs:</b><br><span class="schema-pill">company</span> <span class="schema-pill">industry</span> <span class="schema-pill">laid_off</span> <span class="schema-pill">location</span> <span class="schema-pill">funds_raised_m</span> <span class="schema-pill">year</span>`,
         challenges: [
           {
-            title: "Total Layoffs by Industry & Average per Event",
+            title: "Mega-Layoff Events Exceeding 10K Headcount",
+            diff: "Basic",
+            diffClass: "diff-bas",
+            desc: "List all companies and locations where layoffs exceeded 10,000 staff, ordered by laid off count descending.",
+            expected: "[company, industry, laid_off, location, year]",
+            hint: "Filter WHERE laid_off >= 10000 ORDER BY laid_off DESC.",
+            solution: "SELECT company, industry, laid_off, location, year\nFROM tech_layoffs\nWHERE laid_off >= 10000\nORDER BY laid_off DESC;"
+          },
+          {
+            title: "Total Layoffs by Industry & Firm Count",
             diff: "Intermediate",
             diffClass: "diff-int",
             desc: "Aggregate total number of employees impacted by industry sector and sort descending.",
-            expected: "[industry, total_impacted, company_count]",
+            expected: "[industry, company_count, total_impacted]",
             hint: "GROUP BY industry and SUM(laid_off).",
             solution: "SELECT \n    industry,\n    COUNT(company) as company_count,\n    SUM(laid_off) as total_impacted\nFROM tech_layoffs\nGROUP BY industry\nORDER BY total_impacted DESC;"
           },
           {
-            title: "Window Ranking: Highest Impacted Firms per Location",
+            title: "Funding Raised vs. Layoff Severity Ratio",
+            diff: "Advanced",
+            diffClass: "diff-adv",
+            desc: "Calculate the ratio of funds raised in millions per laid off employee for companies with funding records.",
+            expected: "[company, funds_raised_m, laid_off, funding_per_laid_off_k]",
+            hint: "Compute ROUND(funds_raised_m * 1000.0 / laid_off, 1).",
+            solution: "SELECT \n    company,\n    funds_raised_m,\n    laid_off,\n    ROUND(funds_raised_m * 1000.0 / laid_off, 1) as funding_per_laid_off_k\nFROM tech_layoffs\nWHERE funds_raised_m > 0\nORDER BY funding_per_laid_off_k DESC;"
+          },
+          {
+            title: "Location Severity vs. Global Tech Benchmark (CTE)",
             diff: "Expert",
             diffClass: "diff-exp",
-            desc: "Rank companies by laid off count within each headquarters location using DENSE_RANK.",
-            expected: "[location, company, laid_off, rank_in_location]",
-            hint: "DENSE_RANK() OVER (PARTITION BY location ORDER BY laid_off DESC).",
-            solution: "SELECT \n    location,\n    company,\n    laid_off,\n    DENSE_RANK() OVER (PARTITION BY location ORDER BY laid_off DESC) as rank_in_location\nFROM tech_layoffs;"
+            desc: "Aggregate total headcount reduction across metropolitan hubs and classify locations by severity tier using CTE.",
+            expected: "[location, company_count, total_laid_off, avg_per_event, impact_classification]",
+            hint: "Use a CTE to group by location, then use CASE WHEN total_laid_off >= 20000...",
+            solution: "WITH location_summary AS (\n    SELECT \n        location,\n        COUNT(company) as company_count,\n        SUM(laid_off) as total_laid_off,\n        ROUND(AVG(laid_off), 0) as avg_per_event\n    FROM tech_layoffs\n    GROUP BY location\n)\nSELECT \n    location,\n    company_count,\n    total_laid_off,\n    avg_per_event,\n    CASE \n        WHEN total_laid_off >= 20000 THEN 'Severe Cluster (>20k)'\n        WHEN total_laid_off >= 10000 THEN 'High Impact Hub (10k-20k)'\n        ELSE 'Moderate Impact Region'\n    END as impact_classification\nFROM location_summary\nORDER BY total_laid_off DESC;"
           }
         ]
       },
@@ -1471,13 +1742,40 @@
         schemaHtml: `<b>netflix_catalog:</b><br><span class="schema-pill">show_id</span> <span class="schema-pill">type</span> <span class="schema-pill">title</span> <span class="schema-pill">country</span> <span class="schema-pill">release_year</span> <span class="schema-pill">duration_mins</span>`,
         challenges: [
           {
+            title: "Indian Cinema Releases After 2015",
+            diff: "Basic",
+            diffClass: "diff-bas",
+            desc: "Retrieve all Indian titles released after 2015, showing title, type, and release_year.",
+            expected: "[title, type, release_year, duration_mins]",
+            hint: "Filter WHERE country = 'India' AND release_year > 2015.",
+            solution: "SELECT title, type, release_year, duration_mins\nFROM netflix_catalog\nWHERE country = 'India' AND release_year > 2015\nORDER BY release_year DESC;"
+          },
+          {
             title: "Average Movie Runtime by Country",
             diff: "Intermediate",
             diffClass: "diff-int",
-            desc: "Find average runtime in minutes for Movies across different countries.",
-            expected: "[country, avg_duration_mins, title_count]",
+            desc: "Find average runtime in minutes and title count for Movies across different countries.",
+            expected: "[country, title_count, avg_duration_mins]",
             hint: "Filter WHERE type = 'Movie' before GROUP BY country.",
             solution: "SELECT \n    country,\n    COUNT(*) as title_count,\n    ROUND(AVG(duration_mins), 0) as avg_duration_mins\nFROM netflix_catalog\nWHERE type = 'Movie'\nGROUP BY country\nORDER BY avg_duration_mins DESC;"
+          },
+          {
+            title: "Long-Form Cinema (>140 Mins) Flagging",
+            diff: "Advanced",
+            diffClass: "diff-adv",
+            desc: "Categorize movies as 'Feature Epic' if duration exceeds 140 minutes, otherwise 'Standard Length', using CASE WHEN.",
+            expected: "[title, country, duration_mins, length_tier]",
+            hint: "Use CASE WHEN duration_mins > 140 THEN 'Feature Epic' ELSE 'Standard Length' END.",
+            solution: "SELECT \n    title,\n    country,\n    duration_mins,\n    CASE \n        WHEN duration_mins > 140 THEN 'Feature Epic'\n        ELSE 'Standard Length'\n    END as length_tier\nFROM netflix_catalog\nWHERE type = 'Movie'\nORDER BY duration_mins DESC;"
+          },
+          {
+            title: "Correlated Subquery: Longest Titles per Country",
+            diff: "Expert",
+            diffClass: "diff-exp",
+            desc: "Find the longest running title for each country without collapsing records by using a correlated subquery.",
+            expected: "[country, title, type, duration_mins, country_max_duration]",
+            hint: "Match duration_mins with (SELECT MAX(duration_mins) FROM netflix_catalog sub WHERE sub.country = n.country).",
+            solution: "SELECT \n    n.country,\n    n.title,\n    n.type,\n    n.duration_mins,\n    (SELECT MAX(duration_mins) FROM netflix_catalog sub WHERE sub.country = n.country) as country_max_duration\nFROM netflix_catalog n\nWHERE n.duration_mins = (SELECT MAX(duration_mins) FROM netflix_catalog sub WHERE sub.country = n.country)\nORDER BY n.duration_mins DESC;"
           }
         ]
       }
@@ -1492,22 +1790,22 @@
     ======================================================== */
     const introStages = [
       {
-        progress: 33,
-        badge: "PHASE 1 / 3: DEDUCTIVE LOGIC",
+        progress: 25,
+        badge: "PHASE 1 / 4: DEDUCTIVE LOGIC",
         title: "Pattern Elimination & Logic",
         subtitle: "Solving Sudoku grid constraints and numerical rules...",
         html: `<div class="mini-sudoku"><div>5</div><div>3</div><div>.</div><div>6</div><div>.</div><div>.</div><div>.</div><div>9</div><div>8</div></div>`
       },
       {
-        progress: 66,
-        badge: "PHASE 2 / 3: IN-MEMORY DATABASE",
+        progress: 50,
+        badge: "PHASE 2 / 4: IN-MEMORY DATABASE",
         title: "SQL Query Compilation",
         subtitle: "Loading AlaSQL engine and relational operational schemas...",
         html: `<div class="mini-terminal">> SELECT metrics FROM cloud_engine WHERE ready = 1;<span style="animation: blink 1s infinite">_</span></div>`
       },
       {
-        progress: 100,
-        badge: "PHASE 3 / 3: EXECUTIVE INTELLIGENCE",
+        progress: 75,
+        badge: "PHASE 3 / 4: EXECUTIVE INTELLIGENCE",
         title: "Executive Synthesis",
         subtitle: "Formulating interactive dashboards & decision metrics...",
         html: `<div class="mini-chart"><div class="mini-bar" style="height: 25px"></div><div class="mini-bar" style="height: 40px"></div><div class="mini-bar" style="height: 32px"></div><div class="mini-bar" style="height: 45px"></div></div>`
@@ -1553,8 +1851,10 @@
     function skipIntro() {
       clearTimeout(introTimer);
       const overlay = document.getElementById('intro-overlay');
-      overlay.classList.add('fade-out');
-      setTimeout(() => overlay.remove(), 600);
+      if (overlay) {
+        overlay.classList.add('fade-out');
+        setTimeout(() => overlay.remove(), 500);
+      }
       sessionStorage.setItem('lab_intro_seen', 'true');
     }
 
@@ -1608,13 +1908,13 @@
           toggleDrawer();
         };
         card.innerHTML = `
-          <div style="font-size: 0.7rem; font-weight: 700;" class="${ch.diffClass}">
+          <div style="font-size: 0.72rem; font-weight: 700;" class="${ch.diffClass}">
             ${ch.diff}
           </div>
-          <div style="font-size: 0.85rem; font-weight: 600; color: var(--text); margin: 0.2rem 0;">
+          <div style="font-size: 0.88rem; font-weight: 600; color: var(--text); margin: 0.2rem 0;">
             ${ch.title}
           </div>
-          <div style="font-size: 0.74rem; color: var(--text-muted); line-height: 1.3;">
+          <div style="font-size: 0.76rem; color: var(--text-muted); line-height: 1.35;">
             ${ch.desc.slice(0, 75)}...
           </div>
         `;
@@ -1639,7 +1939,7 @@
       document.getElementById('current-ds-tag').innerText = ds.tag;
       document.getElementById('current-diff-tag').innerText = ch.diff;
       document.getElementById('current-diff-tag').className = `difficulty-tag ${ch.diffClass}`;
-      document.getElementById('current-challenge-title').innerText = ch.title;
+      document.getElementById('current-challenge-title').innerHTML = `<span>Challenge ${idx + 1}:</span> ${ch.title}`;
       document.getElementById('current-challenge-desc').innerText = ch.desc;
       document.getElementById('current-expected-cols').innerText = ch.expected;
 
@@ -1649,11 +1949,11 @@
       hintBox.innerHTML = `<b>💡 Hint:</b> ${ch.hint}`;
 
       // Reset Editor with Clean Prompt (Do NOT reveal answer)
-      document.getElementById('sql-query').value = `-- Dataset: ${ds.name}\n-- Challenge: ${ch.title}\n-- Goal: ${ch.desc}\n\n-- Write your SQL query below and press Ctrl+Enter to execute:\n\n`;
+      document.getElementById('sql-query').value = `-- Dataset: ${ds.name}\n-- Level: ${ch.diff} | Challenge: ${ch.title}\n-- Objective: ${ch.desc}\n\n-- Write your SQL query below and click 'Run Query' (Ctrl+Enter):\n\n`;
 
       document.getElementById('results-area').innerHTML = `
         <div style="color: var(--text-muted); font-size: 0.9rem; text-align: center; margin-top: 3.5rem;">
-          Write your query for <b>"${ch.title}"</b> and press <b>Execute (Ctrl+Enter)</b>.
+          Write your query for <b>"${ch.title}"</b> and click <b>Run Query (Ctrl+Enter)</b>.
         </div>
       `;
     }
@@ -1703,7 +2003,7 @@
         lastQueryResults = Array.isArray(results) ? results : [results];
 
         if (!Array.isArray(results) || results.length === 0) {
-          resultsArea.innerHTML = `<div style="color: var(--success); font-family: var(--font-mono); font-size: 0.9rem; padding: 1rem;">
+          resultsArea.innerHTML = `<div style="color: var(--dracula-green); font-family: var(--font-mono); font-size: 0.9rem; padding: 1rem;">
             ✓ Query executed successfully in ${duration}ms. (0 rows returned or DDL/DML completed)
           </div>`;
           execStatus.innerText = `Success • Execution: ${duration}ms`;
@@ -1776,11 +2076,10 @@
     ======================================================== */
     const robotTips = [
       "💡 Pro Tip: WHERE filters rows *before* grouping, while HAVING filters aggregated cohorts *after* grouping!",
-      "🔍 DENSE_RANK() avoids skipping ranks during ties (e.g. 1, 2, 2, 3), whereas RANK() would skip to 4!",
       "⚡ At BPCL, Shivaling used Excel VBA and SAP ECC to slash daily MIS compilation from 2.5 hours down to 25 minutes.",
       "📊 In the Target case study, 99K+ records revealed a 3.5x regional delivery disparity between northern and southeastern Brazil!",
       "🧩 Fun Fact: Solving Sudoku puzzles uses the exact same constraint-satisfaction logic as query joins and index filtering!",
-      "🛠️ Want to challenge yourself? Click 'Datasets & Challenges' and try the Tech Layoffs or Rapido queries!"
+      "🛠️ Want to challenge yourself? Click 'Datasets & Challenges' and try the Expert queries across all 5 datasets!"
     ];
 
     let bubbleTimeout = null;
@@ -1798,7 +2097,7 @@
     }
 
     /* ========================================================
-       6. TAB SWITCHING & SUDOKU ENGINE
+       6. TAB SWITCHING & SUDOKU ENGINE WITH TIMER CONTROLS
     ======================================================== */
     function switchTab(tab) {
       document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
@@ -1820,6 +2119,7 @@
     let selectedCellIndex = null;
     let timerInterval = null;
     let secondsElapsed = 0;
+    let isTimerRunning = false;
 
     const puzzles = {
       easy: {
@@ -1858,6 +2158,18 @@
       startTimer();
     }
 
+    function resetSudokuGame() {
+      // Revert board to initial puzzle state and reset timer
+      const diff = document.getElementById('sudoku-diff').value;
+      const puzzle = puzzles[diff] || puzzles.medium;
+      currentBoard = puzzle.initial.split('').map(c => parseInt(c, 10));
+      fixedMask = currentBoard.map(v => v !== 0);
+
+      renderSudokuGrid();
+      resetTimer();
+      startTimer();
+    }
+
     function renderSudokuGrid() {
       const grid = document.getElementById('sudoku-grid');
       grid.innerHTML = '';
@@ -1874,12 +2186,16 @@
           else cell.classList.add('user-input');
         }
 
-        cell.addEventListener('click', () => selectCell(i));
+        cell.addEventListener('click', () => {
+          if (!isTimerRunning) return;
+          selectCell(i);
+        });
         grid.appendChild(cell);
       }
     }
 
     function selectCell(index) {
+      if (!isTimerRunning) return;
       selectedCellIndex = index;
       const cells = document.querySelectorAll('.sudoku-cell');
       cells.forEach(c => c.classList.remove('selected', 'highlight'));
@@ -1901,7 +2217,7 @@
     }
 
     function inputNumber(num) {
-      if (selectedCellIndex === null || fixedMask[selectedCellIndex]) return;
+      if (!isTimerRunning || selectedCellIndex === null || fixedMask[selectedCellIndex]) return;
       currentBoard[selectedCellIndex] = num;
       const cell = document.querySelector(`.sudoku-cell[data-index="${selectedCellIndex}"]`);
       cell.innerText = num;
@@ -1911,7 +2227,7 @@
     }
 
     function clearSelectedCell() {
-      if (selectedCellIndex === null || fixedMask[selectedCellIndex]) return;
+      if (!isTimerRunning || selectedCellIndex === null || fixedMask[selectedCellIndex]) return;
       currentBoard[selectedCellIndex] = 0;
       const cell = document.querySelector(`.sudoku-cell[data-index="${selectedCellIndex}"]`);
       cell.innerText = '';
@@ -1920,6 +2236,7 @@
     }
 
     function giveHint() {
+      if (!isTimerRunning) toggleTimer(); // resume if paused
       if (selectedCellIndex === null || fixedMask[selectedCellIndex]) {
         const emptyIdx = currentBoard.findIndex(v => v === 0);
         if (emptyIdx !== -1) selectCell(emptyIdx);
@@ -1946,7 +2263,7 @@
       }
 
       if (empty === 0 && errors === 0) {
-        clearInterval(timerInterval);
+        pauseTimer();
         alert('🎉 Congratulations! You solved the Sudoku puzzle in ' + document.getElementById('sudoku-timer').innerText + '!');
       } else if (errors > 0) {
         alert(`Found ${errors} incorrect cell(s) highlighted in red.`);
@@ -1958,6 +2275,7 @@
     function setupKeyboardControls() {
       document.addEventListener('keydown', (e) => {
         if (document.getElementById('view-sudoku').classList.contains('active')) {
+          if (!isTimerRunning) return;
           if (e.key >= '1' && e.key <= '9') {
             inputNumber(parseInt(e.key, 10));
           } else if (e.key === 'Backspace' || e.key === 'Delete' || e.key === '0') {
@@ -1974,20 +2292,52 @@
       });
     }
 
+    /* Sudoku Timer Engine (Start, Pause, Resume, Reset) */
     function startTimer() {
       clearInterval(timerInterval);
-      secondsElapsed = 0;
+      isTimerRunning = true;
+      document.getElementById('btn-timer-toggle').classList.remove('active-timer');
+      document.getElementById('timer-toggle-icon').innerText = '⏸';
+      document.getElementById('timer-toggle-text').innerText = 'Pause';
+      document.getElementById('sudoku-pause-overlay').style.display = 'none';
+
       timerInterval = setInterval(() => {
         secondsElapsed++;
-        const mins = String(Math.floor(secondsElapsed / 60)).padStart(2, '0');
-        const secs = String(secondsElapsed % 60).padStart(2, '0');
-        document.getElementById('sudoku-timer').innerText = `${mins}:${secs}`;
+        updateTimerDisplay();
       }, 1000);
+    }
+
+    function pauseTimer() {
+      clearInterval(timerInterval);
+      isTimerRunning = false;
+      document.getElementById('btn-timer-toggle').classList.add('active-timer');
+      document.getElementById('timer-toggle-icon').innerText = '▶';
+      document.getElementById('timer-toggle-text').innerText = 'Resume';
+      document.getElementById('sudoku-pause-overlay').style.display = 'flex';
+    }
+
+    function toggleTimer() {
+      if (isTimerRunning) {
+        pauseTimer();
+      } else {
+        startTimer();
+      }
     }
 
     function resetTimer() {
       clearInterval(timerInterval);
-      document.getElementById('sudoku-timer').innerText = '00:00';
+      secondsElapsed = 0;
+      updateTimerDisplay();
+      document.getElementById('sudoku-pause-overlay').style.display = 'none';
+      document.getElementById('btn-timer-toggle').classList.remove('active-timer');
+      document.getElementById('timer-toggle-icon').innerText = '⏸';
+      document.getElementById('timer-toggle-text').innerText = 'Pause';
+    }
+
+    function updateTimerDisplay() {
+      const mins = String(Math.floor(secondsElapsed / 60)).padStart(2, '0');
+      const secs = String(secondsElapsed % 60).padStart(2, '0');
+      document.getElementById('sudoku-timer').innerText = `${mins}:${secs}`;
     }
 
     window.addEventListener('DOMContentLoaded', () => {

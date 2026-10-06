@@ -219,7 +219,23 @@ ORDER BY total_volume_kl DESC;
 </details>
 
 <details open>
-<summary><b>3. 🏃 AeroFit: Customer Segmentation & Treadmill Purchasing Drivers (Python, EDA, Probability)</b></summary>
+<summary><b>3. 🚲 Yulu Micro-Mobility: Statistical Hypothesis Testing & Demand Drivers (Python, ANOVA, Chi-Square & T-Tests)</b></summary>
+<br>
+
+* **Business Problem:** Diagnose electric cycle revenue slumps and evaluate which environmental and temporal factors govern hourly rental demand in urban transit networks.
+* **Methodology:** Formulated strict 6-step hypothesis testing frameworks across 10,886 hourly records: **2-Sample Welch T-Test** (Workingday effect), **One-Way ANOVA with Post-Hoc Tukey HSD** (Seasonal variation), and **Chi-Square Test of Independence** (Weather vs Season with Cochran's rule check on $n=1$ outlier).
+* **Key Finding:** Total demand appears identical on working vs non-working days ($p = 0.226$), but rider segmentation completely shifts: **casual riders surge by +136% on weekends**, while **registered commuters dominate weekdays** (twin peaks at 8 AM and 5 PM). Spring experiences an acute **50% demand collapse** ($116.3$ vs $234.4$ in Fall, $p < 10^{-100}$), and adverse weather reduces demand by **42%**.
+* **Key Python Snippet:**
+  ```python
+  # Two-Way ANOVA testing Season, Weather, and interaction effects
+  model = pg.anova(dv='count', between=['weather', 'season'], data=yulu[yulu['weather'] != 4], ss_type=2)
+  ```
+* **Direct Project Links:**  
+  [🔗 GitHub Repository](https://github.com/Hazardous9hub/Yulu-Hypothesis-Testing-Business-Case-Study) • [📓 Jupyter Notebook](https://github.com/Hazardous9hub/Yulu-Hypothesis-Testing-Business-Case-Study/blob/main/notebooks/Yulu_Hypothesis_Testing_Case_Study.ipynb) • [📊 Case Study PDF Report](https://github.com/Hazardous9hub/Yulu-Hypothesis-Testing-Business-Case-Study/blob/main/reports/Shivaling_Scaler_Yulu_Hypothesis_Case_Study_Report.pdf)
+</details>
+
+<details open>
+<summary><b>4. 🏃 AeroFit: Customer Segmentation & Treadmill Purchasing Drivers (Python, EDA, Probability)</b></summary>
 <br>
 
 * **Business Problem:** Define distinct customer profiles across entry-level (KP281), mid-tier (KP481), and commercial (KP781) treadmills to target sales recommendations.
@@ -235,7 +251,7 @@ ORDER BY total_volume_kl DESC;
 </details>
 
 <details open>
-<summary><b>4. 📊 Superstore Executive Sales & Profitability Dashboard (Tableau Public)</b></summary>
+<summary><b>5. 📊 Superstore Executive Sales & Profitability Dashboard (Tableau Public)</b></summary>
 <br>
 
 * **Business Problem:** Leadership needed immediate visibility into loss-making product categories, regional discount sensitivity, and customer margin contributions.
@@ -246,7 +262,7 @@ ORDER BY total_volume_kl DESC;
 </details>
 
 <details>
-<summary><b>5. ⛽ BPCL Operations MIS & Dealer Credit Evaluation (Advanced Excel, VBA, SAP ECC)</b></summary>
+<summary><b>6. ⛽ BPCL Operations MIS & Dealer Credit Evaluation (Advanced Excel, VBA, SAP ECC)</b></summary>
 <br>
 
 * **Operational Reality:** Daily monitoring of sales volumes, physical tank stock levels, and dealer credit exposure across 350+ petroleum retail outlets.
@@ -255,7 +271,7 @@ ORDER BY total_volume_kl DESC;
 </details>
 
 <details>
-<summary><b>6. 🚖 Rapido Ride-Sharing Analytics (15 Production-Grade SQL Queries)</b></summary>
+<summary><b>7. 🚖 Rapido Ride-Sharing Analytics (15 Production-Grade SQL Queries)</b></summary>
 <br>
 
 * **Business Problem:** Analyze driver allocation patterns, morning peak-hour ride cancellations, and customer retention drop-offs across urban pickup zones.
@@ -265,7 +281,7 @@ ORDER BY total_volume_kl DESC;
 </details>
 
 <details>
-<summary><b>7. 👥 HR Workforce Analytics & Equity Analysis (9 Structured SQL Queries)</b></summary>
+<summary><b>8. 👥 HR Workforce Analytics & Equity Analysis (9 Structured SQL Queries)</b></summary>
 <br>
 
 * **Business Problem:** Analyze department-level turnover risks, managerial spans of control, and salary equity across regional offices.
@@ -275,7 +291,7 @@ ORDER BY total_volume_kl DESC;
 </details>
 
 <details>
-<summary><b>8. 🏭 Deloitte Australia: Daikibo Factory IoT Telemetry & Downtime Analysis (IoT & Tableau)</b></summary>
+<summary><b>9. 🏭 Deloitte Australia: Daikibo Factory IoT Telemetry & Downtime Analysis (IoT & Tableau)</b></summary>
 <br>
 
 * **Business Problem:** Analyze machine telemetry data (operating temperatures, vibration spikes, cycle rates) across manufacturing lines to isolate unscheduled downtime.
@@ -285,7 +301,7 @@ ORDER BY total_volume_kl DESC;
 </details>
 
 <details>
-<summary><b>9. 🎬 Netflix Content Strategy & Catalog Evolution (Python, EDA, Seaborn)</b></summary>
+<summary><b>10. 🎬 Netflix Content Strategy & Catalog Evolution (Python, EDA, Seaborn)</b></summary>
 <br>
 
 * **Business Problem:** Examine catalog shifts between movies and television series over a 15-year period, international content growth, and director networks.

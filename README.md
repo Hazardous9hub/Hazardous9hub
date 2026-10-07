@@ -223,7 +223,7 @@ ORDER BY total_volume_kl DESC;
 <br>
 
 * **Business Problem:** Diagnose electric cycle revenue slumps and evaluate which environmental and temporal factors govern hourly rental demand in urban transit networks.
-* **Methodology:** Formulated strict 6-step hypothesis testing frameworks across 10,886 hourly records: **2-Sample Welch T-Test** (Workingday effect), **One-Way ANOVA with Post-Hoc Tukey HSD** (Seasonal variation), and **Chi-Square Test of Independence** (Weather vs Season with Cochran's rule check on $n=1$ outlier).
+* **Methodology:** Formulated strict 6-step hypothesis testing frameworks across 10,886 hourly records: **2-Sample Independent T-Test** (Workingday effect), **One-Way & Two-Way ANOVA** (Seasonal and Weather variation using Pingouin), and **Chi-Square Test of Independence** (Weather vs Season with Cochran's rule check on $n=1$ outlier).
 * **Key Finding:** Total demand appears identical on working vs non-working days ($p = 0.226$), but rider segmentation completely shifts: **casual riders surge by +136% on weekends**, while **registered commuters dominate weekdays** (twin peaks at 8 AM and 5 PM). Spring experiences an acute **50% demand collapse** ($116.3$ vs $234.4$ in Fall, $p < 10^{-100}$), and adverse weather reduces demand by **42%**.
 * **Key Python Snippet:**
   ```python

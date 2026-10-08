@@ -17,12 +17,6 @@
   <a href="https://iamshivalingbattarki09.vercel.app/Shivaling_Battarki_Resume.pdf">
     <img src="https://img.shields.io/badge/View_Resume_PDF-50fa7b?style=for-the-badge&logo=googledocs&logoColor=1e1f29&labelColor=50fa7b" alt="Resume"/>
   </a>
-  <a href="https://hazardous9hub.github.io/Hazardous9hub/#sql-terminal">
-    <img src="https://img.shields.io/badge/AlaSQL_Terminal-50fa7b?style=for-the-badge&logo=sqlite&logoColor=1e1f29&labelColor=282a36" alt="AlaSQL Terminal"/>
-  </a>
-  <a href="https://hazardous9hub.github.io/Hazardous9hub/#sudoku">
-    <img src="https://img.shields.io/badge/Play_Sudoku-50fa7b?style=for-the-badge&logo=gamepad&logoColor=1e1f29&labelColor=282a36" alt="Play Sudoku"/>
-  </a>
   <a href="https://www.linkedin.com/in/shivaling-93000/">
     <img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white&labelColor=0077B5" alt="LinkedIn"/>
   </a>
@@ -79,56 +73,6 @@ I am a **Data Analyst** with a degree in **Mechanical Engineering (8.67 CGPA)** 
 - 🛠️ **Practical Process Automation:** Working with **SAP ECC, Advanced Excel, and VBA**, I rebuilt manual daily reporting routines, **cutting MIS compilation time from 2.5 hours down to 25 minutes** (70% reduction) and evaluated bank credit eligibility under the **e-DFS facility for 50+ retail dealers**.
 - 📈 **Rigorous Upskilling with Scaler DSML:** I committed to deep analytical training through **Scaler Academy's Data Science & Machine Learning program**, mastering **SQL (BigQuery, PostgreSQL, MySQL), Python (Pandas, NumPy, Scipy, Seaborn), Applied Probability, Hypothesis Testing, and Tableau Public**.
 - 🎯 **Current Focus:** Open to full-time **Data Analyst / Business Analyst** roles where I can combine operational intuition with clean SQL queries, statistical rigor, and executive dashboards.
-
----
-
-### ⚡ Interactive SQL Terminal & Practice Lab (Powered by AlaSQL)
-
-<p align="center">
-  <a href="https://hazardous9hub.github.io/Hazardous9hub/#sql-terminal">
-    <img src="https://img.shields.io/badge/▶_Launch_Live_SQL_Terminal_(In--Browser)-50fa7b?style=for-the-badge&logo=sqlite&logoColor=1e1f29&labelColor=282a36" alt="Launch Live SQL Terminal"/>
-  </a>
-</p>
-
-Visitors can test queries directly in the browser using an in-memory SQL database powered by [AlaSQL](https://github.com/AlaSQL/alasql). Runs 100% on client-side cloud compute with zero local setup. Pre-loaded with retail operations and fuel transaction datasets inspired by my BPCL experience:
-
-```sql
--- Sample Query: Territory Volume Aggregation with Filter
-SELECT 
-    territory,
-    COUNT(outlet_id) as total_outlets,
-    SUM(monthly_volume_kl) as total_volume_kl,
-    ROUND(AVG(credit_limit_lakhs), 1) as avg_credit_lakhs
-FROM retail_outlets
-GROUP BY territory
-HAVING SUM(monthly_volume_kl) > 300
-ORDER BY total_volume_kl DESC;
-
-/* Live Output:
-+-----------------+---------------+-----------------+------------------+
-| territory       | total_outlets | total_volume_kl | avg_credit_lakhs |
-+-----------------+---------------+-----------------+------------------+
-| City Central    | 2             | 585             | 65.0             |
-| East Territory  | 2             | 505             | 60.0             |
-| North Territory | 2             | 450             | 47.5             |
-| South Territory | 2             | 380             | 40.0             |
-+-----------------+---------------+-----------------+------------------+
-*/
-```
-
-<details>
-<summary><b>🎯 SQL Practice Curriculum Across 5 Datasets (Basic → Expert) (Click to expand)</b></summary>
-<br>
-
-| Level | Focus Area | Practice Scenario & SQL Mechanics |
-| :--- | :--- | :--- |
-| **Tier 1 (Basic)** | Filtering & Sorting | `SELECT`, `WHERE`, `ORDER BY`, threshold filtering (`dealer_rating = 'A+'`, `order_value > 300`). |
-| **Tier 2 (Intermediate)** | Aggregation & Joins | `GROUP BY`, `SUM`, `AVG`, `HAVING SUM(...)`, multi-table relational `JOIN` across entities. |
-| **Tier 3 (Advanced)** | Conditional Logic & Metrics | `CASE WHEN`, conditional aggregations (`SUM(CASE WHEN ...)`), efficiency ratios. |
-| **Tier 4 (Expert)** | CTEs & Subqueries | Common Table Expressions (`WITH`), correlated subqueries, and regional deviation analysis. |
-
-👉 **[Open the Live SQL Terminal](https://hazardous9hub.github.io/Hazardous9hub/#sql-terminal)** to execute custom queries and export results to CSV.
-</details>
 
 ---
 
@@ -321,30 +265,6 @@ ORDER BY total_volume_kl DESC;
 * 🐍 **Data Analytics & Visualisation: Python Libraries (Pandas, NumPy, Seaborn)** — *Scaler DSML*
 * 📈 **Tableau & Excel Specialization** — *Scaler DSML*
 * 🎓 **Bachelor of Engineering (B.E.) in Mechanical Engineering** — *VTU Belagavi (CGPA: 8.67)*
-
----
-
-### 🧩 Logic & Focus: Interactive Sudoku Game
-
-<p align="center">
-  <a href="https://hazardous9hub.github.io/Hazardous9hub/#sudoku">
-    <img src="https://img.shields.io/badge/🎮_Play_Interactive_Sudoku_Game-50fa7b?style=for-the-badge&logo=gamepad&logoColor=1e1f29&labelColor=282a36" alt="Play Sudoku Online"/>
-  </a>
-</p>
-
-Data analytics relies heavily on deductive logic, constraint elimination, and spotting non-obvious patterns—the exact same mental muscles tested by Sudoku. I built a cloud-hosted Sudoku game with difficulty modes (Easy, Medium, Hard), interactive timer controls (Start, Pause, Reset), real-time conflict checking, and keyboard navigation running 100% in-browser:
-
-```text
-       1   2   3     4   5   6     7   8   9
-    +---+---+---+ +---+---+---+ +---+---+---+
- 1  | 5 | 3 | . | | . | 7 | . | | . | . | . |
- 2  | 6 | . | . | | 1 | 9 | 5 | | . | . | . |
- 3  | . | 9 | 8 | | . | . | . | | . | 6 | . |
-    +---+---+---+ +---+---+---+ +---+---+---+
-    Can you complete the grid without row, col, or block conflicts?
-```
-
-👉 **[Play Sudoku in the Cloud Playground](https://hazardous9hub.github.io/Hazardous9hub/#sudoku)**
 
 ---
 

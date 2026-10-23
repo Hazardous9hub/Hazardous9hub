@@ -12,7 +12,7 @@
 
   <!-- 1-Click Verification & Interactive Tool Badges (Dracula Palette + Bright Green) -->
   <a href="https://iamshivalingbattarki09.vercel.app/">
-    <img src="https://img.shields.io/badge/Live_Portfolio-282a36?style=for-the-badge&logo=vercel&logoColor=50fa7b&labelColor=282a36" alt="Portfolio"/>
+    <img src="https://img.shields.io/badge/Explore My Portfolio-282a36?style=for-the-badge&logo=vercel&logoColor=50fa7b&labelColor=282a36" alt="Portfolio"/>
   </a>
   <a href="https://iamshivalingbattarki09.vercel.app/Shivaling_Battarki_Resume.pdf">
     <img src="https://img.shields.io/badge/View_Resume_PDF-50fa7b?style=for-the-badge&logo=googledocs&logoColor=1e1f29&labelColor=50fa7b" alt="Resume"/>

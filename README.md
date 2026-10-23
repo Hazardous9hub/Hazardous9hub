@@ -15,7 +15,7 @@
     <img src="https://img.shields.io/badge/Explore My Portfolio-282a36?style=for-the-badge&logo=vercel&logoColor=50fa7b&labelColor=282a36" alt="Portfolio"/>
   </a>
   <a href="https://iamshivalingbattarki09.vercel.app/Shivaling_Battarki_Resume.pdf">
-    <img src="https://img.shields.io/badge/View_Resume_PDF-50fa7b?style=for-the-badge&logo=googledocs&logoColor=1e1f29&labelColor=50fa7b" alt="Resume"/>
+    <img src="https://img.shields.io/badge/View My Resume-50fa7b?style=for-the-badge&logo=googledocs&logoColor=1e1f29&labelColor=50fa7b" alt="Resume"/>
   </a>
   <a href="https://www.linkedin.com/in/shivaling-93000/">
     <img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white&labelColor=0077B5" alt="LinkedIn"/>

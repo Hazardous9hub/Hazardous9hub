@@ -5,7 +5,7 @@
 
   <!-- Animated Typing Subtitle (Original Cyan Color) -->
   <a href="https://iamshivalingbattarki09.vercel.app/">
-    <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=600&size=20&duration=2600&pause=1000&color=00F2FE&center=true&vCenter=true&width=650&lines=Data+Analyst+%40+Ex-BPCL;SQL+%26+BigQuery+Specialist;Tableau+Storyteller+%26+Executive+Dashboards;Python+EDA+%7C+Probability+%26+Statistics;Mechanical+Engineer+(8.67+CGPA)" alt="Typing SVG" />
+    <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=600&size=20&duration=2600&pause=1000&color=00F2FE&center=true&vCenter=true&width=650&lines=Data+Analyst+|+Ex-BPCL;SQL+%26+BigQuery+Specialist;Tableau+Storyteller+%26+Executive+Dashboards;Python+EDA+%7C+Probability+%26+Statistics;Mechanical+Engineer+(8.67+CGPA)" alt="Typing SVG" />
   </a>
 
   <br><br>

@@ -5,7 +5,7 @@
 
   <!-- Animated Typing Subtitle (Original Cyan Color) -->
   <a href="https://iamshivalingbattarki09.vercel.app/">
-    <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=600&size=20&duration=2600&pause=1000&color=00F2FE&center=true&vCenter=true&width=650&lines=Data+Analyst+|+Ex-BPCL;SQL+%26+BigQuery+Specialist;Tableau+Storyteller+%26+Executive+Dashboards;Python+EDA+%7C+Probability+%26+Statistics;Mechanical+Engineer+(8.67+CGPA)" alt="Typing SVG" />
+    <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=600&size=20&duration=2600&pause=1000&color=00F2FE&center=true&vCenter=true&width=650&lines=Data+Analyst+|+Ex-BPCL;SQL+%26+BigQuery+Analyst;Tableau+Storyteller+%26+Executive+Dashboards;Python+EDA+%7C+Probability+%26+Statistics;Mechanical+Engineer+(8.67+CGPA)" alt="Typing SVG" />
   </a>
 
   <br><br>
@@ -45,7 +45,7 @@
       </td>
       <td align="center" width="220">
         <b>🔍 Cloud Relational SQL</b><br>
-        <font size="4"><b>99K+ Rows Analyzed</b></font><br>
+        <font size="4"><b>99K+ Orders Analyzed</b></font><br>
         <sub>Target BigQuery multi-table case study</sub>
       </td>
       <td align="center" width="220">
@@ -71,7 +71,7 @@ I am a **Data Analyst** with a degree in **Mechanical Engineering (8.67 CGPA)** 
 
 - ⚙️ **From Physical Systems to Data:** My engineering background trained me to think in numbers, constraints, and root causes. At BPCL, I saw how physical operations rely on day-to-day data accuracy: monitoring fuel throughput, underground tank inventories, and dealer credit risk across **350+ retail stations**.
 - 🛠️ **Practical Process Automation:** Working with **SAP ECC, Advanced Excel, and VBA**, I rebuilt manual daily reporting routines, **cutting MIS compilation time from 2.5 hours down to 25 minutes** (70% reduction) and evaluated bank credit eligibility under the **e-DFS facility for 50+ retail dealers**.
-- 📈 **Rigorous Upskilling with Scaler DSML:** I committed to deep analytical training through **Scaler Academy's Data Science & Machine Learning program**, mastering **SQL (BigQuery, MySQL), Python (Pandas, NumPy, Scipy, Seaborn), Applied Probability, Hypothesis Testing, and Tableau Public**.
+- 📈 **Rigorous Upskilling with Scaler DSML:** I committed to deep analytical training through **Scaler Academy's Data Science & Machine Learning program**, mastering **SQL (BigQuery, MySQL), Python (Pandas, NumPy, Scipy, Seaborn,Sci-Kit Learn), Applied Probability, Hypothesis Testing, and Tableau Public**. **Learning Product analytics (RCA, RFM customer segmentation,Guess Estimates)**
 - 🎯 **Current Focus:** Open to full-time **Data Analyst / Business Analyst** roles where I can combine operational intuition with clean SQL queries, statistical rigor, and executive dashboards.
 
 ---
@@ -95,6 +95,7 @@ I am a **Data Analyst** with a degree in **Mechanical Engineering (8.67 CGPA)** 
       <img src="https://img.shields.io/badge/Pandas-150458?style=flat-square&logo=pandas&logoColor=white" alt="Pandas"/>
       <img src="https://img.shields.io/badge/NumPy-013243?style=flat-square&logo=numpy&logoColor=white" alt="NumPy"/>
       <img src="https://img.shields.io/badge/SciPy-8CAAE6?style=flat-square&logo=scipy&logoColor=white" alt="SciPy"/>
+      <img src="https://img.shields.io/badge/scikit--learn_(preprocessing)-F7931E?style=flat-square&logo=scikitlearn&logoColor=white" alt="scikit-learn"/>
       <img src="https://img.shields.io/badge/Probability_&_Distributions-0284c7?style=flat-square" alt="Probability"/>
       <img src="https://img.shields.io/badge/Hypothesis_Testing_(CLT)-0369a1?style=flat-square" alt="Hypothesis Testing"/>
     </td>
@@ -124,12 +125,32 @@ I am a **Data Analyst** with a degree in **Mechanical Engineering (8.67 CGPA)** 
 ### 📂 Featured Case Studies & Live Dashboards
 
 <details open>
-<summary><b>1. 🛒 Target E-Commerce: Logistics Disparity & Revenue Scaling (Google BigQuery & SQL)</b></summary>
+<summary><b>1. 🚚 Delhivery: Trip Feature Engineering & OSRM ETA Analysis (Python, SciPy, scikit-learn)</b></summary>
+<br>
+
+* **Business Problem:** Delhivery's raw data is nested checkpoint scans, not customer trips, and its OSRM routing engine predicts times for ideal roads. Rebuild end-to-end trips and test how far the estimates are from reality.
+* **Methodology:** Turned **144,867 scan rows into 14,787 trips** (dropped 551 rows, 0.38%, with no location). Parsed state, city and center codes, built corridor, time and duration features, tested differences with a paired t-test or Wilcoxon signed-rank test chosen by a Shapiro-Wilk check, capped outliers at Q3 + 1.5×IQR on six variables, and scaled on the training split only to avoid leakage.
+* **Key Finding:** Real trips ran **194.6 minutes longer than OSRM predicted on average (median 80 minutes), p < 0.001**. OSRM is consistently optimistic because it ignores highway bottlenecks.
+* **Key Python Snippet:**
+  ```python
+  # Pick the paired test from the normality of the differences
+  s_stat, p_norm = shapiro(sample_diff)
+  if p_norm > alpha:
+      stat, p_val = ttest_rel(trip_df[col_a], trip_df[col_b])
+  else:
+      stat, p_val = wilcoxon(trip_df[col_a], trip_df[col_b])
+  ```
+* **Direct Project Links:**  
+  [🔗 GitHub Repository](https://github.com/Hazardous9hub/Delhivery-Logostics-Feature-Engineering-Analytics) • [📓 Jupyter Notebook](https://github.com/Hazardous9hub/Delhivery-Logostics-Feature-Engineering-Analytics/blob/main/notebooks/delhivery-feature-engineering-case-study.ipynb) • [📊 Case Study PDF Report](https://github.com/Hazardous9hub/Delhivery-Logostics-Feature-Engineering-Analytics/blob/main/docs/Shivaling_Delhivery_Logistics_Business_Case_Study.pdf) • [🗂️ Dataset on Kaggle](https://www.kaggle.com/datasets/shivaling09/delhivery-logistics-network-and-route-data)
+</details>
+
+<details open>
+<summary><b>2. 🛒 Target E-Commerce: Logistics Disparity & Revenue Scaling (Google BigQuery & SQL)</b></summary>
 <br>
 
 * **Business Problem:** Evaluate delivery lead-times across Brazilian states, detect logistical bottlenecks, and analyze customer repeat purchasing trends.
-* **Methodology:** Queried **99,000+ customer records** across 6 relational tables using Google BigQuery; wrote modular Common Table Expressions (CTEs), multi-table joins, and ranking window functions.
-* **Key Finding:** Identified a **3.5x regional delivery lead-time disparity** between northern and southeastern states, and demonstrated how expanding regional fulfillment centers would protect a **137% YoY revenue surge**.
+* **Methodology:** Queried **99,441 orders** across 6 relational tables on Google BigQuery; wrote Common Table Expressions (CTEs), multi-table joins, and window functions (`LAG`, `DENSE_RANK`).
+* **Key Finding:** Average delivery took **29.3 days in Roraima against 8.3 in São Paulo (about 3.5x)**, while January–August revenue grew **137% from 2017 to 2018**. Recommended regional fulfillment hubs in the north.
 * **Key SQL Pattern:**
   ```sql
   WITH delivery_metrics AS (
@@ -145,7 +166,7 @@ I am a **Data Analyst** with a degree in **Mechanical Engineering (8.67 CGPA)** 
 </details>
 
 <details open>
-<summary><b>2. 🛒 Walmart: Consumer Purchase Behavior & Central Limit Theorem (Python, Statistics & CLT)</b></summary>
+<summary><b>3. 🛒 Walmart: Consumer Purchase Behavior & Central Limit Theorem (Python, Statistics & CLT)</b></summary>
 <br>
 
 * **Business Problem:** Test demographic spending assumptions across 550,000+ Black Friday transactions to guide seasonal stock planning and marketing budget allocation.
@@ -163,7 +184,7 @@ I am a **Data Analyst** with a degree in **Mechanical Engineering (8.67 CGPA)** 
 </details>
 
 <details open>
-<summary><b>3. 🚲 Yulu Micro-Mobility: Statistical Hypothesis Testing & Demand Drivers (Python, ANOVA, Chi-Square & T-Tests)</b></summary>
+<summary><b>4. 🚲 Yulu Micro-Mobility: Statistical Hypothesis Testing & Demand Drivers (Python, ANOVA, Chi-Square & T-Tests)</b></summary>
 <br>
 
 * **Business Problem:** Diagnose electric cycle revenue slumps and evaluate which environmental and temporal factors govern hourly rental demand in urban transit networks.
@@ -179,12 +200,12 @@ I am a **Data Analyst** with a degree in **Mechanical Engineering (8.67 CGPA)** 
 </details>
 
 <details open>
-<summary><b>4. 🏃 AeroFit: Customer Segmentation & Treadmill Purchasing Drivers (Python, EDA, Probability)</b></summary>
+<summary><b>5. 🏃 AeroFit: Customer Segmentation & Treadmill Purchasing Drivers (Python, EDA, Probability)</b></summary>
 <br>
 
 * **Business Problem:** Define distinct customer profiles across entry-level (KP281), mid-tier (KP481), and commercial (KP781) treadmills to target sales recommendations.
 * **Methodology:** Constructed two-way contingency tables, evaluated **conditional probabilities** $P(\text{Product} \mid \text{Fitness Rating})$ vs. demographic indicators, and conducted distribution analysis.
-* **Key Finding:** Self-rated fitness (level 4–5) was the single strongest indicator for commercial model purchases, showing an **80%+ conditional probability** for the premium KP781 model, proving that fitness habits matter far more than age or income alone.
+* **Key Finding:** Self-rated fitness separated the models best: **93.5% of customers who rate themselves 5 bought the premium KP781**, and 90% of KP781 buyers rate themselves 4 or 5. KP781 buyers also earn more (about $75K against $46–49K), while age and marital status barely differ.
 * **Key Python Snippet:**
   ```python
   # Conditional probability matrix
@@ -195,7 +216,7 @@ I am a **Data Analyst** with a degree in **Mechanical Engineering (8.67 CGPA)** 
 </details>
 
 <details open>
-<summary><b>5. 📊 Superstore Executive Sales & Profitability Dashboard (Tableau Public)</b></summary>
+<summary><b>6. 📊 Superstore Executive Sales & Profitability Dashboard (Tableau Public)</b></summary>
 <br>
 
 * **Business Problem:** Leadership needed immediate visibility into loss-making product categories, regional discount sensitivity, and customer margin contributions.
@@ -205,21 +226,12 @@ I am a **Data Analyst** with a degree in **Mechanical Engineering (8.67 CGPA)** 
   [🌐 Live Interactive Dashboard (Tableau Public)](https://public.tableau.com/app/profile/shivaling.battarki/viz/SuperstoreSalesDashboard_17749442233780/superstoresalesdashboard) • [📊 Executive Dashboard PDF Summary](./dashboards/superstore_sales_dashboard.pdf) • [👤 Tableau Public Profile](https://public.tableau.com/app/profile/shivaling.battarki/vizzes)
 </details>
 
-<details>
-<summary><b>6. ⛽ BPCL Operations MIS & Dealer Credit Evaluation (Advanced Excel, VBA, SAP ECC)</b></summary>
+<details open>
+<summary><b>7. 🚖 Rapido Ride-Sharing Analytics (15 SQL Queries)</b></summary>
 <br>
 
-* **Operational Reality:** Daily monitoring of sales volumes, physical tank stock levels, and dealer credit exposure across 350+ petroleum retail outlets.
-* **Methodology:** Designed structured Excel reporting templates connecting SAP ECC ERP extracts, dynamic Pivot Tables, and automated VBA macros; assessed 2-year sales trends to calculate bank credit eligibility under the **e-DFS facility for 50+ retail dealers**.
-* **Quantified Impact:** Reduced daily MIS compilation from **2.5 hours down to 25 minutes** (70% reporting time saved) and coordinated documentation and operational compliance for the commissioning of **37 new retail outlets**.
-</details>
-
-<details>
-<summary><b>7. 🚖 Rapido Ride-Sharing Analytics (15 Production-Grade SQL Queries)</b></summary>
-<br>
-
-* **Business Problem:** Analyze driver allocation patterns, morning peak-hour ride cancellations, and customer retention drop-offs across urban pickup zones.
-* **Methodology:** Solved 15 distinct business scenarios using window functions (`ROW_NUMBER`, `RANK`), multi-condition aggregations, and distance-based user segmentation.
+* **Business Problem:** Find which users ride most, how distance varies by vehicle type, and how signup cohorts behave.
+* **Methodology:** Solved 15 business questions on a two-table schema (104 rides, 118 users) with CTEs, correlated subqueries, conditional aggregation and distance-based user segmentation.
 * **Direct Project Links:**  
   [🔗 GitHub Repository](https://github.com/Hazardous9hub/RAPIDO-MINI-CASE-STUDY) • [📁 15 SQL Queries Directory](https://github.com/Hazardous9hub/RAPIDO-MINI-CASE-STUDY/tree/main/Problem%20Statements%20-%20Queries)
 </details>
@@ -228,8 +240,8 @@ I am a **Data Analyst** with a degree in **Mechanical Engineering (8.67 CGPA)** 
 <summary><b>8. 👥 HR Workforce Analytics & Equity Analysis (9 Structured SQL Queries)</b></summary>
 <br>
 
-* **Business Problem:** Analyze department-level turnover risks, managerial spans of control, and salary equity across regional offices.
-* **Methodology:** Wrote 9 structured queries utilizing correlated subqueries, window percentiles, and group-level benchmarking against company-wide averages.
+* **Business Problem:** Analyze department headcount and pay, manager team sizes, and salary benchmarks across regions.
+* **Methodology:** Wrote 9 queries on a 7-table schema using CTEs, subqueries and group-level benchmarks against the company average.
 * **Direct Project Links:**  
   [🔗 GitHub Repository](https://github.com/Hazardous9hub/HR-ANALYTICS-SQL-CASE-STUDY) • [📁 9 SQL Queries Directory](https://github.com/Hazardous9hub/HR-ANALYTICS-SQL-CASE-STUDY/tree/main/queries)
 </details>
@@ -248,7 +260,7 @@ I am a **Data Analyst** with a degree in **Mechanical Engineering (8.67 CGPA)** 
 <summary><b>10. 🎬 Netflix Content Strategy & Catalog Evolution (Python, EDA, Seaborn)</b></summary>
 <br>
 
-* **Business Problem:** Examine catalog shifts between movies and television series over a 15-year period, international content growth, and director networks.
+* **Business Problem:** Examine the catalogue mix of movies and TV shows, genres, ratings and countries across 8,807 titles (catalogue metadata only, not viewing data).
 * **Methodology:** Handled nested genre strings, performed temporal trend analysis, and visualized release patterns using Pandas, Matplotlib, and Seaborn.
 * **Direct Project Links:**  
   [🔗 GitHub Repository](https://github.com/Hazardous9hub/Netflix-Business-Case-Study) • [📓 Jupyter Notebook](https://github.com/Hazardous9hub/Netflix-Business-Case-Study/blob/main/notebooks/Netflix_Case_Study.ipynb) • [📊 Case Study PDF Report](https://github.com/Hazardous9hub/Netflix-Business-Case-Study/blob/main/reports/SHIVALING_NETFLIX%20Business%20Case%20Study.pdf)

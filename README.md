@@ -71,7 +71,7 @@ I am a **Data Analyst** with a degree in **Mechanical Engineering (8.67 CGPA)** 
 
 - ⚙️ **From Physical Systems to Data:** My engineering background trained me to think in numbers, constraints, and root causes. At BPCL, I saw how physical operations rely on day-to-day data accuracy: monitoring fuel throughput, underground tank inventories, and dealer credit risk across **350+ retail stations**.
 - 🛠️ **Practical Process Automation:** Working with **SAP ECC, Advanced Excel, and VBA**, I rebuilt manual daily reporting routines, **cutting MIS compilation time from 2.5 hours down to 25 minutes** (70% reduction) and evaluated bank credit eligibility under the **e-DFS facility for 50+ retail dealers**.
-- 📈 **Rigorous Upskilling with Scaler DSML:** I committed to deep analytical training through **Scaler Academy's Data Science & Machine Learning program**, mastering **SQL (BigQuery, PostgreSQL, MySQL), Python (Pandas, NumPy, Scipy, Seaborn), Applied Probability, Hypothesis Testing, and Tableau Public**.
+- 📈 **Rigorous Upskilling with Scaler DSML:** I committed to deep analytical training through **Scaler Academy's Data Science & Machine Learning program**, mastering **SQL (BigQuery, MySQL), Python (Pandas, NumPy, Scipy, Seaborn), Applied Probability, Hypothesis Testing, and Tableau Public**.
 - 🎯 **Current Focus:** Open to full-time **Data Analyst / Business Analyst** roles where I can combine operational intuition with clean SQL queries, statistical rigor, and executive dashboards.
 
 ---

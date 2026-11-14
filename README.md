@@ -12,7 +12,7 @@
 
   <!-- 1-Click Verification & Interactive Tool Badges (Dracula Palette + Bright Green) -->
   <a href="https://iamshivalingbattarki09.vercel.app/">
-    <img src="https://img.shields.io/badge/Explore My Portfolio-282a36?style=for-the-badge&logo=vercel&logoColor=50fa7b&labelColor=282a36" alt="Portfolio"/>
+    <img src="https://img.shields.io/badge/Explore My Portfolio-282a36?style=for-the-badge&logo=vercel&logoColor=282a36&labelColor=50fa7b" alt="Portfolio"/>
   </a>
   <a href="https://iamshivalingbattarki09.vercel.app/Shivaling_Battarki_Resume.pdf">
     <img src="https://img.shields.io/badge/View My Resume-50fa7b?style=for-the-badge&logo=googledocs&logoColor=1e1f29&labelColor=50fa7b" alt="Resume"/>
@@ -70,8 +70,8 @@
 I am a **Data Analyst** with a degree in **Mechanical Engineering (8.67 CGPA)** and a year of on-ground enterprise operations experience at **Bharat Petroleum Corporation Limited (BPCL)**.
 
 - ⚙️ **From Physical Systems to Data:** My engineering background trained me to think in numbers, constraints, and root causes. At BPCL, I saw how physical operations rely on day-to-day data accuracy: monitoring fuel throughput, underground tank inventories, and dealer credit risk across **350+ retail stations**.
-- 🛠️ **Practical Process Automation:** Working with **SAP ECC, Advanced Excel, and VBA**, I rebuilt manual daily reporting routines, **cutting MIS compilation time from 2.5 hours down to 25 minutes** (70% reduction) and evaluated bank credit eligibility under the **e-DFS facility for 50+ retail dealers**.
-- 📈 **Rigorous Upskilling with Scaler DSML:** I committed to deep analytical training through **Scaler Academy's Data Science & Machine Learning program**, mastering **SQL (BigQuery, MySQL), Python (Pandas, NumPy, Scipy, Seaborn,Sci-Kit Learn), Applied Probability, Hypothesis Testing, and Tableau Public**. **Learning Product analytics (RCA, RFM customer segmentation,Guess Estimates)**
+- 🛠️ **Practical Process Automation:** Working with **SAP ECC, Advanced Excel, and VBA**, I rebuilt manual daily reporting routines, **cutting MIS compilation time from 2 hours down to around 30 minutes** (~75% reduction) and evaluated bank credit eligibility under the **e-DFS facility for 50+ retail dealers**.
+- 📈 **Rigorous Upskilling with Scaler DSML:** I committed to deep analytical training through **Scaler Academy's Data Science & Machine Learning program**, mastering **SQL (BigQuery, MySQL), Python (Pandas, NumPy, Scipy, Seaborn, Matplotlib, Sci-Kit Learn), Applied Probability, Hypothesis Testing, and Tableau Public**. **Learning Product analytics (RCA, RFM customer segmentation,Guess Estimates)**
 - 🎯 **Current Focus:** Open to full-time **Data Analyst / Business Analyst** roles where I can combine operational intuition with clean SQL queries, statistical rigor, and executive dashboards.
 
 ---

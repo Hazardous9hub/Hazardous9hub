@@ -122,148 +122,71 @@ I am a **Data Analyst** with a degree in **Mechanical Engineering (8.67 CGPA)** 
 
 ---
 
-### 📂 Featured Case Studies & Live Dashboards
+### 📂 Detailed Project Breakdown & Artifacts
 
-<details open>
-<summary><b>1. 🚚 Delhivery: Trip Feature Engineering & OSRM ETA Analysis (Python, SciPy, scikit-learn)</b></summary>
+<details>
+<summary><b>🚚 Delhivery: Logistics Feature Engineering & ETA Optimization</b> — <code>Python</code> <code>SciPy</code> <code>scikit-learn</code></summary>
 <br>
 
-* **Business Problem:** Delhivery's raw data is nested checkpoint scans, not customer trips, and its OSRM routing engine predicts times for ideal roads. Rebuild end-to-end trips and test how far the estimates are from reality.
-* **Methodology:** Turned **144,867 scan rows into 14,787 trips** (dropped 551 rows, 0.38%, with no location). Parsed state, city and center codes, built corridor, time and duration features, tested differences with a paired t-test or Wilcoxon signed-rank test chosen by a Shapiro-Wilk check, capped outliers at Q3 + 1.5×IQR on six variables, and scaled on the training split only to avoid leakage.
-* **Key Finding:** Real trips ran **194.6 minutes longer than OSRM predicted on average (median 80 minutes), p < 0.001**. OSRM is consistently optimistic because it ignores highway bottlenecks.
-* **Key Python Snippet:**
-  ```python
-  # Pick the paired test from the normality of the differences
-  s_stat, p_norm = shapiro(sample_diff)
-  if p_norm > alpha:
-      stat, p_val = ttest_rel(trip_df[col_a], trip_df[col_b])
-  else:
-      stat, p_val = wilcoxon(trip_df[col_a], trip_df[col_b])
-  ```
-* **Direct Project Links:**  
-  [🔗 GitHub Repository](https://github.com/Hazardous9hub/Delhivery-Logostics-Feature-Engineering-Analytics) • [📓 Jupyter Notebook](https://github.com/Hazardous9hub/Delhivery-Logostics-Feature-Engineering-Analytics/blob/main/notebooks/delhivery-feature-engineering-case-study.ipynb) • [📊 Case Study PDF Report](https://github.com/Hazardous9hub/Delhivery-Logostics-Feature-Engineering-Analytics/blob/main/docs/Shivaling_Delhivery_Logistics_Business_Case_Study.pdf) • [🗂️ Dataset on Kaggle](https://www.kaggle.com/datasets/shivaling09/delhivery-logistics-network-and-route-data)
-</details>
-
-<details open>
-<summary><b>2. 🛒 Target E-Commerce: Logistics Disparity & Revenue Scaling (Google BigQuery & SQL)</b></summary>
-<br>
-
-* **Business Problem:** Evaluate delivery lead-times across Brazilian states, detect logistical bottlenecks, and analyze customer repeat purchasing trends.
-* **Methodology:** Queried **99,441 orders** across 6 relational tables on Google BigQuery; wrote Common Table Expressions (CTEs), multi-table joins, and window functions (`LAG`, `DENSE_RANK`).
-* **Key Finding:** Average delivery took **29.3 days in Roraima against 8.3 in São Paulo (about 3.5x)**, while January–August revenue grew **137% from 2017 to 2018**. Recommended regional fulfillment hubs in the north.
-* **Key SQL Pattern:**
-  ```sql
-  WITH delivery_metrics AS (
-    SELECT customer_state, AVG(DATE_DIFF(order_delivered_customer_date, order_purchase_timestamp, DAY)) as avg_days
-    FROM `target.orders` JOIN `target.customers` USING(customer_id)
-    GROUP BY customer_state
-  )
-  SELECT customer_state, avg_days, DENSE_RANK() OVER(ORDER BY avg_days DESC) as rank
-  FROM delivery_metrics;
-  ```
-* **Direct Project Links:**  
-  [🔗 GitHub Repository](https://github.com/Hazardous9hub/Target-SQL-Business-Case-Study) • [📄 Master SQL Script (`all_target_queries.sql`)](https://github.com/Hazardous9hub/Target-SQL-Business-Case-Study/blob/main/sql/all_target_queries.sql) • [📁 SQL Queries Directory (7 Scripts)](https://github.com/Hazardous9hub/Target-SQL-Business-Case-Study/tree/main/sql) • [📊 Case Study PDF Report](https://github.com/Hazardous9hub/Target-SQL-Business-Case-Study/blob/main/reports/Shivaling-TARGET%20SQL%20Business%20Case.pdf)
-</details>
-
-<details open>
-<summary><b>3. 🛒 Walmart: Consumer Purchase Behavior & Central Limit Theorem (Python, Statistics & CLT)</b></summary>
-<br>
-
-* **Business Problem:** Test demographic spending assumptions across 550,000+ Black Friday transactions to guide seasonal stock planning and marketing budget allocation.
-* **Methodology:** Applied **Central Limit Theorem (CLT)** sampling distributions ($n \in \{30, 100, 500, 1000\}$), calculated standard error contraction, and built **90%, 95%, and 99% Confidence Intervals** across demographics.
-* **Key Finding:** Men spend **+$702.96 (+8.05%)** more per transaction overall ($9,437 vs. $8,734) with **zero CI overlap at 99% confidence (gap >$649)**, yet within specific categories (such as Product_Category 1), spending between men and women is virtually identical ($11 difference). Marital status showed no spending variance ($4.74 difference, completely overlapping CIs).
-* **Key Python Snippet:**
-  ```python
-  # Computing sample mean standard error and 95% confidence interval
-  std_err = df['Purchase'].std() / np.sqrt(len(df))
-  margin_error = stats.norm.ppf(0.975) * std_err
-  ci_95 = (df['Purchase'].mean() - margin_error, df['Purchase'].mean() + margin_error)
-  ```
-* **Direct Project Links:**  
-  [🔗 GitHub Repository](https://github.com/Hazardous9hub/Walmart-Purchase-Behaviour-Business-Case-Study) • [📓 Jupyter Notebook](https://github.com/Hazardous9hub/Walmart-Purchase-Behaviour-Business-Case-Study/blob/main/notebooks/Walmart_Purchase_Behaviour_Case_Study_Shivaling.ipynb) • [📊 Case Study PDF Report](https://github.com/Hazardous9hub/Walmart-Purchase-Behaviour-Business-Case-Study/blob/main/reports/Shivaling_Walmart_Case_Study_Project.pdf) • [📱 LinkedIn Carousel Slides](https://github.com/Hazardous9hub/Walmart-Purchase-Behaviour-Business-Case-Study/tree/main/carousel)
-</details>
-
-<details open>
-<summary><b>4. 🚲 Yulu Micro-Mobility: Statistical Hypothesis Testing & Demand Drivers (Python, ANOVA, Chi-Square & T-Tests)</b></summary>
-<br>
-
-* **Business Problem:** Diagnose electric cycle revenue slumps and evaluate which environmental and temporal factors govern hourly rental demand in urban transit networks.
-* **Methodology:** Formulated strict 6-step hypothesis testing frameworks across 10,886 hourly records: **2-Sample Independent T-Test** (Workingday effect), **One-Way & Two-Way ANOVA** (Seasonal and Weather variation using Pingouin), and **Chi-Square Test of Independence** (Weather vs Season with Cochran's rule check on $n=1$ outlier).
-* **Key Finding:** Total demand appears identical on working vs non-working days ($p = 0.226$), but rider segmentation completely shifts: **casual riders surge by +136% on weekends**, while **registered commuters dominate weekdays** (twin peaks at 8 AM and 5 PM). Spring experiences an acute **50% demand collapse** ($116.3$ vs $234.4$ in Fall, $p < 10^{-100}$), and adverse weather reduces demand by **42%**.
-* **Key Python Snippet:**
-  ```python
-  # Two-Way ANOVA testing Season, Weather, and interaction effects
-  model = pg.anova(dv='count', between=['weather', 'season'], data=yulu[yulu['weather'] != 4], ss_type=2)
-  ```
-* **Direct Project Links:**  
-  [🔗 GitHub Repository](https://github.com/Hazardous9hub/Yulu-Hypothesis-Testing-Business-Case-Study) • [📓 Jupyter Notebook](https://github.com/Hazardous9hub/Yulu-Hypothesis-Testing-Business-Case-Study/blob/main/notebooks/Yulu_Hypothesis_Testing_Case_Study.ipynb) • [📊 Case Study PDF Report](https://github.com/Hazardous9hub/Yulu-Hypothesis-Testing-Business-Case-Study/blob/main/reports/Shivaling_Scaler_Yulu_Hypothesis_Case_Study_Report.pdf)
-</details>
-
-<details open>
-<summary><b>5. 🏃 AeroFit: Customer Segmentation & Treadmill Purchasing Drivers (Python, EDA, Probability)</b></summary>
-<br>
-
-* **Business Problem:** Define distinct customer profiles across entry-level (KP281), mid-tier (KP481), and commercial (KP781) treadmills to target sales recommendations.
-* **Methodology:** Constructed two-way contingency tables, evaluated **conditional probabilities** $P(\text{Product} \mid \text{Fitness Rating})$ vs. demographic indicators, and conducted distribution analysis.
-* **Key Finding:** Self-rated fitness separated the models best: **93.5% of customers who rate themselves 5 bought the premium KP781**, and 90% of KP781 buyers rate themselves 4 or 5. KP781 buyers also earn more (about $75K against $46–49K), while age and marital status barely differ.
-* **Key Python Snippet:**
-  ```python
-  # Conditional probability matrix
-  pd.crosstab(index=df['Fitness'], columns=df['Product'], normalize='index') * 100
-  ```
-* **Direct Project Links:**  
-  [🔗 GitHub Repository](https://github.com/Hazardous9hub/Aerofit-Treadmill-Business-Case-Study) • [📓 Jupyter Notebook](https://github.com/Hazardous9hub/Aerofit-Treadmill-Business-Case-Study/blob/main/Aerofit_Business_Case_Study.ipynb) • [📊 Case Study PDF Report](https://github.com/Hazardous9hub/Aerofit-Treadmill-Business-Case-Study/blob/main/Shivaling_Aerofit_Business_case_study_Colab.pdf) • [📈 Tableau Packaged Dashboard (`.twbx`)](./dashboards/Aerofit_Products_Customers_Dashboard.twbx)
-</details>
-
-<details open>
-<summary><b>6. 📊 Superstore Executive Sales & Profitability Dashboard (Tableau Public)</b></summary>
-<br>
-
-* **Business Problem:** Leadership needed immediate visibility into loss-making product categories, regional discount sensitivity, and customer margin contributions.
-* **Methodology:** Built a dynamic parameter-driven Tableau Public dashboard with interactive filters for Region, Segment, and Category; engineered Level of Detail (LOD) expressions and custom profit margin calculations.
-* **Key Finding:** Tracked **$733K+ in total sales** and discovered that aggressive discounting on Tables in the Central region accounted for **over 60% of total regional operating losses**, providing the justification for discount limits.
-* **Direct Project Links:**  
-  [🌐 Live Interactive Dashboard (Tableau Public)](https://public.tableau.com/app/profile/shivaling.battarki/viz/SuperstoreSalesDashboard_17749442233780/superstoresalesdashboard) • [📊 Executive Dashboard PDF Summary](./dashboards/superstore_sales_dashboard.pdf) • [👤 Tableau Public Profile](https://public.tableau.com/app/profile/shivaling.battarki/vizzes)
-</details>
-
-<details open>
-<summary><b>7. 🚖 Rapido Ride-Sharing Analytics (15 SQL Queries)</b></summary>
-<br>
-
-* **Business Problem:** Find which users ride most, how distance varies by vehicle type, and how signup cohorts behave.
-* **Methodology:** Solved 15 business questions on a two-table schema (104 rides, 118 users) with CTEs, correlated subqueries, conditional aggregation and distance-based user segmentation.
-* **Direct Project Links:**  
-  [🔗 GitHub Repository](https://github.com/Hazardous9hub/RAPIDO-MINI-CASE-STUDY) • [📁 15 SQL Queries Directory](https://github.com/Hazardous9hub/RAPIDO-MINI-CASE-STUDY/tree/main/Problem%20Statements%20-%20Queries)
+* 🎯 **Business Problem & Scale:** Rebuilt **14,787 end-to-end trips** from 144,867 raw checkpoint scans to test the predictive accuracy of Delhivery's Open Source Routing Machine (OSRM).
+* 💡 **Quantified Outcome:** Actual trips ran **194.6 minutes longer than OSRM predictions on average (median 80 min, $p < 0.001$)**, proving that OSRM underestimates real transit by failing to account for highway congestion and checkpoint handling.
+* 🔗 **Direct Artifacts:** [🔗 GitHub Repository](https://github.com/Hazardous9hub/Delhivery-Logostics-Feature-Engineering-Analytics) • [📓 Jupyter Notebook](https://github.com/Hazardous9hub/Delhivery-Logostics-Feature-Engineering-Analytics/blob/main/notebooks/delhivery-feature-engineering-case-study.ipynb) • [📊 Case Study Report (PDF)](https://github.com/Hazardous9hub/Delhivery-Logostics-Feature-Engineering-Analytics/blob/main/docs/Shivaling_Delhivery_Logistics_Business_Case_Study.pdf) • [🗂️ Kaggle Dataset](https://www.kaggle.com/datasets/shivaling09/delhivery-logistics-network-and-route-data)
 </details>
 
 <details>
-<summary><b>8. 👥 HR Workforce Analytics & Equity Analysis (9 Structured SQL Queries)</b></summary>
+<summary><b>🛒 Target E-Commerce: BigQuery Logistics Disparity & Revenue Scaling</b> — <code>Google BigQuery</code> <code>SQL CTEs</code> <code>Window Functions</code></summary>
 <br>
 
-* **Business Problem:** Analyze department headcount and pay, manager team sizes, and salary benchmarks across regions.
-* **Methodology:** Wrote 9 queries on a 7-table schema using CTEs, subqueries and group-level benchmarks against the company average.
-* **Direct Project Links:**  
-  [🔗 GitHub Repository](https://github.com/Hazardous9hub/HR-ANALYTICS-SQL-CASE-STUDY) • [📁 9 SQL Queries Directory](https://github.com/Hazardous9hub/HR-ANALYTICS-SQL-CASE-STUDY/tree/main/queries)
+* 🎯 **Business Problem & Scale:** Evaluated delivery lead-times across Brazilian states, transit bottlenecks, and customer repeat behavior across **99,441 orders** in 6 relational BigQuery tables.
+* 💡 **Quantified Outcome:** Identified a **3.5x regional delivery delay** (29.3 days in Roraima vs. 8.3 days in São Paulo), while Jan–Aug revenue grew **+137% YoY**. Recommended localized regional fulfillment hubs in the Northern zone.
+* 🔗 **Direct Artifacts:** [🔗 GitHub Repository](https://github.com/Hazardous9hub/Target-SQL-Business-Case-Study) • [📄 Master SQL Queries (`.sql`)](https://github.com/Hazardous9hub/Target-SQL-Business-Case-Study/blob/main/sql/all_target_queries.sql) • [📊 Case Study Report (PDF)](https://github.com/Hazardous9hub/Target-SQL-Business-Case-Study/blob/main/reports/Shivaling-TARGET%20SQL%20Business%20Case.pdf)
 </details>
 
 <details>
-<summary><b>9. 🏭 Deloitte Australia: Daikibo Factory IoT Telemetry & Downtime Analysis (IoT & Tableau)</b></summary>
+<summary><b>🛍️ Walmart: Consumer Purchase Behavior & Central Limit Theorem</b> — <code>Python</code> <code>CLT</code> <code>Sampling Distributions</code></summary>
 <br>
 
-* **Business Problem:** Analyze machine telemetry data (operating temperatures, vibration spikes, cycle rates) across manufacturing lines to isolate unscheduled downtime.
-* **Methodology:** Processed industrial IoT telemetry logs, synthesized failure correlations, and built an executive machine health dashboard.
-* **Direct Project Links:**  
-  [📜 Deloitte Australia Completion Certificate](./deloitte-simulation/Shivaling_Deloitte_Data_Analytics_Certificate.pdf) • [📈 Daikibo Telemetry Dashboard (`.twbx`)](./deloitte-simulation/Daikibo_Telemetry_Dashboard.twbx) • [🖼️ Dashboard Screenshot Preview](./deloitte-simulation/Factory_Machine_Downtime_Dashboard.jpg) • [📊 Forensic Technology Equality Analysis (Excel)](./deloitte-simulation/Shivaling_Forensic_Equality_Category_Table.xlsx)
+* 🎯 **Business Problem & Scale:** Tested demographic spending assumptions across **550,000+ Black Friday transactions** to guide seasonal inventory allocation and promotional budgets.
+* 💡 **Quantified Outcome:** Men spend **+$702.96 (+8.05%)** more per transaction with **zero CI overlap at 99% confidence**, while marital status showed no spending difference ($4.74 variance, completely overlapping CIs).
+* 🔗 **Direct Artifacts:** [🔗 GitHub Repository](https://github.com/Hazardous9hub/Walmart-Purchase-Behaviour-Business-Case-Study) • [📓 Jupyter Notebook](https://github.com/Hazardous9hub/Walmart-Purchase-Behaviour-Business-Case-Study/blob/main/notebooks/Walmart_Purchase_Behaviour_Case_Study_Shivaling.ipynb) • [📊 Case Study Report (PDF)](https://github.com/Hazardous9hub/Walmart-Purchase-Behaviour-Business-Case-Study/blob/main/reports/Shivaling_Walmart_Case_Study_Project.pdf) • [📱 LinkedIn Slides](https://github.com/Hazardous9hub/Walmart-Purchase-Behaviour-Business-Case-Study/tree/main/carousel)
 </details>
 
 <details>
-<summary><b>10. 🎬 Netflix Content Strategy & Catalog Evolution (Python, EDA, Seaborn)</b></summary>
+<summary><b>🚲 Yulu Micro-Mobility: Statistical Hypothesis Testing (ANOVA & Chi-Square)</b> — <code>Python</code> <code>Pingouin</code> <code>Two-Way ANOVA</code></summary>
 <br>
 
-* **Business Problem:** Examine the catalogue mix of movies and TV shows, genres, ratings and countries across 8,807 titles (catalogue metadata only, not viewing data).
-* **Methodology:** Handled nested genre strings, performed temporal trend analysis, and visualized release patterns using Pandas, Matplotlib, and Seaborn.
-* **Direct Project Links:**  
-  [🔗 GitHub Repository](https://github.com/Hazardous9hub/Netflix-Business-Case-Study) • [📓 Jupyter Notebook](https://github.com/Hazardous9hub/Netflix-Business-Case-Study/blob/main/notebooks/Netflix_Case_Study.ipynb) • [📊 Case Study PDF Report](https://github.com/Hazardous9hub/Netflix-Business-Case-Study/blob/main/reports/SHIVALING_NETFLIX%20Business%20Case%20Study.pdf)
+* 🎯 **Business Problem & Scale:** Diagnosed electric cycle revenue slumps and evaluated environmental and temporal drivers across **10,886 hourly rental records** using a 6-step hypothesis testing framework.
+* 💡 **Quantified Outcome:** Revealed a **+136% weekend surge** in casual riders against commuter-dominated weekdays, a **50% spring demand collapse** ($p < 10^{-100}$), and a **42% rental drop** during adverse weather.
+* 🔗 **Direct Artifacts:** [🔗 GitHub Repository](https://github.com/Hazardous9hub/Yulu-Hypothesis-Testing-Business-Case-Study) • [📓 Jupyter Notebook](https://github.com/Hazardous9hub/Yulu-Hypothesis-Testing-Business-Case-Study/blob/main/notebooks/Yulu_Hypothesis_Testing_Case_Study.ipynb) • [📊 Case Study Report (PDF)](https://github.com/Hazardous9hub/Yulu-Hypothesis-Testing-Business-Case-Study/blob/main/reports/Shivaling_Scaler_Yulu_Hypothesis_Case_Study_Report.pdf)
+</details>
+
+<details>
+<summary><b>🏃 AeroFit: Treadmill Customer Segmentation & Conditional Probability</b> — <code>Python</code> <code>EDA</code> <code>Contingency Tables</code></summary>
+<br>
+
+* 🎯 **Business Problem & Scale:** Evaluated customer demographic profiles across entry-level (KP281), mid-tier (KP481), and commercial (KP781) treadmills to build targeted sales recommendations.
+* 💡 **Quantified Outcome:** Self-rated fitness was the single strongest indicator: **93.5% of customers rating fitness 5 bought the premium KP781 model**, proving fitness habit outweighs income or age alone.
+* 🔗 **Direct Artifacts:** [🔗 GitHub Repository](https://github.com/Hazardous9hub/Aerofit-Treadmill-Business-Case-Study) • [📓 Jupyter Notebook](https://github.com/Hazardous9hub/Aerofit-Treadmill-Business-Case-Study/blob/main/Aerofit_Business_Case_Study.ipynb) • [📊 Case Study Report (PDF)](https://github.com/Hazardous9hub/Aerofit-Treadmill-Business-Case-Study/blob/main/Shivaling_Aerofit_Business_case_study_Colab.pdf)
+</details>
+
+<details>
+<summary><b>📊 Superstore: Executive Sales & Profitability Dashboard</b> — <code>Tableau Public</code> <code>LOD Expressions</code> <code>Parameters</code></summary>
+<br>
+
+* 🎯 **Business Problem & Scale:** Provided executive visibility into loss-making product categories, regional discount sensitivity, and customer margins across **$733K+ in total sales**.
+* 💡 **Quantified Outcome:** Discovered that aggressive discounting on Tables in the Central region accounted for **over 60% of total regional operating losses**, providing quantitative justification for discount caps.
+* 🔗 **Direct Artifacts:** [🌐 Live Interactive Dashboard (Tableau Public)](https://public.tableau.com/app/profile/shivaling.battarki/viz/SuperstoreSalesDashboard_17749442233780/superstoresalesdashboard) • [👤 Tableau Public Profile](https://public.tableau.com/app/profile/shivaling.battarki/vizzes)
+</details>
+
+<details>
+<summary><b>📂 View More Specialized Projects & Operational Analyses (BPCL, Rapido, HR, IoT, Netflix)</b></summary>
+<br>
+
+* ⛽ **BPCL Retail Operations MIS (Excel, VBA, SAP ECC):** Rebuilt manual routines for 350+ stations, cutting reporting time by 70% (2.5 hrs $\rightarrow$ 25 mins) and assessed bank credit eligibility under e-DFS for 50+ retail dealers.
+* 🚖 **[Rapido Ride-Sharing Analytics (15 SQL Queries)](https://github.com/Hazardous9hub/RAPIDO-MINI-CASE-STUDY):** Evaluated morning peak cancellation root-causes, window rankings, and distance-based user segmentation.
+* 👥 **[HR Workforce Equity Analytics (9 SQL Queries)](https://github.com/Hazardous9hub/HR-ANALYTICS-SQL-CASE-STUDY):** Analyzed departmental turnover risks, spans of control, and regional salary equity benchmarks.
+* 🏭 **[Deloitte Australia Daikibo Factory IoT (Tableau)](https://github.com/Hazardous9hub):** Analyzed industrial machine telemetry data (temperatures/vibrations) to isolate unscheduled downtime.
+* 🎬 **[Netflix Content Strategy EDA (Python & Seaborn)](https://github.com/Hazardous9hub/Netflix-Business-Case-Study):** Analyzed international release trends and genre mix evolution across 8,807 titles.
 </details>
 
 ---

@@ -70,8 +70,8 @@
 I am a **Data Analyst** with a degree in **Mechanical Engineering (8.67 CGPA)** and a year of on-ground enterprise operations experience at **Bharat Petroleum Corporation Limited (BPCL)**.
 
 - ⚙️ **From Physical Systems to Data:** My engineering background trained me to think in numbers, constraints, and root causes. At BPCL, I saw how physical operations rely on day-to-day data accuracy: monitoring fuel throughput, underground tank inventories, and dealer credit risk across **350+ retail stations**.
-- 🛠️ **Practical Process Automation:** Working with **SAP ECC, Advanced Excel, and VBA**, I rebuilt manual daily reporting routines, **cutting MIS compilation time from 2 hours down to around 30 minutes** (~75% reduction) and evaluated bank credit eligibility under the **e-DFS facility for 50+ retail dealers**.
-- 📈 **Rigorous Upskilling with Scaler DSML:** I committed to deep analytical training through **Scaler Academy's Data Science & Machine Learning program**, mastering **SQL (BigQuery, MySQL), Python (Pandas, NumPy, Scipy, Seaborn, Matplotlib, Sci-Kit Learn), Applied Probability, Hypothesis Testing, and Tableau Public**. **Learning Product analytics (RCA, RFM customer segmentation,Guess Estimates)**
+- 🛠️ **Practical Process Automation:** Working with **SAP ECC, Advanced Excel, and VBA**, I rebuilt manual daily reporting routines, **cutting MIS compilation time from ~2 hours down to ~30 minutes (~75% reduction)** and evaluated bank credit eligibility under the **e-DFS facility for 50+ retail dealers**.
+- 📈 **Rigorous Upskilling with Scaler DSML:** I committed to deep analytical training through **Scaler Academy's Data Science & Machine Learning program**, mastering **SQL (BigQuery, MySQL), Python (Pandas, NumPy, SciPy, Seaborn, Matplotlib, scikit-learn), Applied Probability, Hypothesis Testing, and Tableau Public** — currently learning **Product Analytics (RCA, RFM customer segmentation, Guesstimates)**.
 - 🎯 **Current Focus:** Open to full-time **Data Analyst / Business Analyst** roles where I can combine operational intuition with clean SQL queries, statistical rigor, and executive dashboards.
 
 ---
@@ -125,12 +125,21 @@ I am a **Data Analyst** with a degree in **Mechanical Engineering (8.67 CGPA)** 
 ### 📂 Detailed Project Breakdown & Artifacts
 
 <details>
+<summary><b>🏆 Indian Automotive Specification & Performance Intelligence Platform (1st Place Winner — NIE Mysuru & HackerRank 2026)</b> — <code>Tableau Public</code> <code>HTML5 Canvas 2D</code> <code>Python</code></summary>
+<br>
+
+* 🎯 **Business Problem & Scale:** Bridged fragmented automotive portals and abstract BI charts into a synchronized two-layer platform across **10,000 calibrated records** (30 benchmark models, 16 OEMs), winning **1st Place** in the NIE Mysuru & HackerRank Tableau Challenge 2026 on Unstop.
+* 💡 **Quantified Outcome:** Paired a **Tableau Public macro BI engine** (price-to-performance frontier, category dual-axis benchmarks, head-to-head comparator) with an embedded **HTML5 Canvas 2D showroom** driven by Tableau URL parameter actions for real-time **6-axis normalized performance radar** benchmarking.
+* 🔗 **Direct Artifacts:** [🔗 GitHub Repository](https://github.com/Hazardous9hub/Indian-Automotive-Specification-Intelligence-Portal) • [📊 Tableau Public Dashboard](https://public.tableau.com/app/profile/shivaling.battarki/viz/VehicleSpecificationInteractiveDashboard/INTERACTIVESPECSDETAILS?publish=yes) • [🌐 Live Web Portal](https://hazardous9hub.github.io/Indian-Automotive-Specification-Intelligence-Portal/)
+</details>
+
+<details>
 <summary><b>🚚 Delhivery: Logistics Feature Engineering & ETA Optimization</b> — <code>Python</code> <code>SciPy</code> <code>scikit-learn</code></summary>
 <br>
 
 * 🎯 **Business Problem & Scale:** Rebuilt **14,787 end-to-end trips** from 144,867 raw checkpoint scans to test the predictive accuracy of Delhivery's Open Source Routing Machine (OSRM).
 * 💡 **Quantified Outcome:** Actual trips ran **194.6 minutes longer than OSRM predictions on average (median 80 min, $p < 0.001$)**, proving that OSRM underestimates real transit by failing to account for highway congestion and checkpoint handling.
-* 🔗 **Direct Artifacts:** [🔗 GitHub Repository](https://github.com/Hazardous9hub/Delhivery-Logostics-Feature-Engineering-Analytics) • [📓 Jupyter Notebook](https://github.com/Hazardous9hub/Delhivery-Logostics-Feature-Engineering-Analytics/blob/main/notebooks/delhivery-feature-engineering-case-study.ipynb) • [📊 Case Study Report (PDF)](https://github.com/Hazardous9hub/Delhivery-Logostics-Feature-Engineering-Analytics/blob/main/docs/Shivaling_Delhivery_Logistics_Business_Case_Study.pdf) • [🗂️ Kaggle Dataset](https://www.kaggle.com/datasets/shivaling09/delhivery-logistics-network-and-route-data)
+* 🔗 **Direct Artifacts:** [🔗 GitHub Repository](https://github.com/Hazardous9hub/Delhivery-Logistics-Feature-Engineering-Analytics) • [📓 Jupyter Notebook](https://github.com/Hazardous9hub/Delhivery-Logistics-Feature-Engineering-Analytics/blob/main/notebooks/delhivery-feature-engineering-case-study.ipynb) • [📊 Case Study Report (PDF)](https://github.com/Hazardous9hub/Delhivery-Logistics-Feature-Engineering-Analytics/blob/main/docs/Shivaling_Delhivery_Logistics_Business_Case_Study.pdf) • [🗂️ Kaggle Dataset](https://www.kaggle.com/datasets/shivaling09/delhivery-logistics-network-and-route-data)
 </details>
 
 <details>
@@ -164,8 +173,8 @@ I am a **Data Analyst** with a degree in **Mechanical Engineering (8.67 CGPA)** 
 <summary><b>🏃 AeroFit: Treadmill Customer Segmentation & Conditional Probability</b> — <code>Python</code> <code>EDA</code> <code>Contingency Tables</code></summary>
 <br>
 
-* 🎯 **Business Problem & Scale:** Evaluated customer demographic profiles across entry-level (KP281), mid-tier (KP481), and commercial (KP781) treadmills to build targeted sales recommendations.
-* 💡 **Quantified Outcome:** Self-rated fitness was the single strongest indicator: **93.5% of customers rating fitness 5 bought the premium KP781 model**, proving fitness habit outweighs income or age alone.
+* 🎯 **Business Problem & Scale:** Evaluated customer demographic profiles across entry-level (KP281), mid-tier (KP481), and commercial (KP781) treadmills ($325,000 sample revenue across 180 buyers) to build targeted sales recommendations.
+* 💡 **Quantified Outcome:** Self-rated fitness was the single strongest indicator: **P(KP781 | Fitness=5) = 93.5% (29/31)** and **P(Fitness 4–5 | KP781) = 90.0% (36/40)**, vs. only 3.2% KP781 adoption below Fitness 4—proving fitness habit outweighs age or marital status.
 * 🔗 **Direct Artifacts:** [🔗 GitHub Repository](https://github.com/Hazardous9hub/Aerofit-Treadmill-Business-Case-Study) • [📓 Jupyter Notebook](https://github.com/Hazardous9hub/Aerofit-Treadmill-Business-Case-Study/blob/main/Aerofit_Business_Case_Study.ipynb) • [📊 Case Study Report (PDF)](https://github.com/Hazardous9hub/Aerofit-Treadmill-Business-Case-Study/blob/main/Shivaling_Aerofit_Business_case_study_Colab.pdf)
 </details>
 
@@ -182,10 +191,10 @@ I am a **Data Analyst** with a degree in **Mechanical Engineering (8.67 CGPA)** 
 <summary><b>📂 View More Specialized Projects & Operational Analyses (BPCL, Rapido, HR, IoT, Netflix)</b></summary>
 <br>
 
-* ⛽ **BPCL Retail Operations MIS (Excel, VBA, SAP ECC):** Rebuilt manual routines for 350+ stations, cutting reporting time by 70% (2.5 hrs $\rightarrow$ 25 mins) and assessed bank credit eligibility under e-DFS for 50+ retail dealers.
-* 🚖 **[Rapido Ride-Sharing Analytics (15 SQL Queries)](https://github.com/Hazardous9hub/RAPIDO-MINI-CASE-STUDY):** Evaluated morning peak cancellation root-causes, window rankings, and distance-based user segmentation.
-* 👥 **[HR Workforce Equity Analytics (9 SQL Queries)](https://github.com/Hazardous9hub/HR-ANALYTICS-SQL-CASE-STUDY):** Analyzed departmental turnover risks, spans of control, and regional salary equity benchmarks.
-* 🏭 **[Deloitte Australia Daikibo Factory IoT (Tableau)](https://github.com/Hazardous9hub):** Analyzed industrial machine telemetry data (temperatures/vibrations) to isolate unscheduled downtime.
+* ⛽ **BPCL Retail Operations MIS (Excel, VBA, SAP ECC):** Rebuilt manual routines for 350+ stations, cutting daily MIS compilation time from ~2 hours to ~30 minutes (~75% reduction) and assessed bank credit eligibility under e-DFS for 50+ retail dealers.
+* 🚖 **[Rapido Ride-Hailing Relational SQL Analytics (15 SQL Queries)](https://github.com/Hazardous9hub/RAPIDO-MINI-CASE-STUDY):** Queried a 2-table BigQuery schema (`USERS` & `RIDES`: 118 users, 104 rides) for distance-based user segmentation, vehicle-type distance performance, cohort activation, and 29.81% captain zero-rating rates.
+* 👥 **[HR Workforce Equity Analytics (9 SQL Queries)](https://github.com/Hazardous9hub/HR-ANALYTICS-SQL-CASE-STUDY):** Analyzed department salary spreads, manager spans of control, role mobility, and regional pay benchmarks.
+* 🏭 **[Deloitte Australia Daikibo Factory IoT (Tableau)](./deloitte-simulation):** Analyzed industrial machine telemetry data (temperatures/vibrations) to isolate unscheduled downtime.
 * 🎬 **[Netflix Content Strategy EDA (Python & Seaborn)](https://github.com/Hazardous9hub/Netflix-Business-Case-Study):** Analyzed international release trends and genre mix evolution across 8,807 titles.
 </details>
 
@@ -193,7 +202,8 @@ I am a **Data Analyst** with a degree in **Mechanical Engineering (8.67 CGPA)** 
 
 ### 📜 Verified Certifications & Credentials
 
-* 🏆 **HackerRank SQL - 5-Star Gold Badge** ([View Verified Profile](https://www.hackerrank.com/profile/shivalingb09))
+* 🏆 **HackerRank SQL — 5-Star Gold Badge** (Sep 2026 · [View Verified Profile](https://www.hackerrank.com/profile/shivalingb09))
+* 🏅 **HackerRank SQL (Intermediate) Certificate** (Nov 2026 · [View Verified Profile](https://www.hackerrank.com/profile/shivalingb09))
 * 🇦🇺 **Data Analytics Job Simulation** — *Deloitte Australia (via Forage)* ([Certificate](./deloitte-simulation/Shivaling_Deloitte_Data_Analytics_Certificate.pdf))
 * 🎓 **SQL Skill Mastery Certification** — *Scaler Academy & InterviewBit*
 * 📊 **Data Analytics & Visualisation: Probability & Statistics** — *Scaler DSML*
